@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS ELITE | Forge Your Legacy</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkForge: '#070707',
+                        obsidian: '#121212',
+                        neonCrimson: '#FF2A00',
+                        bloodOrange: '#FF4500',
+                        steelGray: '#8892B0',
+                    },
+                    fontFamily: {
+                        heading: ['Oswald', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'crimson-flare': 'linear-gradient(135deg, #FF2A00 0%, #FF4500 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #070707;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, .font-heading {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070707;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF2A00;
+            border-radius: 4px;
+        }
+
+        /* 3D Canvas fixed background */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glass and UI utilities */
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .crimson-glow-hover:hover {
+            box-shadow: 0 0 25px rgba(255, 42, 0, 0.4);
+            border-color: rgba(255, 42, 0, 0.8);
+        }
+
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+        
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Glitch effect for hero text */
+        .glitch-wrapper {
+            position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #FF2A00;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00ffff;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 50% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(30% 0 20% 0); }
+            40% { clip-path: inset(70% 0 10% 0); }
+            60% { clip-path: inset(20% 0 50% 0); }
+            80% { clip-path: inset(90% 0 5% 0); }
+            100% { clip-path: inset(40% 0 30% 0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neonCrimson selection:text-white">
+
+    <!-- 3D Background Engine -->
+    <div id="webgl-canvas"></div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-darkForge flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div class="relative w-24 h-24 flex items-center justify-center">
+            <div class="absolute inset-0 border-4 border-t-neonCrimson border-r-transparent border-b-bloodOrange border-l-transparent rounded-full animate-spin"></div>
+            <i class="fa-solid fa-dumbbell text-3xl text-white animate-pulse"></i>
+        </div>
+        <h1 class="font-heading text-3xl tracking-widest mt-6 text-white">AEGIS<span class="text-neonCrimson">ELITE</span></h1>
+        <div class="w-48 h-1 bg-white/10 mt-4 rounded overflow-hidden">
+            <div id="loader-bar" class="h-full bg-neonCrimson w-0 transition-all duration-300"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 flex justify-between items-center border-b border-transparent">
+        <a href="#" class="font-heading text-3xl font-bold tracking-wider z-50">
+            AEGIS<span class="text-neonCrimson">ELITE</span>
+        </a>
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex space-x-8 items-center bg-obsidian/40 backdrop-blur-md px-8 py-3 rounded-full border border-white/10">
+            <a href="#about" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-neonCrimson transition-colors">Philosophy</a>
+            <a href="#programs" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-neonCrimson transition-colors">Programs</a>
+            <a href="#trainers" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-neonCrimson transition-colors">Coaches</a>
+            <a href="#memberships" class="text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-neonCrimson transition-colors">Memberships</a>
+        </nav>
+
+        <div class="hidden lg:block z-50">
+            <button onclick="openModal()" class="bg-crimson-flare text-white font-heading font-bold text-lg px-8 py-3 transform skew-x-[-15deg] hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,42,0,0.4)]">
+                <div class="skew-x-[15deg]">START FREE TRIAL</div>
+            </button>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl z-50">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-darkForge/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 transform translate-x-full transition-transform duration-500">
+            <a href="#about" class="mobile-link text-2xl font-heading tracking-widest hover:text-neonCrimson">Philosophy</a>
+            <a href="#programs" class="mobile-link text-2xl font-heading tracking-widest hover:text-neonCrimson">Programs</a>
+            <a href="#trainers" class="mobile-link text-2xl font-heading tracking-widest hover:text-neonCrimson">Coaches</a>
+            <a href="#memberships" class="mobile-link text-2xl font-heading tracking-widest hover:text-neonCrimson">Memberships</a>
+            <button onclick="openModal(); closeMobileMenu();" class="mt-8 bg-crimson-flare text-white font-heading font-bold text-xl px-12 py-4 transform skew-x-[-15deg]">
+                <div class="skew-x-[15deg]">START FREE TRIAL</div>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- 1. HERO SCENE -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 text-center">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-darkForge/50 to-darkForge pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto space-y-6 relative z-10 mt-20">
+                <div class="inline-block border border-neonCrimson/50 bg-neonCrimson/10 px-4 py-1 mb-4 rounded backdrop-blur-sm">
+                    <span class="text-neonCrimson text-xs font-bold tracking-[0.3em] uppercase">Redefine Your Limits</span>
+                </div>
+                
+                <h1 class="font-heading text-6xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tight">
+                    BUILD <span class="text-transparent bg-clip-text bg-crimson-flare">STRENGTH.</span><br>
+                    <span class="glitch-wrapper block mt-2">
+                        <span class="glitch relative" data-text="FORGE CONFIDENCE.">FORGE CONFIDENCE.</span>
+                    </span>
+                </h1>
+                
+                <p class="text-steelGray text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                    Step into an elite training ecosystem engineered for high performers. State-of-the-art equipment, world-class coaching, and an immersive atmosphere.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
+                    <button onclick="openModal()" class="w-full sm:w-auto bg-crimson-flare text-white font-heading font-bold text-xl px-10 py-5 transform skew-x-[-15deg] hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,42,0,0.5)] group">
+                        <div class="skew-x-[15deg] flex items-center justify-center space-x-3">
+                            <span>JOIN THE ELITE</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </button>
+                    <a href="#programs" class="w-full sm:w-auto border border-white/20 bg-white/5 backdrop-blur-sm text-white font-heading font-bold text-xl px-10 py-5 transform skew-x-[-15deg] hover:bg-white/10 transition-colors">
+                        <div class="skew-x-[15deg]">EXPLORE PROGRAMS</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-70 animate-bounce">
+                <span class="text-[10px] tracking-[0.3em] uppercase font-bold text-steelGray">Scroll to Explore</span>
+                <div class="w-[1px] h-12 bg-gradient-to-b from-neonCrimson to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT & PHILOSOPHY -->
+        <section id="about" class="py-32 px-6 md:px-12 relative">
+            <!-- Background element behind cards -->
+            <div class="absolute top-1/2 left-0 w-full h-[500px] bg-neonCrimson/5 blur-[150px] -translate-y-1/2 z-0 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div class="space-y-8">
+                    <h2 class="text-outline text-6xl md:text-8xl font-heading font-bold opacity-30 select-none -mb-16">THE ETHOS</h2>
+                    <h3 class="font-heading text-4xl md:text-6xl font-bold">WE DON'T BUILD BODIES.<br><span class="text-neonCrimson">WE BUILD WEAPONS.</span></h3>
+                    <p class="text-steelGray text-lg leading-relaxed">
+                        Aegis Elite isn't a standard commercial gym. It's a sanctuary for those who demand more from themselves. We strip away the distractions and provide a pure, raw, and high-energy environment optimized for physical supremacy.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                        <div>
+                            <span class="block font-heading text-4xl font-bold text-white">25,000+</span>
+                            <span class="text-xs text-neonCrimson tracking-widest uppercase font-bold">Sq Ft Training Facility</span>
+                        </div>
+                        <div>
+                            <span class="block font-heading text-4xl font-bold text-white">24/7</span>
+                            <span class="text-xs text-neonCrimson tracking-widest uppercase font-bold">Elite Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass-panel p-8 transform translate-y-0 sm:translate-y-8 crimson-glow-hover transition-all duration-500">
+                        <i class="fa-solid fa-weight-hanging text-4xl text-neonCrimson mb-6"></i>
+                        <h4 class="font-heading text-2xl font-bold mb-3">RAW STRENGTH</h4>
+                        <p class="text-sm text-steelGray">Competition-grade powerlifting platforms, calibrated plates, and specialized bars.</p>
+                    </div>
+                    <div class="glass-panel p-8 crimson-glow-hover transition-all duration-500">
+                        <i class="fa-solid fa-fire-flame-curved text-4xl text-neonCrimson mb-6"></i>
+                        <h4 class="font-heading text-2xl font-bold mb-3">CONDITIONING</h4>
+                        <p class="text-sm text-steelGray">High-altitude simulation rooms, curved treadmills, and dynamic turf zones.</p>
+                    </div>
+                    <div class="glass-panel p-8 transform translate-y-0 sm:translate-y-8 crimson-glow-hover transition-all duration-500">
+                        <i class="fa-solid fa-heart-pulse text-4xl text-neonCrimson mb-6"></i>
+                        <h4 class="font-heading text-2xl font-bold mb-3">RECOVERY LAB</h4>
+                        <p class="text-sm text-steelGray">Cryotherapy, infrared saunas, and sports massage therapy to rebuild tissue.</p>
+                    </div>
+                    <div class="glass-panel p-8 crimson-glow-hover transition-all duration-500">
+                        <i class="fa-solid fa-users-viewfinder text-4xl text-neonCrimson mb-6"></i>
+                        <h4 class="font-heading text-2xl font-bold mb-3">ELITE COACHING</h4>
+                        <p class="text-sm text-steelGray">Train alongside IFBB pros, Olympians, and certified master strength coaches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TRAINING PROGRAMS -->
+        <section id="programs" class="py-32 px-6 md:px-12 bg-obsidian/80 border-y border-white/5 relative z-10">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <div class="text-center space-y-4">
+                    <span class="text-neonCrimson text-sm font-bold tracking-[0.2em] uppercase">Choose Your Battlefield</span>
+                    <h2 class="font-heading text-5xl md:text-6xl font-bold">SPECIALIZED <span class="text-transparent bg-clip-text bg-crimson-flare">PROGRAMS</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Program 1 -->
+                    <div class="group relative overflow-hidden h-[400px] border border-white/10 cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=600" alt="Strength" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-40">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkForge via-darkForge/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-2 block">01 / Hypertrophy</span>
+                            <h3 class="font-heading text-3xl font-bold mb-2 text-white">POWER & MASS</h3>
+                            <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-4">Progressive overload mechanics designed for maximum muscle tissue synthesis.</p>
+                            <button onclick="openModal()" class="text-xs font-bold uppercase tracking-widest text-white border-b border-neonCrimson pb-1 hover:text-neonCrimson transition-colors">Join Program</button>
+                        </div>
+                    </div>
+
+                    <!-- Program 2 -->
+                    <div class="group relative overflow-hidden h-[400px] border border-white/10 cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600" alt="HIIT" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-40 filter grayscale">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkForge via-darkForge/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-2 block">02 / Conditioning</span>
+                            <h3 class="font-heading text-3xl font-bold mb-2 text-white">METABOLIC BURN</h3>
+                            <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-4">High-intensity interval training designed to shred fat and boost VO2 max.</p>
+                            <button onclick="openModal()" class="text-xs font-bold uppercase tracking-widest text-white border-b border-neonCrimson pb-1 hover:text-neonCrimson transition-colors">Join Program</button>
+                        </div>
+                    </div>
+
+                    <!-- Program 3 -->
+                    <div class="group relative overflow-hidden h-[400px] border border-white/10 cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=80&w=600" alt="Functional" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-40">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkForge via-darkForge/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-2 block">03 / Mobility</span>
+                            <h3 class="font-heading text-3xl font-bold mb-2 text-white">FUNCTIONAL LAB</h3>
+                            <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-4">Kettlebells, battle ropes, and dynamic movement flows for real-world strength.</p>
+                            <button onclick="openModal()" class="text-xs font-bold uppercase tracking-widest text-white border-b border-neonCrimson pb-1 hover:text-neonCrimson transition-colors">Join Program</button>
+                        </div>
+                    </div>
+
+                    <!-- Program 4 -->
+                    <div class="group relative overflow-hidden h-[400px] border border-white/10 cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=600" alt="Combat" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-40 filter grayscale">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkForge via-darkForge/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-2 block">04 / Striking</span>
+                            <h3 class="font-heading text-3xl font-bold mb-2 text-white">COMBAT CLINIC</h3>
+                            <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-4">Muay Thai and Boxing fundamentals taught by competitive fighters.</p>
+                            <button onclick="openModal()" class="text-xs font-bold uppercase tracking-widest text-white border-b border-neonCrimson pb-1 hover:text-neonCrimson transition-colors">Join Program</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MEMBERSHIP TIERS -->
+        <section id="memberships" class="py-32 px-6 md:px-12 relative z-10">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <div class="text-center space-y-4">
+                    <span class="text-neonCrimson text-sm font-bold tracking-[0.2em] uppercase">Commitment Levels</span>
+                    <h2 class="font-heading text-5xl md:text-6xl font-bold">SECURE YOUR <span class="text-transparent bg-clip-text bg-crimson-flare">ACCESS</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    
+                    <!-- Tier 1 -->
+                    <div class="glass-panel p-8 border border-white/5 hover:border-white/20 transition-colors">
+                        <h3 class="font-heading text-2xl font-bold text-gray-300">CHALLENGER</h3>
+                        <div class="my-6">
+                            <span class="font-heading text-5xl font-bold">$79</span>
+                            <span class="text-gray-500 text-sm">/ month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-steelGray mb-8">
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>24/7 Gym Access</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Basic Equipment Use</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Locker Room Access</span></li>
+                            <li class="flex items-center space-x-3 opacity-30"><i class="fa-solid fa-xmark"></i> <span>Group Classes</span></li>
+                            <li class="flex items-center space-x-3 opacity-30"><i class="fa-solid fa-xmark"></i> <span>Recovery Lab Access</span></li>
+                        </ul>
+                        <button onclick="openModal()" class="w-full py-4 border border-white/20 text-white font-heading font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase">
+                            Select Plan
+                        </button>
+                    </div>
+
+                    <!-- Tier 2 (Highlighted) -->
+                    <div class="bg-obsidian border-2 border-neonCrimson p-8 transform scale-100 md:scale-105 shadow-[0_0_30px_rgba(255,42,0,0.15)] relative">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-neonCrimson text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1">
+                            Most Popular
+                        </div>
+                        <h3 class="font-heading text-3xl font-bold text-white">ELITE</h3>
+                        <div class="my-6">
+                            <span class="font-heading text-6xl font-bold text-transparent bg-clip-text bg-crimson-flare">$129</span>
+                            <span class="text-gray-500 text-sm">/ month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-gray-300 mb-8 font-medium">
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>24/7 Gym Access</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Full Equipment Use</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Unlimited Group Classes</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>1 PT Session / Month</span></li>
+                            <li class="flex items-center space-x-3 opacity-30"><i class="fa-solid fa-xmark"></i> <span>Recovery Lab Access</span></li>
+                        </ul>
+                        <button onclick="openModal()" class="w-full py-4 bg-crimson-flare text-white font-heading font-bold tracking-widest hover:shadow-[0_0_20px_rgba(255,42,0,0.6)] transition-shadow uppercase">
+                            Join The Elite
+                        </button>
+                    </div>
+
+                    <!-- Tier 3 -->
+                    <div class="glass-panel p-8 border border-white/5 hover:border-white/20 transition-colors">
+                        <h3 class="font-heading text-2xl font-bold text-gold-500" style="color: #D4AF37;">LEGEND</h3>
+                        <div class="my-6">
+                            <span class="font-heading text-5xl font-bold">$199</span>
+                            <span class="text-gray-500 text-sm">/ month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-steelGray mb-8">
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Global VIP Access</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Unlimited Classes</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Full Recovery Lab</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Weekly PT Session</span></li>
+                            <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-neonCrimson"></i> <span>Nutrition Planning</span></li>
+                        </ul>
+                        <button onclick="openModal()" class="w-full py-4 border border-white/20 text-white font-heading font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase">
+                            Select Plan
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. COACHES / TRAINERS -->
+        <section id="trainers" class="py-32 px-6 md:px-12 bg-darkForge/80 border-t border-white/5 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div class="space-y-4 max-w-xl">
+                        <span class="text-neonCrimson text-sm font-bold tracking-[0.2em] uppercase">Master Architects</span>
+                        <h2 class="font-heading text-5xl md:text-6xl font-bold">MEET YOUR <span class="text-transparent bg-clip-text bg-crimson-flare">COACHES</span></h2>
+                    </div>
+                    <button class="text-sm font-bold tracking-widest uppercase border-b border-white hover:text-neonCrimson hover:border-neonCrimson transition-colors pb-1">
+                        View All Roster
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Coach 1 -->
+                    <div class="group relative overflow-hidden bg-obsidian border border-white/10">
+                        <div class="h-[400px] overflow-hidden filter grayscale group-hover:grayscale-0 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1567598508481-65985588e295?auto=format&fit=crop&q=80&w=600" alt="Coach Marcus" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6 relative">
+                            <div class="absolute -top-6 right-6 w-12 h-12 bg-neonCrimson flex items-center justify-center rounded text-white transform rotate-3 group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                            <h3 class="font-heading text-2xl font-bold uppercase">Marcus Vance</h3>
+                            <p class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-4 mt-1">Head Strength Coach</p>
+                            <p class="text-sm text-steelGray mb-4">Former Olympian specialized in advanced barbell mechanics and explosive power generation.</p>
+                            <div class="flex space-x-3 text-gray-400">
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coach 2 -->
+                    <div class="group relative overflow-hidden bg-obsidian border border-white/10">
+                        <div class="h-[400px] overflow-hidden filter grayscale group-hover:grayscale-0 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&q=80&w=600" alt="Coach Elena" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6 relative">
+                            <div class="absolute -top-6 right-6 w-12 h-12 bg-neonCrimson flex items-center justify-center rounded text-white transform rotate-3 group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="font-heading text-2xl font-bold uppercase">Elena Rostova</h3>
+                            <p class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-4 mt-1">Metabolic Specialist</p>
+                            <p class="text-sm text-steelGray mb-4">Architect of the HIIT protocols. Focuses on shredding fat while preserving lean tissue mass.</p>
+                            <div class="flex space-x-3 text-gray-400">
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coach 3 -->
+                    <div class="group relative overflow-hidden bg-obsidian border border-white/10">
+                        <div class="h-[400px] overflow-hidden filter grayscale group-hover:grayscale-0 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1534438097544-2dd0616b7617?auto=format&fit=crop&q=80&w=600" alt="Coach Jax" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6 relative">
+                            <div class="absolute -top-6 right-6 w-12 h-12 bg-neonCrimson flex items-center justify-center rounded text-white transform rotate-3 group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-hand-fist"></i>
+                            </div>
+                            <h3 class="font-heading text-2xl font-bold uppercase">Jax "Iron" Holt</h3>
+                            <p class="text-neonCrimson text-xs font-bold tracking-widest uppercase mb-4 mt-1">Combat & Mobility</p>
+                            <p class="text-sm text-steelGray mb-4">Pro MMA fighter integrating striking drills with deep joint mobility and functional resilience.</p>
+                            <div class="flex space-x-3 text-gray-400">
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FINAL CTA BANNER -->
+        <section class="py-24 px-6 md:px-12 bg-neonCrimson relative overflow-hidden z-10">
+            <!-- Diagonal slash graphic -->
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-black/20 transform skew-x-[-30deg] translate-x-32"></div>
+            
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <h2 class="font-heading text-4xl md:text-6xl font-bold text-white mb-2">READY TO BLEED FOR IT?</h2>
+                    <p class="text-white/80 font-bold tracking-widest uppercase">Claim your 3-Day VIP pass today.</p>
+                </div>
+                <button onclick="openModal()" class="bg-black text-white hover:text-neonCrimson font-heading font-bold text-2xl px-12 py-5 transform skew-x-[-15deg] transition-colors shadow-2xl">
+                    <div class="skew-x-[15deg]">INITIATE PROTOCOL</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-darkForge pt-20 pb-10 border-t border-white/10 px-6 md:px-12 relative z-10">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="space-y-6">
+                    <a href="#" class="font-heading text-3xl font-bold tracking-wider">
+                        AEGIS<span class="text-neonCrimson">ELITE</span>
+                    </a>
+                    <p class="text-sm text-steelGray leading-relaxed">
+                        The ultimate training sanctuary. No excuses, no shortcuts. Only raw effort and elite results.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-neonCrimson transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-neonCrimson transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-neonCrimson transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 uppercase">Navigation</h4>
+                    <ul class="space-y-3 text-sm text-steelGray">
+                        <li><a href="#about" class="hover:text-neonCrimson transition-colors">The Ethos</a></li>
+                        <li><a href="#programs" class="hover:text-neonCrimson transition-colors">Training Programs</a></li>
+                        <li><a href="#trainers" class="hover:text-neonCrimson transition-colors">Coaching Roster</a></li>
+                        <li><a href="#memberships" class="hover:text-neonCrimson transition-colors">Memberships</a></li>
+                        <li><a href="#" class="hover:text-neonCrimson transition-colors">Member Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 uppercase">Headquarters</h4>
+                    <ul class="space-y-4 text-sm text-steelGray">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-neonCrimson"></i>
+                            <span>707 Ironwood Drive,<br>Industrial District, NY 10001</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-neonCrimson"></i>
+                            <span>1-800-AEGIS-FIT</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-neonCrimson"></i>
+                            <span>join@aegiselite.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-6 uppercase">The Intel</h4>
+                    <p class="text-sm text-steelGray mb-4">Subscribe for elite training tips, nutrition protocols, and exclusive gym offers.</p>
+                    <form onsubmit="event.preventDefault(); showToast('Subscribed to Intel.');" class="flex">
+                        <input type="email" required placeholder="EMAIL ADDRESS" class="bg-obsidian border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-neonCrimson w-full font-heading tracking-widest">
+                        <button type="submit" class="bg-neonCrimson px-4 text-white hover:bg-bloodOrange transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-steelGray font-bold tracking-widest uppercase">© 2026 AEGIS ELITE FITNESS. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-6 text-xs text-steelGray font-bold tracking-widest uppercase">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Waivers</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Booking Modal (Lead Capture) -->
+    <div id="booking-modal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-obsidian border border-neonCrimson/30 max-w-lg w-full relative transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <!-- Glitch decorative top border -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-crimson-flare"></div>
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors text-xl z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <i class="fa-solid fa-bolt text-3xl text-neonCrimson mb-4"></i>
+                    <h3 class="font-heading text-3xl font-bold uppercase">INITIATE TRIAL</h3>
+                    <p class="text-xs text-steelGray font-bold tracking-widest uppercase mt-2">Claim your 3-day unrestricted access pass.</p>
+                </div>
+
+                <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 tracking-widest uppercase">Full Name</label>
+                        <input type="text" required class="w-full bg-darkForge border border-white/10 focus:border-neonCrimson p-3 text-white focus:outline-none transition-colors">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 tracking-widest uppercase">Email Address</label>
+                        <input type="email" required class="w-full bg-darkForge border border-white/10 focus:border-neonCrimson p-3 text-white focus:outline-none transition-colors">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 tracking-widest uppercase">Primary Goal</label>
+                        <select class="w-full bg-darkForge border border-white/10 focus:border-neonCrimson p-3 text-white focus:outline-none transition-colors appearance-none">
+                            <option>Hypertrophy & Muscle Gain</option>
+                            <option>Fat Loss & Conditioning</option>
+                            <option>Strength & Powerlifting</option>
+                            <option>Functional Mobility</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-crimson-flare text-white font-heading font-bold text-xl py-4 mt-4 transform skew-x-[-10deg] hover:scale-[1.02] transition-transform shadow-[0_0_15px_rgba(255,42,0,0.3)]">
+                        <div class="skew-x-[10deg]">SECURE MY PASS</div>
+                    </button>
+                </form>
+
+                <div id="success-msg" class="hidden text-center py-8">
+                    <i class="fa-solid fa-circle-check text-5xl text-neonCrimson mb-4 animate-bounce"></i>
+                    <h4 class="font-heading text-2xl font-bold uppercase">ACCESS GRANTED</h4>
+                    <p class="text-sm text-steelGray mt-2">Check your email for barcode entry instructions. Prepare for war.</p>
+                    <button onclick="closeModal()" class="mt-6 text-xs font-bold uppercase tracking-widest border-b border-white hover:text-neonCrimson hover:border-neonCrimson transition-colors pb-1">Return to base</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-[70] transform translate-y-20 opacity-0 bg-obsidian border-l-4 border-neonCrimson p-4 shadow-2xl flex items-center space-x-4 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-info text-neonCrimson"></i>
+        <span id="toast-text" class="text-sm font-bold tracking-wider text-white uppercase">Notification</span>
+    </div>
+
+    <script>
+        // --- UI Interactions ---
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        
+        window.addEventListener('load', () => {
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                preloader.classList.add('opacity-0');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    init3DScene(); // Initialize heavy 3D after preloader finishes
+                }, 1000);
+            }, 600);
+        });
+
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let menuOpen = false;
+
+        mobileBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                closeMobileMenu();
+            }
+        });
+
+        function closeMobileMenu() {
+            menuOpen = false;
+            mobileMenu.classList.add('translate-x-full');
+            mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-obsidian/80', 'backdrop-blur-md', 'border-white/10');
+                navbar.classList.remove('py-6', 'border-transparent');
+                navbar.classList.add('py-4');
+            } else {
+                navbar.classList.remove('bg-obsidian/80', 'backdrop-blur-md', 'border-white/10');
+                navbar.classList.add('py-6', 'border-transparent');
+                navbar.classList.remove('py-4');
+            }
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('booking-modal');
+        const modalContent = document.getElementById('modal-content');
+        const form = document.getElementById('lead-form');
+        const successMsg = document.getElementById('success-msg');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            // small delay for transition
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form state
+            form.reset();
+            form.classList.remove('hidden');
+            successMsg.classList.add('hidden');
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            form.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+            showToast("Lead captured successfully.");
+        }
+
+        // Custom Toast Logic
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- THREE.JS PROCEDURAL 3D ENVIRONMENT ---
+        let scene, camera, renderer;
+        let platesGroup, particleSystem, energyCore;
+        
+        let targetScrollY = 0;
+        let currentScrollY = 0;
+        
+        window.addEventListener('scroll', () => {
+            targetScrollY = window.scrollY;
+        });
+
+        function init3DScene() {
+            const canvasContainer = document.getElementById('webgl-canvas');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // 1. Scene Setup
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x070707, 0.02);
+
+            // 2. Camera Setup
+            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(0, 0, 25);
+
+            // 3. Renderer Setup
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            canvasContainer.appendChild(renderer.domElement);
+
+            // 4. Materials
+            const metalMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0x222222,
+                metalness: 0.9,
+                roughness: 0.4,
+                clearcoat: 0.8,
+                clearcoatRoughness: 0.2,
+                wireframe: false
+            });
+
+            const neonMaterial = new THREE.MeshBasicMaterial({
+                color: 0xFF2A00,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.4
+            });
+
+            // 5. Build Bumper Plates (Flattened Torus Geometry)
+            platesGroup = new THREE.Group();
+            const plateCount = 8;
+            const plateGeo = new THREE.TorusGeometry(8, 2, 16, 64);
+            // Flatten the torus to look like a thick disk/plate with a hole
+            plateGeo.scale(1, 1, 0.3);
+
+            for (let i = 0; i < plateCount; i++) {
+                const plate = new THREE.Mesh(plateGeo, metalMaterial);
+                // Distribute along Z axis
+                plate.position.z = -i * 12;
+                
+                // Add slight random rotation for organic feel
+                plate.rotation.x = Math.random() * 0.2 - 0.1;
+                plate.rotation.y = Math.random() * 0.2 - 0.1;
+                
+                // Add a glowing inner ring to some plates
+                if (i % 2 === 0) {
+                    const innerRingGeo = new THREE.TorusGeometry(5.8, 0.1, 8, 32);
+                    const innerRing = new THREE.Mesh(innerRingGeo, new THREE.MeshBasicMaterial({color: 0xFF2A00}));
+                    innerRing.position.z = plate.position.z;
+                    platesGroup.add(innerRing);
+                }
+
+                platesGroup.add(plate);
+            }
+            scene.add(platesGroup);
+
+            // 6. Build Central Energy Core
+            const coreGeo = new THREE.IcosahedronGeometry(2, 2);
+            energyCore = new THREE.Mesh(coreGeo, neonMaterial);
+            energyCore.position.z = -((plateCount - 1) * 12) / 2; // Center of the tunnel
+            scene.add(energyCore);
+
+            // 7. Build Energy Particle Vortex
+            const particleCount = 1500;
+            const particleGeo = new THREE.BufferGeometry();
+            const particlePos = new Float32Array(particleCount * 3);
+            const particleColors = new Float32Array(particleCount * 3);
+            
+            const color1 = new THREE.Color(0xFF2A00); // Crimson
+            const color2 = new THREE.Color(0x8892B0); // Steel
+            
+            for(let i = 0; i < particleCount * 3; i += 3) {
+                // Cylindrical distribution
+                const radius = 3 + Math.random() * 8;
+                const theta = Math.random() * Math.PI * 2;
+                const z = (Math.random() - 0.5) * 100;
+
+                particlePos[i] = Math.cos(theta) * radius;     // x
+                particlePos[i+1] = Math.sin(theta) * radius;   // y
+                particlePos[i+2] = z;                          // z
+
+                // Interpolate colors based on radius
+                const mixRatio = Math.random();
+                const mixedColor = color1.clone().lerp(color2, mixRatio);
+                particleColors[i] = mixedColor.r;
+                particleColors[i+1] = mixedColor.g;
+                particleColors[i+2] = mixedColor.b;
+            }
+
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+            particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.15,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            particleSystem = new THREE.Points(particleGeo, particleMat);
+            scene.add(particleSystem);
+
+            // 8. Lighting Rig
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const redPointLight = new THREE.PointLight(0xFF2A00, 5, 50);
+            redPointLight.position.copy(energyCore.position);
+            scene.add(redPointLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+            directionalLight.position.set(10, 20, 10);
+            scene.add(directionalLight);
+
+            // Resize Handler
+            window.addEventListener('resize', onWindowResize);
+
+            // Start Animation Loop
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            // Smooth scroll interpolation (Lerp)
+            currentScrollY += (targetScrollY - currentScrollY) * 0.05;
+            
+            // Calculate scroll progress (0 to 1 based on document height)
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight || 1;
+            const scrollProgress = currentScrollY / docHeight;
+
+            // 1. Camera Animation (Fly through the plates based on scroll)
+            // Start at z=25, move deep into the tunnel z=-80
+            camera.position.z = 25 - (scrollProgress * 105);
+            
+            // Add slight camera bobbing
+            camera.position.y = Math.sin(time * 0.5) * 1.5;
+            camera.position.x = Math.cos(time * 0.3) * 1.0;
+            
+            // Look slightly ahead of the camera
+            camera.lookAt(camera.position.x * 0.5, camera.position.y * 0.5, camera.position.z - 20);
+
+            // 2. Object Animations
+            if (platesGroup) {
+                // Rotate plates slowly
+                platesGroup.children.forEach((child, index) => {
+                    child.rotation.z = time * 0.1 * (index % 2 === 0 ? 1 : -1);
+                });
+            }
+
+            if (energyCore) {
+                // Pulse core size and rotate
+                const scale = 1 + Math.sin(time * 3) * 0.1;
+                energyCore.scale.set(scale, scale, scale);
+                energyCore.rotation.x = time * 0.5;
+                energyCore.rotation.y = time * 0.7;
+            }
+
+            if (particleSystem) {
+                // Rotate entire particle vortex
+                particleSystem.rotation.z = time * 0.05;
+                
+                // Animate individual particles falling backward (towards camera)
+                const positions = particleSystem.geometry.attributes.position.array;
+                for(let i=2; i<positions.length; i+=3) {
+                    positions[i] += 0.2 + (scrollProgress * 0.5); // Speed up based on scroll
+                    if(positions[i] > 30) {
+                        positions[i] = -70; // Reset to back of tunnel
+                    }
+                }
+                particleSystem.geometry.attributes.position.needsUpdate = true;
+            }
+
+            // Render Frame
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>
