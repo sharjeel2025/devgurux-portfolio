@@ -1,1 +1,369 @@
 
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BWA Sports — Premium Custom Football Jerseys</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],mono:['ui-monospace','monospace']}}}}</script>
+<style>
+*{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#EAB308 #000}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:#EAB308;border-radius:10px}
+::selection{background:#EAB308;color:#000}
+.tg{background:linear-gradient(135deg,#EAB308,#FDE047,#EAB308);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nb{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.rv{opacity:0;transform:translateY(50px);transition:all .8s cubic-bezier(.16,1,.3,1)}.rv.on{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-60px);transition:all .8s cubic-bezier(.16,1,.3,1)}.rv-l.on{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(60px);transition:all .8s cubic-bezier(.16,1,.3,1)}.rv-r.on{opacity:1;transform:translateX(0)}
+.rv-s{opacity:0;transform:scale(.85);transition:all .9s cubic-bezier(.16,1,.3,1)}.rv-s.on{opacity:1;transform:scale(1)}
+.d1{transition-delay:.1s!important}.d2{transition-delay:.2s!important}.d3{transition-delay:.3s!important}.d4{transition-delay:.4s!important}.d5{transition-delay:.5s!important}
+#heroCanvas{position:absolute;inset:0;z-index:0}
+.hero-ov{background:linear-gradient(180deg,rgba(0,0,0,.3)0%,rgba(0,0,0,.1)40%,rgba(0,0,0,.85)100%)}
+.gbg{background-image:linear-gradient(rgba(255,255,255,.02)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02)1px,transparent 1px);background-size:70px 70px}
+.j3d{perspective:1400px;cursor:grab;user-select:none;-webkit-user-select:none}.j3d:active{cursor:grabbing}
+.jin{transform-style:preserve-3d;transition:transform .1s ease-out;position:relative;width:100%;height:100%}
+.jf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}.jb{transform:rotateY(180deg)}
+@keyframes jfloat{0%,100%{transform:rotateY(25deg) rotateX(2deg)}50%{transform:rotateY(35deg) rotateX(-2deg)}}.j-float{animation:jfloat 4s ease-in-out infinite}
+.sw{width:38px;height:38px;border-radius:10px;cursor:pointer;border:2.5px solid rgba(255,255,255,.1);transition:all .2s;display:flex;align-items:center;justify-content:center}
+.sw:hover{transform:scale(1.12);border-color:rgba(255,255,255,.3)}.sw.on{border-color:#EAB308;box-shadow:0 0 12px rgba(234,179,8,.4)}
+.ob{padding:10px 14px;border-radius:12px;font-size:11px;font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02);color:#737373;cursor:pointer;transition:all .2s;text-align:left}
+.ob:hover{color:#fff;border-color:rgba(255,255,255,.15)}.ob.on{border-color:#EAB308;background:rgba(234,179,8,.08);color:#fff}
+.tb{padding:8px 16px;font-size:11px;font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;color:#737373;transition:all .2s;white-space:nowrap}
+.tb:hover{color:#fff}.tb.on{color:#fff;border-color:#EAB308}
+.vb{padding:8px 16px;border-radius:12px;font-size:11px;font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;color:#737373}
+.vb:hover{color:#fff}.vb.on{background:#EAB308;color:#000;box-shadow:0 4px 12px rgba(234,179,8,.25)}
+.fi{cursor:pointer}.fa{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.fi.op .fa{max-height:300px}.fc{transition:transform .3s}.fi.op .fc{transform:rotate(180deg)}
+@keyframes sd{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}.sa{animation:sd 1.5s infinite}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.mq{display:flex;animation:mq 25s linear infinite}
+#ld{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility:.5s}#ld.hd{opacity:0;visibility:hidden}
+@keyframes sp{to{transform:rotate(360deg)}}.lr{width:50px;height:50px;border:3px solid rgba(234,179,8,.15);border-top-color:#EAB308;border-radius:50%;animation:sp .7s linear infinite}
+input[type=range]{-webkit-appearance:none;appearance:none;height:8px;background:#111;border-radius:8px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#EAB308;cursor:pointer;box-shadow:0 0 10px rgba(234,179,8,.4)}
+</style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+<div id="ld"><div class="lr"></div></div>
+<canvas id="fbCanvas" class="fixed inset-0 z-40 pointer-events-none" style="width:100%;height:100%"></canvas>
+
+<nav id="nav" class="fixed top-0 left-0 w-full z-50 nb border-b border-transparent transition-all duration-300">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a href="#" class="flex items-center gap-2"><div class="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center"><iconify-icon icon="lucide:shirt" class="text-black text-xl"></iconify-icon></div><span class="text-xl font-extrabold tracking-tight">BWA<span class="text-yellow-500">SPORTS</span></span></a>
+<div class="hidden lg:flex items-center gap-8"><a href="#configurator" class="text-sm font-medium text-neutral-300 hover:text-yellow-400">3D Lab</a><a href="#catalog" class="text-sm font-medium text-neutral-300 hover:text-yellow-400">Catalog</a><a href="#process" class="text-sm font-medium text-neutral-300 hover:text-yellow-400">Process</a><a href="#pricing" class="text-sm font-medium text-neutral-300 hover:text-yellow-400">Pricing</a><a href="#faq" class="text-sm font-medium text-neutral-300 hover:text-yellow-400">FAQ</a><a href="#contact" class="bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-6 py-2.5 rounded-full text-sm font-bold hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(234,179,8,.3)]">Get Quote</a></div>
+<button id="mobBtn" class="lg:hidden text-white text-2xl"><iconify-icon icon="lucide:menu"></iconify-icon></button>
+</div>
+</nav>
+<div id="mobMenu" class="fixed top-0 right-0 w-72 h-full bg-neutral-950/98 nb z-[60] p-8 pt-24 transform translate-x-full transition-transform duration-300"><button onclick="document.getElementById('mobMenu').style.transform='translateX(100%)'" class="absolute top-6 right-6 text-2xl text-white"><iconify-icon icon="lucide:x"></iconify-icon></button><div class="flex flex-col gap-6"><a href="#configurator" class="text-lg hover:text-yellow-400 mm">3D Lab</a><a href="#catalog" class="text-lg hover:text-yellow-400 mm">Catalog</a></div></div>
+
+<!-- HERO -->
+<section id="hero" class="relative" style="height:280vh">
+<div class="sticky top-0 h-screen overflow-hidden">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-ov absolute inset-0 z-[1]"></div>
+<div id="heroContent" class="absolute inset-0 z-[2] flex flex-col items-center justify-center text-center px-6">
+<p id="hTag" class="text-xs font-bold uppercase tracking-[.25em] text-yellow-400 mb-6 opacity-0" style="transform:translateY(30px);transition:all .8s .3s cubic-bezier(.16,1,.3,1)">Premium Custom Jersey Manufacturer</p>
+<h1 id="hTitle" class="text-5xl md:text-7xl lg:text-[100px] font-black leading-[1.05] tracking-[-0.04em] max-w-5xl opacity-0" style="transform:translateY(40px) perspective(800px) rotateX(8deg);transition:all 1s .5s cubic-bezier(.16,1,.3,1)">See It Before<br>We <span class="tg">Sew It.</span></h1>
+<p id="hDesc" class="mt-6 text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed opacity-0" style="transform:translateY(30px);transition:all .8s .7s cubic-bezier(.16,1,.3,1)">Design your dream jersey in interactive 3D. Scroll to rotate the real 3D hoodie model.</p>
+<div id="hBtns" class="mt-10 flex flex-wrap gap-4 justify-center opacity-0" style="transform:translateY(30px);transition:all .8s .9s cubic-bezier(.16,1,.3,1)">
+<a href="#configurator" class="bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 hover:-translate-y-1 transition-all shadow-[0_8px_25px_rgba(234,179,8,.4)]">Launch 3D Jersey Lab <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+<a href="#catalog" class="border-2 border-yellow-500/50 text-yellow-400 px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-yellow-500/10 transition-all">Browse Catalog</a>
+</div>
+</div>
+<div id="scrollInd" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2 opacity-0" style="transition:all .8s 1.3s cubic-bezier(.16,1,.3,1)"><span class="text-[10px] uppercase tracking-[.2em] text-neutral-500">Scroll to rotate 3D</span><div class="w-6 h-10 rounded-full border border-neutral-600 flex items-start justify-center p-1.5"><div class="w-1.5 h-1.5 rounded-full bg-yellow-400 sa"></div></div></div>
+<div class="absolute bottom-0 left-0 w-full h-1 z-[3]"><div id="scrollBar" class="h-full bg-gradient-to-r from-yellow-500 to-yellow-300 w-0"></div></div>
+</div>
+</section>
+
+<div class="bg-neutral-950 border-y border-neutral-800/50 py-4 overflow-hidden"><div class="mq"><div class="flex items-center gap-12 px-6 shrink-0"><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">⚽ PREMIUM</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">🎨 SUBLIMATION</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">🌍 WORLDWIDE</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">⚡ FAST</span><span class="text-yellow-500">✦</span></div><div class="flex items-center gap-12 px-6 shrink-0"><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">⚽ PREMIUM</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">🎨 SUBLIMATION</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">🌍 WORLDWIDE</span><span class="text-yellow-500">✦</span><span class="text-sm font-semibold text-neutral-500 whitespace-nowrap">⚡ FAST</span><span class="text-yellow-500">✦</span></div></div></div>
+
+<!-- CONFIGURATOR -->
+<section id="configurator" class="py-24 md:py-32 bg-[#0a0d15] relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative">
+<div class="text-center mb-16"><span class="text-xs font-mono font-bold tracking-widest text-yellow-400 uppercase rv">LIVE DIGITAL LAB</span><h2 class="text-3xl md:text-5xl font-black tracking-tight mt-4 rv d1">Interactive <span class="tg">3D Design Suite</span></h2><p class="text-neutral-400 mt-4 max-w-xl mx-auto rv d2">Drag to rotate. Changes sync to the hero 3D model.</p></div>
+<div class="flex flex-col lg:flex-row gap-10 items-start">
+<div class="flex-1 flex flex-col items-center rv-l">
+<div class="bg-[#0e121d] border border-white/5 rounded-3xl p-6 md:p-8 w-full flex flex-col items-center justify-center min-h-[500px] relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[120px] bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none"></div>
+<div class="j3d w-[280px] h-[350px]" id="custWrap"><div class="jin w-full h-full" id="custCard"><div class="jf" style="transform:translateZ(-8px);opacity:.4;filter:blur(4px) brightness(.15)" id="custShadow"></div><div class="jf" style="transform:translateZ(0px)" id="custFront"></div><div class="jf" style="transform:translateZ(6px);pointer-events:none" id="custDetail"></div><div class="jf jb" style="transform:rotateY(180deg) translateZ(0px)" id="custBack"></div><div class="jf" style="transform:translateZ(12px);pointer-events:none;opacity:0;transition:opacity .3s" id="custShine"></div></div></div>
+<div class="flex items-center gap-2 mt-6 bg-black/60 border border-white/10 px-2 py-1.5 rounded-2xl"><button onclick="setV('front')" id="vFront" class="vb on">Front</button><button onclick="setV('back')" id="vBack" class="vb">Back</button><button onclick="setV('rotate')" id="vRotate" class="vb flex items-center gap-1"><iconify-icon icon="lucide:refresh-cw" class="w-3.5 h-3.5"></iconify-icon>Drag 3D</button></div>
+</div>
+<button onclick="resetCfg()" class="mt-4 text-[10px] font-mono tracking-widest text-yellow-500 uppercase flex items-center gap-1.5 hover:underline"><iconify-icon icon="lucide:refresh-cw" class="w-3 h-3"></iconify-icon>Reset</button>
+</div>
+<div class="w-full lg:w-[420px] space-y-5 rv-r">
+<div class="flex border-b border-white/5 pb-1 overflow-x-auto gap-1" id="tabBar"></div>
+<div class="bg-[#121624] border border-white/5 rounded-2xl p-6 shadow-xl max-h-[500px] overflow-y-auto" id="tabBody"></div>
+<div class="bg-[#121624]/60 border border-white/5 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"><div><span class="block text-[9px] text-yellow-400 font-mono tracking-widest uppercase">COST</span><div class="flex items-baseline gap-2 mt-1"><span class="text-2xl font-black font-mono">$23.90–$29.99</span><span class="text-xs text-neutral-500 font-mono">/kit</span></div></div><a href="#contact" class="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-3 rounded-xl font-mono text-[11px] font-bold tracking-widest uppercase transition-all">Confirm</a></div>
+</div></div></div>
+</section>
+
+<section id="process" class="py-24 md:py-32 bg-neutral-950"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16"><h2 class="text-3xl md:text-5xl font-black tracking-tight rv">Easy Process <span class="tg">🍋</span></h2></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"><div class="bg-[#0e121d] border border-white/5 rounded-2xl p-6 hover:border-yellow-400/30 transition-all hover:-translate-y-1 rv d1"><div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4"><iconify-icon icon="lucide:file-text" class="text-yellow-400"></iconify-icon></div><h3 class="font-bold mb-2">Draft</h3><p class="text-xs text-neutral-400">Configure in 3D Lab.</p></div><div class="bg-[#0e121d] border border-white/5 rounded-2xl p-6 hover:border-yellow-400/30 transition-all hover:-translate-y-1 rv d2"><div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4"><iconify-icon icon="lucide:layers" class="text-blue-400"></iconify-icon></div><h3 class="font-bold mb-2">3D Proof</h3><p class="text-xs text-neutral-400">True-to-life proof.</p></div><div class="bg-[#0e121d] border border-white/5 rounded-2xl p-6 hover:border-yellow-400/30 transition-all hover:-translate-y-1 rv d3"><div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4"><iconify-icon icon="lucide:zap" class="text-purple-400"></iconify-icon></div><h3 class="font-bold mb-2">Sublimation</h3><p class="text-xs text-neutral-400">Ink-infusion.</p></div><div class="bg-[#0e121d] border border-white/5 rounded-2xl p-6 hover:border-yellow-400/30 transition-all hover:-translate-y-1 rv d4"><div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4"><iconify-icon icon="lucide:shirt" class="text-emerald-400"></iconify-icon></div><h3 class="font-bold mb-2">Sew</h3><p class="text-xs text-neutral-400">Flatlock stitch.</p></div><div class="bg-[#0e121d] border border-white/5 rounded-2xl p-6 hover:border-yellow-400/30 transition-all hover:-translate-y-1 rv d5"><div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4"><iconify-icon icon="lucide:truck" class="text-yellow-500"></iconify-icon></div><h3 class="font-bold mb-2">Deliver</h3><p class="text-xs text-neutral-400">Express.</p></div></div></div></section>
+
+<section id="catalog" class="py-24 md:py-32 bg-black gbg"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16"><h2 class="text-3xl md:text-5xl font-black tracking-tight rv">3D Preset <span class="tg">Kits</span></h2></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="catGrid"></div></div></section>
+
+<section id="pricing" class="py-24 md:py-32 bg-[#0a0d15] border-t border-white/5"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16"><h2 class="text-3xl md:text-5xl font-black tracking-tight rv">Volume <span class="tg">Pricing</span></h2></div><div class="grid lg:grid-cols-12 gap-10 items-stretch"><div class="lg:col-span-7 bg-[#121624] border border-white/5 rounded-3xl p-8 rv-l"><div class="flex justify-between items-baseline mb-3"><span class="text-xs font-mono text-neutral-400 uppercase">Quantity</span><span class="text-2xl font-black font-mono text-yellow-400" id="qDisp">15</span></div><input type="range" min="5" max="120" value="15" id="qSlider" class="w-full cursor-pointer mb-6"><div class="grid sm:grid-cols-2 gap-4"><div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Finish</span><div id="calcFin" class="space-y-2"></div></div><div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Free</span><div class="border border-white/5 bg-black/40 p-3 rounded-xl space-y-1"><div class="flex justify-between text-[10px] font-mono text-emerald-400"><span>• All prints</span><span>$0</span></div></div></div></div></div><div class="lg:col-span-5 bg-[#0e121d] border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl rv-r"><div class="space-y-5"><div class="flex justify-between"><span class="text-xs text-neutral-400 font-mono">Base</span><span class="text-sm font-mono text-neutral-300">$29.99</span></div><div class="flex justify-between"><span class="text-xs text-neutral-400 font-mono">Discount</span><span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded" id="cDisc"></span></div><div class="flex justify-between items-center"><span class="text-sm font-bold">Per Kit</span><span class="text-2xl font-black font-mono" id="cEach"></span></div><div class="flex justify-between bg-black/80 p-4 rounded-xl border border-white/5"><span class="text-xs text-neutral-500 font-bold">Save</span><span class="text-base font-bold font-mono text-emerald-400" id="cSave"></span></div></div><div class="mt-8 border-t border-white/5 pt-6"><div class="flex items-baseline gap-2"><span class="text-4xl font-extrabold font-mono text-yellow-400" id="cTotal"></span><span class="text-xs text-neutral-500 font-mono">USD</span></div><a href="#contact" class="w-full mt-6 bg-yellow-500 hover:bg-yellow-400 text-black py-4 rounded-xl font-mono text-xs font-bold tracking-widest uppercase text-center block transition-all">Order</a></div></div></div></div></section>
+
+<section id="contact" class="py-24 md:py-32 bg-neutral-950 relative overflow-hidden"><div class="absolute inset-0 bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent pointer-events-none"></div><div class="max-w-4xl mx-auto px-6 text-center relative rv-s"><h2 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">Create Your <span class="tg">Perfect Jersey</span></h2><p class="text-neutral-400 mt-6 text-lg max-w-2xl mx-auto">Free quote and 3D mockup.</p><div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center"><button onclick="showToast('Quote request received!')" class="bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-10 py-4 rounded-full text-sm font-bold hover:-translate-y-1 transition-all shadow-[0_8px_25px_rgba(234,179,8,.4)]">Get Free Quote <iconify-icon icon="lucide:arrow-right"></iconify-icon></button></div></div></section>
+
+<section id="faq" class="py-24 md:py-32 bg-black gbg"><div class="max-w-3xl mx-auto px-6"><div class="text-center mb-16"><h2 class="text-3xl md:text-5xl font-black tracking-tight rv">Common <span class="tg">Questions</span></h2></div><div class="space-y-3 rv d1" id="faqList"></div></div></section>
+
+<footer class="bg-black border-t border-neutral-800/50 pt-16 pb-8"><div class="max-w-7xl mx-auto px-6"><div class="grid md:grid-cols-4 gap-12 mb-12"><div><div class="flex items-center gap-2 mb-4"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center"><iconify-icon icon="lucide:shirt" class="text-black text-lg"></iconify-icon></div><span class="text-lg font-extrabold">BWA<span class="text-yellow-500">SPORTS</span></span></div></div><div><h4 class="text-sm font-bold uppercase tracking-wider mb-4">Services</h4><ul class="space-y-2"><li><a href="#" class="text-sm text-neutral-500 hover:text-yellow-400">Custom Jerseys</a></li></ul></div><div><h4 class="text-sm font-bold uppercase tracking-wider mb-4">Company</h4><ul class="space-y-2"><li><a href="#process" class="text-sm text-neutral-500 hover:text-yellow-400">Process</a></li></ul></div><div><h4 class="text-sm font-bold uppercase tracking-wider mb-4">Contact</h4><p class="text-sm text-neutral-500">info@bwasports.com</p></div></div><div class="border-t border-neutral-800/50 pt-8 text-center"><p class="text-xs text-neutral-600">© 2024 BWA Sports</p></div></div></footer>
+
+<div id="toast" class="fixed bottom-6 right-6 z-[100] bg-neutral-900 border border-yellow-500/30 px-6 py-3 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 text-sm font-medium flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-yellow-400"></iconify-icon><span id="toastMsg"></span></div>
+
+<script>
+const CAT=[
+{id:'sunset',name:'Sunset Vapor',cat:'Elite',price:'$24.99',rating:4.9,cfg:{primaryColor:'#ff2a5f',secondaryColor:'#ffaa00',pattern:'gradient',collarType:'vneck',sponsorText:'VAPOR RISE',sponsorColor:'#ffffff',playerName:'SOUZA',playerNumber:'10',crestType:'star',crestColor:'#ffffff',finish:'glossy',sleeveColor:'#ffaa00'}},
+{id:'midnight',name:'Midnight Gold',cat:'Pro',price:'$26.50',rating:5.0,cfg:{primaryColor:'#111111',secondaryColor:'#cca43b',pattern:'stripes',collarType:'polo',sponsorText:'AURUM',sponsorColor:'#cca43b',playerName:'GOLDEN',playerNumber:'7',crestType:'lion',crestColor:'#cca43b',finish:'matte',sleeveColor:'#222222'}},
+{id:'cyber',name:'Cyber Neon',cat:'Esports',price:'$28.00',rating:4.8,cfg:{primaryColor:'#00f0ff',secondaryColor:'#ff007f',pattern:'chevron',collarType:'crew',sponsorText:'HYPERDRIVE',sponsorColor:'#ffffff',playerName:'PULSE',playerNumber:'99',crestType:'dragon',crestColor:'#ffffff',finish:'glossy',sleeveColor:'#ff007f'}},
+{id:'forest',name:'Forest Viper',cat:'Elite',price:'$25.00',rating:4.9,cfg:{primaryColor:'#0b3c1c',secondaryColor:'#39ff14',pattern:'waves',collarType:'vneck',sponsorText:'RAZER',sponsorColor:'#39ff14',playerName:'GREENX',playerNumber:'11',crestType:'eagle',crestColor:'#39ff14',finish:'mesh',sleeveColor:'#0f5227'}},
+{id:'zebra',name:'Zebra Checker',cat:'Street',price:'$23.90',rating:4.7,cfg:{primaryColor:'#ffffff',secondaryColor:'#111111',pattern:'checker',collarType:'crew',sponsorText:'BWA',sponsorColor:'#111111',playerName:'ZEBRA',playerNumber:'9',crestType:'shield',crestColor:'#111111',finish:'matte',sleeveColor:'#111111'}},
+{id:'royal',name:'Royal Triumph',cat:'Pro',price:'$27.00',rating:5.0,cfg:{primaryColor:'#0f3cc9',secondaryColor:'#f1c40f',pattern:'split',collarType:'polo',sponsorText:'MONARCHY',sponsorColor:'#ffffff',playerName:'CROWN',playerNumber:'8',crestType:'lion',crestColor:'#f1c40f',finish:'glossy',sleeveColor:'#0f3cc9'}}
+];
+const FAQS=[{q:"Custom design services?",a:"Yes! We turn ideas into sublimation designs."},{q:"Minimum order?",a:"Just 5 kits."},{q:"Logos included?",a:"Yes, zero extra cost."},{q:"Fabrics?",a:"Double-knit mesh with wicking."},{q:"Shipping?",a:"4-7 days + 3-5 express."}];
+const COLS=['#0f3cc9','#d91d1d','#bcff00','#f1c40f','#0a5c36','#111111','#ffffff','#7b1fa2','#ff5722','#00ced1','#e91e63','#607d8b'];
+const PATS=[{id:'solid',n:'Solid',d:'Clean'},{id:'stripes',n:'Stripes',d:'Classic'},{id:'hoops',n:'Hoops',d:'Bold'},{id:'checker',n:'Checker',d:'Grid'},{id:'chevron',n:'Chevron',d:'V-chest'},{id:'gradient',n:'Gradient',d:'Flow'},{id:'split',n:'Split',d:'Half'},{id:'waves',n:'Waves',d:'Fluid'}];
+const CT=[{id:'crew',n:'Crew'},{id:'vneck',n:'V-Neck'},{id:'polo',n:'Polo'}];
+const FINS=[{id:'matte',n:'Matte',l:'Free'},{id:'mesh',n:'Mesh',l:'Free'},{id:'glossy',n:'Glossy',l:'+ $1.50'}];
+const CRS=[{id:'shield',n:'Shield',ic:'lucide:shield'},{id:'lion',n:'Lion',ic:'lucide:crown'},{id:'eagle',n:'Eagle',ic:'lucide:flame'},{id:'star',n:'Star',ic:'lucide:sparkles'},{id:'dragon',n:'Dragon',ic:'lucide:zap'},{id:'bwa',n:'Anchor',ic:'lucide:compass'}];
+let cfg={primaryColor:'#0f3cc9',secondaryColor:'#f1c40f',pattern:'chevron',collarType:'crew',sponsorText:'FLY BETTER',sponsorColor:'#ffffff',playerName:'BELLINGHAM',playerNumber:'5',crestType:'lion',crestColor:'#f1c40f',finish:'matte',sleeveColor:'#0f3cc9'};
+let curTab='colors',curView='front',cQty=15,cFin='matte';
+function resetCfg(){cfg={primaryColor:'#0f3cc9',secondaryColor:'#f1c40f',pattern:'chevron',collarType:'crew',sponsorText:'FLY BETTER',sponsorColor:'#ffffff',playerName:'BELLINGHAM',playerNumber:'5',crestType:'lion',crestColor:'#f1c40f',finish:'matte',sleeveColor:'#0f3cc9'};syncAll();}
+
+// ===== TEXTURE =====
+let texCanvas,texCtx,jerseyTexture;
+function initTexCanvas(){texCanvas=document.createElement('canvas');texCanvas.width=1024;texCanvas.height=1024;texCtx=texCanvas.getContext('2d');}
+function drawTex(c,cf){
+const W=1024,H=1024;c.clearRect(0,0,W,H);
+c.fillStyle=cf.primaryColor;c.fillRect(0,0,W,H);
+c.fillStyle=cf.secondaryColor;
+switch(cf.pattern){
+case'stripes':c.globalAlpha=.9;for(let i=0;i<8;i++)c.fillRect(W*(.12+i*.1),0,W*.045,H);c.globalAlpha=1;break;
+case'hoops':c.globalAlpha=.85;for(let i=0;i<6;i++)c.fillRect(0,H*(.12+i*.14),W,H*.055);c.globalAlpha=1;break;
+case'checker':c.globalAlpha=.8;for(let r=0;r<7;r++)for(let cl=0;cl<6;cl++){if((r+cl)%2===0)c.fillRect(W*(.15+cl*.12),H*(.08+r*.13),W*.09,H*.1);}c.globalAlpha=1;break;
+case'chevron':c.globalAlpha=.85;c.beginPath();for(let i=0;i<4;i++){const y=H*(.1+i*.2);c.moveTo(0,y);c.lineTo(W/2,y+H*.1);c.lineTo(W,y);c.lineTo(W,y+H*.06);c.lineTo(W/2,y+H*.16);c.lineTo(0,y+H*.06);c.closePath();}c.fill();c.globalAlpha=1;break;
+case'gradient':const gr=c.createLinearGradient(0,0,0,H);gr.addColorStop(0,cf.primaryColor);gr.addColorStop(1,cf.secondaryColor);c.fillStyle=gr;c.fillRect(0,0,W,H);break;
+case'split':c.globalAlpha=.9;c.fillRect(W/2,0,W/2,H);c.globalAlpha=1;break;
+case'waves':c.globalAlpha=.8;c.beginPath();for(let i=0;i<4;i++){const y=H*(.12+i*.2);c.moveTo(0,y);c.bezierCurveTo(W*.3,y-H*.04,W*.7,y+H*.04,W,y);c.lineTo(W,y+H*.06);c.bezierCurveTo(W*.7,y+H*.1,W*.3,y+H*.02,0,y+H*.06);c.closePath();}c.fill();c.globalAlpha=1;break;}
+c.fillStyle=cf.sleeveColor||cf.primaryColor;c.fillRect(0,0,W*.16,H);c.fillRect(W*.84,0,W*.16,H);
+c.fillStyle=cf.secondaryColor;c.globalAlpha=.6;c.fillRect(0,H*.3,W*.03,H*.04);c.fillRect(W*.97,H*.3,W*.03,H*.04);c.globalAlpha=1;
+c.fillStyle=cf.secondaryColor;c.globalAlpha=.7;c.save();c.translate(W*.24,H*.08);c.rotate(-.3);c.fillRect(0,0,W*.18,H*.02);c.restore();c.save();c.translate(W*.76,H*.08);c.rotate(.3);c.fillRect(-W*.18,0,W*.18,H*.02);c.restore();c.globalAlpha=1;
+c.strokeStyle=cf.secondaryColor;c.lineWidth=8;c.beginPath();
+if(cf.collarType==='vneck'){c.moveTo(W*.38,H*.04);c.lineTo(W*.5,H*.12);c.lineTo(W*.62,H*.04);}
+else if(cf.collarType==='polo'){c.moveTo(W*.4,H*.04);c.lineTo(W*.44,H*.1);c.moveTo(W*.6,H*.04);c.lineTo(W*.56,H*.1);}
+else{c.arc(W*.5,H*.05,W*.1,.2*Math.PI,.8*Math.PI);}
+c.stroke();
+c.fillStyle='#111';c.beginPath();
+if(cf.collarType==='vneck'){c.moveTo(W*.39,H*.04);c.lineTo(W*.5,H*.11);c.lineTo(W*.61,H*.04);c.closePath();}
+else{c.arc(W*.5,H*.05,W*.08,.15*Math.PI,.85*Math.PI);c.closePath();}
+c.fill();
+c.fillStyle='#ffffff';c.font='bold 300px Impact,sans-serif';c.textAlign='center';c.textBaseline='middle';c.strokeStyle='rgba(0,0,0,.3)';c.lineWidth=4;c.strokeText(cf.playerNumber||'10',W*.5,H*.5);c.fillText(cf.playerNumber||'10',W*.5,H*.5);
+c.fillStyle=cf.sponsorColor||'#ffffff';c.font='900 50px Inter,sans-serif';c.strokeStyle='rgba(0,0,0,.4)';c.lineWidth=2;c.strokeText(cf.sponsorText||'BWA',W*.5,H*.78);c.fillText(cf.sponsorText||'BWA',W*.5,H*.78);c.fillRect(W*.35,H*.795,W*.3,3);
+c.fillStyle='rgba(0,0,0,.5)';c.font='bold 36px Inter,sans-serif';c.fillText('BWA',W*.5,H*.88);
+c.beginPath();c.arc(W*.28,H*.32,22,0,Math.PI*2);c.fillStyle='#111';c.fill();c.strokeStyle=cf.crestColor;c.lineWidth=2;c.stroke();
+const sh=c.createLinearGradient(0,0,W,H);sh.addColorStop(0,'rgba(255,255,255,.05)');sh.addColorStop(.5,'rgba(255,255,255,.12)');sh.addColorStop(1,'rgba(0,0,0,.08)');c.fillStyle=sh;c.fillRect(0,0,W,H);
+if(cf.finish==='mesh'){c.globalAlpha=.12;for(let x=0;x<W;x+=6)for(let y=0;y<H;y+=6){c.beginPath();c.arc(x+3,y+3,1.5,0,Math.PI*2);c.fillStyle='#000';c.fill();}c.globalAlpha=1;}
+if(cf.finish==='glossy'){const gl=c.createLinearGradient(0,0,W,H);gl.addColorStop(0,'rgba(255,255,255,.2)');gl.addColorStop(.5,'rgba(255,255,255,.3)');gl.addColorStop(1,'rgba(0,0,0,.1)');c.fillStyle=gl;c.fillRect(0,0,W,H);}
+// Fabric noise texture for realism
+c.globalAlpha=.04;for(let x=0;x<W;x+=2)for(let y=0;y<H;y+=2){if(Math.random()>.5){c.fillStyle=Math.random()>.5?'#000':'#fff';c.fillRect(x,y,2,2);}}c.globalAlpha=1;}
+function updateThreeTexture(){if(!texCtx||!jerseyTexture)return;drawTex(texCtx,cfg);jerseyTexture.needsUpdate=true;}
+
+// ===== SVG JERSEY =====
+let uidC=0;function uid(){return 'u'+(uidC++);}
+function crSVG(t,cl,s=28){const ic={shield:`<path d="M${s/2} ${s*.1} L${s*.85} ${s*.25} L${s*.8} ${s*.65} L${s/2} ${s*.9} L${s*.2} ${s*.65} L${s*.15} ${s*.25}Z" fill="none" stroke="${cl}" stroke-width="2"/>`,lion:`<circle cx="${s/2}" cy="${s*.4}" r="${s*.2}" fill="none" stroke="${cl}" stroke-width="2"/>`,eagle:`<path d="M${s/2} ${s*.15} L${s*.8} ${s*.4} L${s*.65} ${s*.45} L${s*.75} ${s*.7} L${s/2} ${s*.55} L${s*.25} ${s*.7} L${s*.35} ${s*.45} L${s*.2} ${s*.4}Z" fill="none" stroke="${cl}" stroke-width="2"/>`,star:`<polygon points="${s/2},${s*.12} ${s*.58},${s*.38} ${s*.88},${s*.38} ${s*.64},${s*.56} ${s*.73},${s*.85} ${s/2},${s*.68} ${s*.27},${s*.85} ${s*.36},${s*.56} ${s*.12},${s*.38} ${s*.42},${s*.38}" fill="none" stroke="${cl}" stroke-width="2"/>`,dragon:`<path d="M${s*.6} ${s*.15} Q${s*.8} ${s*.25} ${s*.7} ${s*.45} Q${s*.85} ${s*.5} ${s*.7} ${s*.65} Q${s*.6} ${s*.8} ${s*.4} ${s*.85} Q${s*.25} ${s*.75} ${s*.35} ${s*.6} Q${s*.2} ${s*.45} ${s*.4} ${s*.3}Z" fill="none" stroke="${cl}" stroke-width="2"/>`,bwa:`<text x="${s/2}" y="${s*.6}" text-anchor="middle" fill="${cl}" font-size="${s*.4}" font-weight="900" font-family="Inter">BWA</text>`};return ic[t]||ic.shield;}
+function patSVG(p,pri,sec,id){switch(p){case'stripes':return`<g fill="${sec}" opacity="0.9"><rect x="50" width="22" height="320"/><rect x="90" width="22" height="320"/><rect x="130" width="16" height="320"/><rect x="154" width="16" height="320"/><rect x="188" width="22" height="320"/><rect x="228" width="22" height="320"/></g>`;case'hoops':return`<g fill="${sec}" opacity="0.85"><rect y="70" width="300" height="24"/><rect y="120" width="300" height="24"/><rect y="170" width="300" height="24"/><rect y="220" width="300" height="24"/><rect y="270" width="300" height="24"/></g>`;case'checker':return`<g fill="${sec}" opacity="0.8"><rect x="95" y="40" width="27" height="40"/><rect x="150" y="40" width="27" height="40"/><rect x="68" y="80" width="27" height="42"/><rect x="122" y="80" width="28" height="42"/><rect x="177" y="80" width="28" height="42"/><rect x="95" y="122" width="27" height="42"/><rect x="150" y="122" width="27" height="42"/><rect x="68" y="164" width="27" height="42"/><rect x="122" y="164" width="28" height="42"/><rect x="177" y="164" width="28" height="42"/><rect x="95" y="206" width="27" height="42"/><rect x="150" y="206" width="27" height="42"/><rect x="68" y="248" width="27" height="42"/><rect x="122" y="248" width="28" height="42"/><rect x="177" y="248" width="28" height="42"/></g>`;case'chevron':return`<g fill="${sec}" opacity="0.85"><path d="M50,60 L150,110 L250,60 L250,90 L150,140 L50,90Z"/><path d="M50,130 L150,180 L250,130 L250,160 L150,210 L50,160Z"/><path d="M50,200 L150,250 L250,200 L250,230 L150,280 L50,230Z"/></g>`;case'gradient':return`<defs><linearGradient id="gp${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${pri}"/><stop offset="100%" stop-color="${sec}"/></linearGradient></defs><rect width="300" height="320" fill="url(#gp${id})"/>`;case'split':return`<rect x="150" width="150" height="320" fill="${sec}"/>`;case'waves':return`<g fill="${sec}" opacity="0.8"><path d="M0,80 C100,50 200,110 300,80 L300,110 C200,140 100,80 0,110Z"/><path d="M0,150 C100,120 200,180 300,150 L300,180 C200,210 100,150 0,180Z"/><path d="M0,220 C100,190 200,250 300,220 L300,250 C200,280 100,220 0,250Z"/></g>`;}return'';}
+function finSVG(f,id){switch(f){case'mesh':return`<defs><pattern id="ms${id}" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="#000" fill-opacity="0.12"/><circle cx="3" cy="3" r="0.7" fill="#000" fill-opacity="0.12"/></pattern></defs><rect width="300" height="320" fill="url(#ms${id})"/>`;case'glossy':return`<defs><linearGradient id="gl${id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff" stop-opacity="0.3"/><stop offset="50%" stop-color="#fff" stop-opacity="0.45"/><stop offset="100%" stop-color="#000" stop-opacity="0.15"/></linearGradient></defs><rect width="300" height="320" fill="url(#gl${id})" opacity="0.7"/>`;default:return`<defs><linearGradient id="mt${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#000" stop-opacity="0.25"/><stop offset="50%" stop-color="#fff" stop-opacity="0.12"/><stop offset="100%" stop-color="#000" stop-opacity="0.25"/></linearGradient></defs><rect width="300" height="320" fill="url(#mt${id})" opacity="0.4"/>`;}}
+function colSVG(t,c){switch(t){case'veneck':return`<path d="M120,45 L150,75 L180,45 L175,45 L150,67 L125,45Z" fill="${c}"/><path d="M124,45 L150,70 L176,45 Q150,41 124,45Z" fill="#111"/>`;case'polo':return`<path d="M120,45 L140,78 L150,78 L142,48Z" fill="${c}" stroke="#000" stroke-width="0.5"/><path d="M180,45 L160,78 L150,78 L158,48Z" fill="${c}" stroke="#000" stroke-width="0.5"/><line x1="150" y1="48" x2="150" y2="78" stroke="#111" stroke-width="1" opacity="0.7"/><path d="M121,45 Q150,54 179,45 Q150,42 121,45Z" fill="#111"/>`;default:return`<path d="M120,45 Q150,58 180,45 Q150,65 120,45Z" fill="${c}"/><path d="M121,46 Q150,57 179,46 Q150,40 121,46Z" fill="#111"/>`;}}
+function jBody(cf,id){const sl=cf.sleeveColor||cf.primaryColor,cl=cf.secondaryColor,pt=patSVG(cf.pattern,cf.primaryColor,cf.secondaryColor,id),fn=finSVG(cf.finish,id),co=colSVG(cf.collarType,cl);return`<svg viewBox="0 0 300 320" class="w-full h-full"><defs><clipPath id="jf${id}"><path d="M120,45 L70,60 L30,110 L45,130 L95,120 L95,290 L150,302 L205,290 L205,120 L255,130 L270,110 L230,60 L180,45 Q150,55 120,45Z"/></clipPath><clipPath id="ls${id}"><path d="M120,45 L70,60 L30,110 L45,130 L95,120Z"/></clipPath><clipPath id="rs${id}"><path d="M180,45 L230,60 L270,110 L255,130 L205,120Z"/></clipPath><linearGradient id="fd${id}" x1="0" y1="0" x2="0" y2="320" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fff" stop-opacity="0.15"/><stop offset="20%" stop-color="#000" stop-opacity="0.12"/><stop offset="70%" stop-color="#000" stop-opacity="0.18"/><stop offset="100%" stop-color="#000" stop-opacity="0.3"/></linearGradient></defs><g clip-path="url(#jf${id})"><rect width="300" height="320" fill="${cf.primaryColor}"/>${pt}<g clip-path="url(#ls${id})"><rect width="300" height="320" fill="${sl}"/><path d="M30,110 L45,130 L53,124 L38,104Z" fill="${cl}"/></g><g clip-path="url(#rs${id})"><rect width="300" height="320" fill="${sl}"/><path d="M270,110 L255,130 L247,124 L262,104Z" fill="${cl}"/></g><rect width="300" height="320" fill="url(#fd${id})" opacity="0.6" style="mix-blend-mode:multiply"/>${fn}${co}</g></svg>`;}
+function jDetail(cf,id){const cl=cf.secondaryColor,cr=crSVG(cf.crestType,cf.crestColor,28);return`<svg viewBox="0 0 300 320" class="w-full h-full"><g transform="translate(150,195)"><text text-anchor="middle" fill="${cf.sponsorColor}" font-family="Inter,sans-serif" font-weight="900" font-size="15" letter-spacing="0.15em" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))">${cf.sponsorText||'BWA'}</text><rect x="-40" y="5" width="80" height="2" fill="${cf.sponsorColor}" opacity="0.75"/></g><text x="150" y="142" text-anchor="middle" fill="${cl}" font-family="monospace" font-size="18" font-weight="bold" opacity="0.35">${cf.playerNumber}</text><g transform="translate(85,110)"><circle cx="0" cy="0" r="14" fill="#111" stroke="${cf.crestColor}" stroke-width="1.5"/><g transform="translate(-14,-14)">${cr}</g></g><g transform="translate(205,110) scale(0.8)"><path d="M-8,4 L0,-10 L8,4Z" fill="${cl}"/><text x="12" y="3" fill="${cl}" font-family="Inter,sans-serif" font-weight="800" font-size="8">BWA</text></g></svg>`;}
+function jBackFull(cf,id){const sl=cf.sleeveColor||cf.primaryColor,cl=cf.secondaryColor,pt=patSVG(cf.pattern,cf.primaryColor,cf.secondaryColor,id+'b'),fn=finSVG(cf.finish,id+'b');return`<svg viewBox="0 0 300 320" class="w-full h-full"><defs><clipPath id="jb${id}"><path d="M120,45 L70,60 L30,110 L45,130 L95,120 L95,290 L150,302 L205,290 L205,120 L255,130 L270,110 L230,60 L180,45 Q150,47 120,45Z"/></clipPath></defs><g clip-path="url(#jb${id})"><rect width="300" height="320" fill="${cf.primaryColor}"/>${pt}<g clip-path="url(#ls${id})"><rect width="300" height="320" fill="${sl}"/><path d="M30,110 L45,130 L53,124 L38,104Z" fill="${cl}"/></g><g clip-path="url(#rs${id})"><rect width="300" height="320" fill="${sl}"/><path d="M270,110 L255,130 L247,124 L262,104Z" fill="${cl}"/></g><rect width="300" height="320" fill="url(#fd${id})" opacity="0.65" style="mix-blend-mode:multiply"/>${fn}<path d="M120,45 Q150,49 180,45 Q150,53 120,45Z" fill="${cl}"/><g transform="translate(150,95)"><text text-anchor="middle" fill="#fff" stroke="#111" stroke-width="0.5" font-family="Impact,sans-serif" font-size="17" font-weight="900" letter-spacing="0.12em">${cf.playerName||'PLAYER'}</text></g><g transform="translate(150,185)"><text text-anchor="middle" fill="#fff" stroke="${cl}" stroke-width="1.5" font-family="Impact,sans-serif" font-size="75" font-weight="900">${cf.playerNumber||'10'}</text></g><text x="150" y="268" text-anchor="middle" fill="${cl}" font-family="monospace" font-size="8" font-weight="bold" letter-spacing="2" opacity="0.8">BWA SPORTSWEAR</text></g></svg>`;}
+function jShadow(){return`<svg viewBox="0 0 300 320" class="w-full h-full" style="filter:brightness(.15)"><path d="M120,45 L70,60 L30,110 L45,130 L95,120 L95,290 L150,302 L205,290 L205,120 L255,130 L270,110 L230,60 L180,45 Q150,55 120,45Z" fill="#000"/></svg>`;}
+function jShine(){return`<svg viewBox="0 0 300 320" class="w-full h-full"><defs><linearGradient id="shn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff" stop-opacity="0.15"/><stop offset="50%" stop-color="#fff" stop-opacity="0.2"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M120,45 L70,60 L30,110 L45,130 L95,120 L95,290 L150,302 L205,290 L205,120 L255,130 L270,110 L230,60 L180,45 Q150,55 120,45Z" fill="url(#shn)"/></svg>`;}
+
+function syncAll(){updateThreeTexture();const id=uid();const f=document.getElementById('custFront'),b=document.getElementById('custBack'),d=document.getElementById('custDetail'),sh=document.getElementById('custShadow'),sn=document.getElementById('custShine');if(f)f.innerHTML=jBody(cfg,id);if(b)b.innerHTML=jBackFull(cfg,id);if(d)d.innerHTML=jDetail(cfg,id);if(sh)sh.innerHTML=jShadow();if(sn)sn.innerHTML=jShine();}
+
+function initDrag(wrap,card){let dg=false,sx=0,sr=0,cr=0;const setR=r=>{card.style.transform=`rotateY(${r}deg)`;};wrap.addEventListener('mousedown',e=>{dg=true;sx=e.clientX;sr=cr;});wrap.addEventListener('touchstart',e=>{dg=true;sx=e.touches[0].clientX;sr=cr;},{passive:true});wrap.addEventListener('mousemove',e=>{if(dg){cr=sr+(e.clientX-sx)*.8;setR(cr);}});wrap.addEventListener('touchmove',e=>{if(dg){cr=sr+(e.touches[0].clientX-sx)*.8;setR(cr);}},{passive:true});const up=()=>{dg=false;wrap.style.cursor='grab';};window.addEventListener('mouseup',up);window.addEventListener('touchend',up);wrap.style.cursor='grab';return{set:r=>{cr=r;setR(r);},get:()=>cr};}
+let custDrag;function setV(v){curView=v;document.querySelectorAll('.vb').forEach(b=>b.classList.remove('on'));document.getElementById('v'+v.charAt(0).toUpperCase()+v.slice(1)).classList.add('on');const c=document.getElementById('custCard');if(v==='front')c.style.transform='rotateY(0deg)';else if(v==='back')c.style.transform='rotateY(180deg)';else if(custDrag)custDrag.set(0);}
+
+function buildTabs(){document.getElementById('tabBar').innerHTML=['colors','pattern','text','crest'].map((t,i)=>`<button class="tb${curTab===t?' on':''}" data-t="${t}" onclick="switchTab('${t}')">${i+1}. ${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('');renderTab();}
+function switchTab(t){curTab=t;document.querySelectorAll('.tb').forEach(b=>b.classList.toggle('on',b.dataset.t===t));renderTab();}
+function renderTab(){const tb=document.getElementById('tabBody');let h='<div class="space-y-5">';if(curTab==='colors'){h+=`<div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Primary</span><div class="grid grid-cols-6 gap-2">`;COLS.forEach(c=>{h+=`<button class="sw${cfg.primaryColor===c?' on':''}" style="background:${c}" onclick="cfg.primaryColor='${c}';syncAll();renderTab()">${cfg.primaryColor===c?'<iconify-icon icon="lucide:check" class="'+(c==='#ffffff'?'text-black':'text-white')+'" style="width:16px;height:16px"></iconify-icon>':''}</button>`;});h+=`</div><input type="color" value="${cfg.primaryColor}" onchange="cfg.primaryColor=this.value;syncAll();renderTab()" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 mt-2"></div>`;h+=`<div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Accent</span><div class="grid grid-cols-6 gap-2">`;COLS.forEach(c=>{h+=`<button class="sw${cfg.secondaryColor===c?' on':''}" style="background:${c}" onclick="cfg.secondaryColor='${c}';syncAll();renderTab()">${cfg.secondaryColor===c?'<iconify-icon icon="lucide:check" class="'+(c==='#ffffff'?'text-black':'text-white')+'" style="width:16px;height:16px"></iconify-icon>':''}</button>`;});h+=`</div></div>`;h+=`<div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Sleeve</span><div class="flex gap-3"><button class="flex-1 py-2 px-3 rounded-lg text-xs font-mono border ${cfg.sleeveColor===cfg.primaryColor?'border-yellow-400 bg-yellow-400/10 text-white':'border-white/5 bg-black/40 text-neutral-400'}" onclick="cfg.sleeveColor=cfg.primaryColor;syncAll();renderTab()">Primary</button><button class="flex-1 py-2 px-3 rounded-lg text-xs font-mono border ${cfg.sleeveColor===cfg.secondaryColor?'border-yellow-400 bg-yellow-400/10 text-white':'border-white/5 bg-black/40 text-neutral-400'}" onclick="cfg.sleeveColor=cfg.secondaryColor;syncAll();renderTab()">Accent</button></div></div>`;h+=`<div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Finish</span><div class="grid grid-cols-3 gap-2">`;FINS.forEach(f=>{h+=`<button class="ob${cfg.finish===f.id?' on':''}" onclick="cfg.finish='${f.id}';syncAll();renderTab()"><span class="block font-bold">${f.n}</span><span class="block text-[8px] text-neutral-500 mt-0.5">${f.l}</span></button>`;});h+=`</div></div>`;}else if(curTab==='pattern'){h+=`<div class="grid grid-cols-2 gap-2">`;PATS.forEach(p=>{h+=`<button class="p-3 rounded-xl text-left border ${cfg.pattern===p.id?'border-yellow-400 bg-yellow-400/10':'border-white/5 bg-black/40'}" onclick="cfg.pattern='${p.id}';syncAll();renderTab()"><span class="text-xs font-bold ${cfg.pattern===p.id?'text-white':'text-neutral-300'}">${p.n}</span></button>`;});h+=`</div><div class="mt-4"><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Collar</span><div class="grid grid-cols-3 gap-2">`;CT.forEach(c=>{h+=`<button class="ob${cfg.collarType===c.id?' on':''}" onclick="cfg.collarType='${c.id}';syncAll();renderTab()">${c.n}</button>`;});h+=`</div></div>`;}else if(curTab==='text'){h+=`<div><label class="block text-xs font-mono text-neutral-400 uppercase mb-2">Sponsor</label><input type="text" maxlength="16" value="${cfg.sponsorText}" oninput="cfg.sponsorText=this.value.toUpperCase();syncAll()" class="w-full bg-[#0a0d15] border border-white/10 rounded-xl px-4 py-3 text-white text-sm font-mono focus:outline-none focus:border-yellow-400 uppercase"></div>`;h+=`<div class="grid grid-cols-2 gap-3"><div><label class="block text-xs font-mono text-neutral-400 uppercase mb-2">Name</label><input type="text" maxlength="12" value="${cfg.playerName}" oninput="cfg.playerName=this.value.toUpperCase();syncAll()" class="w-full bg-[#0a0d15] border border-white/10 rounded-xl px-3 py-3 text-white text-xs font-mono focus:outline-none focus:border-yellow-400 uppercase"></div><div><label class="block text-xs font-mono text-neutral-400 uppercase mb-2">Number</label><input type="text" maxlength="3" value="${cfg.playerNumber}" oninput="cfg.playerNumber=this.value;syncAll()" class="w-full bg-[#0a0d15] border border-white/10 rounded-xl px-3 py-3 text-white text-xs font-mono focus:outline-none focus:border-yellow-400 text-center"></div></div>`;h+=`<div><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Sponsor Color</span><div class="flex gap-2">`;['#ffffff','#000000','#f1c40f','#cca43b','#bcff00','#ff007f'].forEach(c=>{h+=`<button class="sw${cfg.sponsorColor===c?' on':''}" style="background:${c};width:34px;height:34px" onclick="cfg.sponsorColor='${c}';syncAll();renderTab()">${cfg.sponsorColor===c?'<iconify-icon icon="lucide:check" class="'+(c==='#ffffff'?'text-black':'text-white')+'" style="width:14px;height:14px"></iconify-icon>':''}</button>`;});h+=`</div></div>`;}else{h+=`<div class="grid grid-cols-3 gap-2">`;CRS.forEach(c=>{h+=`<button class="p-3 rounded-xl flex flex-col items-center gap-2 border ${cfg.crestType===c.id?'border-yellow-400 bg-yellow-400/10 text-yellow-300':'border-white/5 bg-black/40 text-neutral-400'}" onclick="cfg.crestType='${c.id}';syncAll();renderTab()"><iconify-icon icon="${c.ic}" class="text-xl"></iconify-icon><span class="text-[10px] font-mono">${c.n}</span></button>`;});h+=`</div><div class="mt-4"><span class="block text-xs font-mono text-neutral-400 uppercase mb-2">Badge Color</span><div class="flex gap-2">`;['#ffffff','#f1c40f','#cca43b','#bcff00','#d91d1d','#555'].forEach(c=>{h+=`<button class="sw${cfg.crestColor===c?' on':''}" style="background:${c};width:34px;height:34px" onclick="cfg.crestColor='${c}';syncAll();renderTab()">${cfg.crestColor===c?'<iconify-icon icon="lucide:check" class="'+(c==='#ffffff'?'text-black':'text-white')+'" style="width:14px;height:14px"></iconify-icon>':''}</button>`;});h+=`</div></div>`;}h+='</div>';tb.innerHTML=h;}
+
+function buildCat(){const g=document.getElementById('catGrid');g.innerHTML='';CAT.forEach((item,i)=>{const d=document.createElement('div');d.className=`bg-[#0e121d] border border-white/5 rounded-3xl p-5 group hover:border-yellow-400/20 transition-all shadow-xl rv-s d${(i%3)+1}`;d.innerHTML=`<div class="flex justify-between items-center mb-3 font-mono"><span class="text-[9px] bg-white/5 text-neutral-400 px-2 py-1 rounded uppercase tracking-wider font-bold">${item.cat}</span><span class="text-xs text-yellow-400 flex items-center gap-1"><iconify-icon icon="lucide:star" class="w-3 h-3"></iconify-icon>${item.rating}</span></div><div class="h-56 flex items-center justify-center bg-black/30 rounded-2xl overflow-hidden" id="cv${i}"></div><div class="mt-4"><h3 class="text-base font-black uppercase">${item.name}</h3><div class="flex justify-between items-center mt-3 bg-black/40 p-3 rounded-xl border border-white/5"><span class="text-sm font-bold text-yellow-400 font-mono">${item.price}</span><button onclick="loadPreset(${i})" class="bg-yellow-500 hover:bg-yellow-400 text-black font-mono text-[10px] font-bold px-4 py-2 rounded-lg uppercase transition-all">Customize</button></div></div>`;g.appendChild(d);requestAnimationFrame(()=>{const vz=document.getElementById('cv'+i);if(!vz)return;const wr=document.createElement('div');wr.style.cssText='transform:scale(.6);transition:transform .5s';wr.innerHTML=`<div class="j3d w-[260px] h-[320px]" style="perspective:1400px"><div class="jin w-full h-full j-float" id="cc${i}" style="transform:rotateY(28deg)"><div class="jf" style="transform:translateZ(-6px);opacity:.4;filter:blur(3px) brightness(.15)" id="csh${i}"></div><div class="jf" style="transform:translateZ(0px)" id="cb${i}"></div><div class="jf jb" style="transform:rotateY(180deg) translateZ(0px)" id="cbb${i}"></div><div class="jf" style="transform:translateZ(6px);pointer-events:none" id="cd${i}"></div></div></div>`;vz.appendChild(wr);const cId='c'+i;const bf=document.getElementById('cb'+i),bb=document.getElementById('cbb'+i),bd=document.getElementById('cd'+i),bsh=document.getElementById('csh'+i);if(bf)bf.innerHTML=jBody(item.cfg,cId);if(bb)bb.innerHTML=jBackFull(item.cfg,cId);if(bd)bd.innerHTML=jDetail(item.cfg,cId);if(bsh)bsh.innerHTML=jShadow();const ct=wr.querySelector('.j3d'),cd=document.getElementById('cc'+i);if(ct&&cd)initDrag(ct,cd);wr.addEventListener('mouseenter',()=>wr.style.transform='scale(.72)');wr.addEventListener('mouseleave',()=>wr.style.transform='scale(.6)');});});}
+function loadPreset(i){cfg={...CAT[i].cfg};syncAll();renderTab();document.getElementById('configurator').scrollIntoView({behavior:'smooth'});showToast('Loaded: '+CAT[i].name);}
+function updCalc(){const q=cQty;let t;if(q<=10)t={d:'0%',a:29.99};else if(q<=25)t={d:'12%',a:25.99};else if(q<=50)t={d:'20%',a:22.50};else t={d:'35%',a:18.99};const fm=cFin==='glossy'?1.5:0,s=t.a+fm,tl=s*q,sv=Math.max(0,29.99*q-tl);document.getElementById('qDisp').textContent=q;document.getElementById('cDisc').textContent=t.d;document.getElementById('cEach').textContent='$'+s.toFixed(2);document.getElementById('cSave').textContent='-$'+sv.toFixed(2);document.getElementById('cTotal').textContent='$'+tl.toFixed(2);}
+function buildCalcFin(){const c=document.getElementById('calcFin');c.innerHTML='';FINS.forEach(f=>{c.innerHTML+=`<button class="w-full py-2 px-3 rounded-lg text-left text-xs font-mono flex justify-between items-center border ${cFin===f.id?'border-yellow-400 bg-yellow-400/10 text-white':'border-white/5 bg-black/40 text-neutral-400'}" onclick="cFin='${f.id}';updCalc();buildCalcFin()"><span>${f.n}</span><span class="text-[10px] text-neutral-500">${f.l}</span></button>`;});}
+function buildFAQ(){const l=document.getElementById('faqList');FAQS.forEach(f=>{const d=document.createElement('div');d.className='fi bg-[#0e121d] border border-white/5 rounded-2xl p-6';d.innerHTML=`<h3 class="text-sm font-bold text-yellow-300 flex gap-2 items-center cursor-pointer" onclick="this.parentElement.classList.toggle('op')"><span class="text-yellow-500 font-mono text-xs">Q.</span>${f.q}<iconify-icon icon="lucide:chevron-down" class="fc text-yellow-400 ml-auto"></iconify-icon></h3><div class="fa"><p class="text-xs text-neutral-400 leading-relaxed mt-3 pl-5 border-l border-white/10">${f.a}</p></div>`;l.appendChild(d);});}
+function showToast(m){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=m;t.style.transform='translateY(0)';t.style.opacity='1';setTimeout(()=>{t.style.transform='translateY(20px)';t.style.opacity='0';},3000);}
+
+// ===== THREE.JS HERO - Real 3D Hoodie Jersey =====
+function initThree(){
+const canvas=document.getElementById('heroCanvas');if(!canvas||!window.THREE)return;
+initTexCanvas();drawTex(texCtx,cfg);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,1000);camera.position.set(0,0,5.5);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setSize(window.innerWidth,window.innerHeight);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setClearColor(0x000000,0);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff,.5));
+const dl=new THREE.DirectionalLight(0xffffff,1);dl.position.set(5,5,5);scene.add(dl);
+const dl2=new THREE.DirectionalLight(0xEAB308,.5);dl2.position.set(-5,3,-3);scene.add(dl2);
+const pl=new THREE.PointLight(0xEAB308,.8,25);pl.position.set(0,2,3);scene.add(pl);
+const rimLight=new THREE.PointLight(0xffffff,.3,20);rimLight.position.set(-4,0,-3);scene.add(rimLight);
+
+// Jersey Group
+const jerseyGroup=new THREE.Group();scene.add(jerseyGroup);
+
+// Jersey body - thick extrusion like a real hoodie
+const js=new THREE.Shape();
+js.moveTo(-.65,-1.15);js.lineTo(.65,-1.15);js.lineTo(.68,.05);js.lineTo(1.3,.35);js.lineTo(1.3,.75);js.lineTo(.68,.5);js.lineTo(.38,1.05);
+js.quadraticCurveTo(.18,1.15,0,.85);js.quadraticCurveTo(-.18,1.15,-.38,1.05);
+js.lineTo(-.68,.5);js.lineTo(-1.3,.75);js.lineTo(-1.3,.35);js.lineTo(-.68,.05);js.lineTo(-.65,-1.15);
+
+// Thick hoodie depth
+const jg=new THREE.ExtrudeGeometry(js,{depth:.4,bevelEnabled:true,bevelThickness:.08,bevelSize:.06,bevelSegments:8,curveSegments:12});jg.center();
+
+jerseyTexture=new THREE.CanvasTexture(texCanvas);
+const jerseyMat=new THREE.MeshStandardMaterial({map:jerseyTexture,roughness:.65,metalness:.02,side:THREE.DoubleSide});
+const jersey=new THREE.Mesh(jg,jerseyMat);jerseyGroup.add(jersey);
+
+// Back face (slightly different shade for back)
+const backMat=new THREE.MeshStandardMaterial({map:jerseyTexture,roughness:.7,metalness:.02,side:THREE.DoubleSide,color:0xdddddd});
+const backJersey=new THREE.Mesh(jg.clone(),backMat);backJersey.rotation.y=Math.PI;backJersey.position.z=-.01;jerseyGroup.add(backJersey);
+
+// Collar rim (torus for hoodie collar)
+const collarGeo=new THREE.TorusGeometry(.22,.06,8,24,Math.PI);
+const collarMat=new THREE.MeshStandardMaterial({color:0x222222,roughness:.8,metalness:0});
+const collar=new THREE.Mesh(collarGeo,collarMat);collar.position.set(0,.9,.15);collar.rotation.x=-.3;jerseyGroup.add(collar);
+
+jerseyGroup.rotation.x=.1;scene.add(jerseyGroup);
+
+// Floor shadow (circle beneath)
+const floorShadowGeo=new THREE.CircleGeometry(1.5,32);
+const floorShadowMat=new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.15});
+const floorShadow=new THREE.Mesh(floorShadowGeo,floorShadowMat);floorShadow.rotation.x=-Math.PI/2;floorShadow.position.y=-1.6;scene.add(floorShadow);
+
+// Particles
+const pc=600,pg=new THREE.BufferGeometry(),pp=new Float32Array(pc*3),pv=[];
+for(let i=0;i<pc;i++){pp[i*3]=(Math.random()-.5)*14;pp[i*3+1]=(Math.random()-.5)*14;pp[i*3+2]=(Math.random()-.5)*10;pv.push({x:(Math.random()-.5)*.004,y:(Math.random()-.5)*.004,z:(Math.random()-.5)*.003});}
+pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xEAB308,size:.03,transparent:true,opacity:.5,blending:THREE.AdditiveBlending}));scene.add(pts);
+
+let mx=0,my=0;document.addEventListener('mousemove',e=>{mx=(e.clientX/window.innerWidth-.5)*2;my=(e.clientY/window.innerHeight-.5)*2;});
+let sp=0,tsp=0;window.addEventListener('scroll',()=>{const r=document.getElementById('hero').getBoundingClientRect();tsp=Math.max(0,Math.min(1,-r.top/(r.height-window.innerHeight)));},{passive:true});
+
+const clock=new THREE.Clock();
+(function anim(){requestAnimationFrame(anim);const t=clock.getElapsedTime();sp+=(tsp-sp)*.08;
+// Jersey rotation: scroll-driven + idle float + mouse
+jerseyGroup.rotation.y=sp*Math.PI*3+Math.sin(t*.3)*.04+mx*.2;
+jerseyGroup.rotation.x=.1+Math.sin(t*.5)*.03+my*.1;
+jerseyGroup.position.y=Math.sin(t*.4)*.06;
+const sc=1-sp*.25;jerseyGroup.scale.set(sc,sc,sc);
+// Collar stays at top of jersey
+collar.position.y=.9*sc;
+camera.position.z=5.5-sp*1.2;camera.position.y=my*.3;
+// Floor shadow
+floorShadow.scale.setScalar(sc*1.2);floorShadow.material.opacity=Math.max(0,.15-sp*.1);
+// Rim light follows
+rimLight.position.x=-4+mx*2;
+const pos=pts.geometry.attributes.position.array;for(let i=0;i<pc;i++){pos[i*3]+=pv[i].x;pos[i*3+1]+=pv[i].y;pos[i*3+2]+=pv[i].z;if(Math.abs(pos[i*3])>7)pv[i].x*=-1;if(Math.abs(pos[i*3+1])>7)pv[i].y*=-1;if(Math.abs(pos[i*3+2])>5)pv[i].z*=-1;}
+pts.geometry.attributes.position.needsUpdate=true;pts.rotation.y=t*.015;pl.position.x=mx*3;pl.position.y=2+my*2;
+const hc=document.getElementById('heroContent'),si=document.getElementById('scrollInd'),sb=document.getElementById('scrollBar');if(hc){hc.style.opacity=Math.max(0,1-sp*3);hc.style.transform=`translateY(${sp*120}px)`;}if(si)si.style.opacity=Math.max(0,1-sp*6);if(sb)sb.style.width=(sp*100)+'%';
+renderer.render(scene,camera);})();
+window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});}
+
+// ===== 3D FOOTBALL - Bounce 2x, Sparkle, Reappear on Configurator =====
+function initFootball(){
+const canvas=document.getElementById('fbCanvas');if(!canvas||!window.THREE)return;
+const W=window.innerWidth,H=window.innerHeight;
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(50,W/H,.1,100);camera.position.set(0,0,10);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setSize(W,H);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setClearColor(0x000000,0);
+scene.add(new THREE.AmbientLight(0xffffff,.6));const fl=new THREE.DirectionalLight(0xffffff,.8);fl.position.set(5,5,5);scene.add(fl);scene.add(new THREE.PointLight(0xEAB308,.5,30));
+
+const bc=document.createElement('canvas');bc.width=512;bc.height=512;const bx=bc.getContext('2d');
+bx.fillStyle='#fff';bx.fillRect(0,0,512,512);bx.fillStyle='#111';
+[[256,90],[130,190],[382,190],[160,340],[352,340],[256,420]].forEach(([px,py])=>{bx.beginPath();bx.moveTo(px,py-40);for(let i=1;i<=5;i++){const a=(i*72-90)*Math.PI/180;bx.lineTo(px+40*Math.cos(a),py+40*Math.sin(a));}bx.closePath();bx.fill();});
+bx.strokeStyle='#ddd';bx.lineWidth=2;const ppent=[[256,90],[130,190],[382,190],[160,340],[352,340],[256,420]];ppent.forEach(([px,py],i)=>ppent.forEach(([qx,qy],j)=>{if(j>i&&Math.hypot(qx-px,qy-py)<200){bx.beginPath();bx.moveTo(px,py);bx.lineTo(qx,qy);bx.stroke();}}));
+const ballTex=new THREE.CanvasTexture(bc);
+const ball=new THREE.Mesh(new THREE.SphereGeometry(.55,24,24),new THREE.MeshStandardMaterial({map:ballTex,roughness:.3,metalness:.05}));
+ball.visible=false;scene.add(ball);
+
+const glowMat=new THREE.MeshBasicMaterial({color:0xEAB308,transparent:true,opacity:.12,blending:THREE.AdditiveBlending});
+const glow=new THREE.Mesh(new THREE.SphereGeometry(.8,16,16),glowMat);glow.visible=false;scene.add(glow);
+const shMat=new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.2});
+const sh=new THREE.Mesh(new THREE.CircleGeometry(.45,16),shMat);sh.position.y=-4.4;sh.rotation.x=-Math.PI/2;sh.visible=false;scene.add(sh);
+
+// Sparkle system
+const SC=500;const sp=new Float32Array(SC*3),sc2=new Float32Array(SC*3);const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sp,3));sg.setAttribute('color',new THREE.BufferAttribute(sc2,3));
+const sm=new THREE.PointsMaterial({size:.1,vertexColors:true,transparent:true,opacity:1,blending:THREE.AdditiveBlending,depthWrite:false});
+const sparkles=new THREE.Points(sg,sm);scene.add(sparkles);
+const sd=[];for(let i=0;i<SC;i++){sp[i*3+1]=-100;sd.push({vx:0,vy:0,vz:0,life:0});}
+let ns=0;
+function emit(x,y,z,vx,vy,vz,life,r,g,b){const i=ns;ns=(ns+1)%SC;sp[i*3]=x;sp[i*3+1]=y;sp[i*3+2]=z;sc2[i*3]=r;sc2[i*3+1]=g;sc2[i*3+2]=b;sd[i].vx=vx;sd[i].vy=vy;sd[i].vz=vz;sd[i].life=life;}
+
+let bState='idle'; // idle -> active -> sparkling -> cooldown
+let bx2=0,by2=0,vx=0,vy=0,rx=0,rz=0,bounces=0,cooldown=0;
+const MAX_BOUNCES=2;
+
+function launch(){
+bx2=9;by2=2.5+Math.random()*1.5;vx=-(0.11+Math.random()*.04);vy=0.01+Math.random()*.02;rx=0;rz=0;bounces=0;bState='active';ball.visible=true;glow.visible=true;sh.visible=true;
+}
+
+// TRIGGER 1: First scroll
+let firstTriggered=false;
+window.addEventListener('scroll',()=>{if(!firstTriggered&&window.scrollY>80&&bState==='idle'){firstTriggered=true;launch();}},{passive:true});
+
+// TRIGGER 2: Configurator section appears
+const cfgObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&bState==='idle'&&firstTriggered&&cooldown<=0){launch();}});},{threshold:.15});
+const cfgEl=document.getElementById('configurator');if(cfgEl)cfgObs.observe(cfgEl);
+
+(function anim(){
+requestAnimationFrame(anim);
+if(cooldown>0)cooldown--;
+
+if(bState==='active'){
+vy-=.0018;bx2+=vx;by2+=vy;rx+=vx*4;rz+=vy*3;
+ball.position.set(bx2,by2,0);ball.rotation.set(rx,0,rz);glow.position.copy(ball.position);
+sh.position.x=bx2;sh.scale.setScalar(Math.max(.3,1+by2*.1));sh.material.opacity=Math.max(0,.25-by2*.02);
+// Trail sparkles
+if(Math.random()>.5)emit(bx2+(Math.random()-.5)*.2,by2+(Math.random()-.5)*.2,Math.random()*.2-.1,vx*.15,vy*.15,(Math.random()-.5)*.01,35+Math.random()*25,1,.85,.15);
+// Bounce (max 2)
+if(by2<=-3.8&&vy<0&&bounces<MAX_BOUNCES){
+vy=-vy*.6;by2=-3.8;bounces++;
+for(let i=0;i<35;i++){const a=Math.random()*Math.PI*2,sp2=Math.random()*.06;emit(bx2,-3.8,0,Math.cos(a)*sp2,Math.abs(Math.sin(a)*sp2)+.02,(Math.random()-.5)*.04,35+Math.random()*30,1,.85+Math.random()*.15,.1+Math.random()*.2);}
+}
+// After 2 bounces OR exits left -> sparkle disappear
+if(bounces>=MAX_BOUNCES&&bx2<-9.5||bx2<-10){
+bState='sparkling';ball.visible=false;glow.visible=false;sh.visible=false;
+for(let i=0;i<180;i++){const a=Math.random()*Math.PI*2,sp2=Math.random()*.18;const g=Math.random()>.3;
+emit(bx2+(Math.random()-.5)*2,by2+Math.random()*3-1.5,(Math.random()-.5)*3,Math.cos(a)*sp2-vx*.2,Math.sin(a)*sp2+.03,(Math.random()-.5)*.1,50+Math.random()*60,g?1:.95,g?.8:1,g?.15:1);}
+}
+}
+
+// Update sparkles
+let active=0;
+for(let i=0;i<SC;i++){if(sd[i].life>0){active++;sd[i].life--;sp[i*3]+=sd[i].vx;sp[i*3+1]+=sd[i].vy;sp[i*3+2]+=sd[i].vz;sd[i].vy-=.0004;const lr=sd[i].life/80;sc2[i*3]*=(.97+lr*.03);sc2[i*3+1]*=(.97+lr*.03);sc2[i*3+2]*=(.97+lr*.03);}else{sp[i*3+1]=-100;}}
+sg.attributes.position.needsUpdate=true;sg.attributes.color.needsUpdate=true;
+if(bState==='sparkling'&&active===0){bState='idle';cooldown=120;} // 2s cooldown before re-trigger
+
+renderer.render(scene,camera);
+})();
+window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});}
+
+// ===== OBSERVER =====
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+
+window.addEventListener('load',()=>{
+setTimeout(()=>{document.getElementById('ld').classList.add('hd');['hTag','hTitle','hDesc','hBtns','scrollInd'].forEach(id=>{const el=document.getElementById(id);if(el){el.style.opacity='1';el.style.transform='none';}});},600);
+initThree();initFootball();buildTabs();syncAll();buildCat();buildCalcFin();updCalc();buildFAQ();
+const cw=document.getElementById('custWrap'),cc=document.getElementById('custCard');if(cw&&cc)custDrag=initDrag(cw,cc);
+document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s').forEach(el=>obs.observe(el));
+document.getElementById('qSlider').addEventListener('input',e=>{cQty=parseInt(e.target.value);updCalc();});
+document.getElementById('mobBtn').addEventListener('click',()=>document.getElementById('mobMenu').style.transform='translateX(0)');
+document.querySelectorAll('.mm').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobMenu').style.transform='translateX(100%)'));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});});
+</script>
+</body>
+</html>
