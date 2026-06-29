@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Digital Creative Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #030303;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: rgba(251,191,36,0.3);
+            color: #fff;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* 渐变文字 */
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, #fbbf24 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-cool {
+            background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 玻璃效果 */
+        .glass {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .glass-strong {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* 动画 */
+        @keyframes float {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes reveal-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        .animate-float { animation: float 8s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 8s ease-in-out infinite; animation-delay: -4s; }
+        .animate-gradient { 
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite; 
+        }
+        .animate-reveal { 
+            animation: reveal-up 1s cubic-bezier(0.16,1,0.3,1) forwards; 
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* 发光边框 */
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
+            background-size: 300% 300%;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            opacity: 0;
+            transition: all 0.5s ease;
+            animation: gradient-shift 4s ease infinite;
+        }
+        .glow-border:hover::before {
+            opacity: 1;
+        }
+
+        /* 卡片光效 */
+        .card-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .card-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.7s ease;
+        }
+        .card-shine:hover::after {
+            left: 150%;
+        }
+
+        /* 图片容器 */
+        .img-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .img-container img {
+            transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+        }
+        .img-container:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.1);
+        }
+
+        /* 按钮 */
+        .btn-primary {
+            position: relative;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(251,191,36,0.4);
+        }
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-secondary {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* 导航链接 */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 背景网格 */
+        .bg-grid {
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+            background-size: 60px 60px;
+        }
+
+        /* 噪点纹理 */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.015;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* 径向渐变背景 */
+        .radial-glow {
+            background: radial-gradient(ellipse at center, rgba(251,191,36,0.08) 0%, transparent 70%);
+        }
+
+        /* 标签样式 */
+        .tag {
+            background: rgba(251,191,36,0.1);
+            border: 1px solid rgba(251,191,36,0.2);
+            color: #fbbf24;
+        }
+
+        /* 分割线 */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        /* Marquee */
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 统计数字 */
+        .stat-number {
+            font-feature-settings: 'tnum';
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 3D透视卡片 */
+        .perspective-card {
+            perspective: 1000px;
+        }
+        .perspective-card-inner {
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            transform-style: preserve-3d;
+        }
+
+        /* 圆形装饰 */
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(251,191,36,0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- 噪点纹理 -->
+    <div class="noise-overlay"></div>
+
+    <!-- 背景层 -->
+    <div class="fixed inset-0 bg-grid pointer-events-none"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] radial-glow pointer-events-none"></div>
+
+    <!-- 浮动元素 -->
+    <div class="fixed top-32 right-20 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px] animate-float pointer-events-none"></div>
+    <div class="fixed bottom-32 left-20 w-96 h-96 bg-orange-500/5 rounded-full blur-[120px] animate-float-delayed pointer-events-none"></div>
+
+    <!-- ========== 导航栏 ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="h-20 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="relative w-10 h-10">
+                        <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
+                        <div class="absolute inset-0 bg-black rounded-xl flex items-center justify-center">
+                            <span class="text-lg font-bold text-gradient">L</span>
+                        </div>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight">LUMINA</span>
+                </a>
+
+                <!-- 导航链接 -->
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#work" class="nav-link text-sm text-neutral-400 hover:text-white transition-colors">Work</a>
+                    <a href="#services" class="nav-link text-sm text-neutral-400 hover:text-white transition-colors">Services</a>
+                    <a href="#about" class="nav-link text-sm text-neutral-400 hover:text-white transition-colors">About</a>
+                    <a href="#contact" class="nav-link text-sm text-neutral-400 hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="flex items-center gap-4">
+                    <button class="hidden sm:flex btn-primary px-6 py-2.5 rounded-full text-black text-sm font-semibold">
+                        Start Project
+                    </button>
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/5 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== Hero 区域 ========== -->
+    <section class="min-h-screen flex flex-col justify-center pt-32 pb-20 px-6 relative">
+        <div class="max-w-7xl mx-auto w-full">
+            <!-- 标签 -->
+            <div class="animate-reveal delay-1 mb-8 flex items-center gap-4">
+                <span class="tag px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">Award-Winning Agency</span>
+                <div class="relative flex items-center gap-2">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                    <span class="absolute w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
+                    <span class="text-xs text-neutral-500">Available for Q1 2025 Projects</span>
+                </div>
+            </div>
+
+            <!-- 主标题 -->
+            <h1 class="animate-reveal delay-2 text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-black leading-[0.9] tracking-tighter mb-8">
+                <span class="block text-white">We craft</span>
+                <span class="block text-gradient italic font-serif">digital</span>
+                <span class="block text-white">magic</span>
+            </h1>
+
+            <!-- 描述 -->
+            <p class="animate-reveal delay-3 max-w-xl text-lg md:text-xl text-neutral-400 leading-relaxed mb-12">
+                A boutique digital studio specializing in brand identity, web experiences, and creative technology that pushes boundaries.
+            </p>
+
+            <!-- CTA按钮组 -->
+            <div class="animate-reveal delay-4 flex flex-wrap gap-4 mb-20">
+                <button class="group btn-primary px-8 py-4 rounded-full text-black font-semibold flex items-center gap-3">
+                    Explore Our Work
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+                <button class="group btn-secondary px-8 py-4 glass rounded-full font-semibold flex items-center gap-3">
+                    <i data-lucide="play-circle" class="w-5 h-5 text-amber-400"></i>
+                    Watch Showreel
+                </button>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="animate-reveal delay-5 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-12 border-t border-white/10">
+                <div>
+                    <div class="stat-number text-4xl md:text-5xl font-bold text-gradient">200+</div>
+                    <div class="text-sm text-neutral-500 mt-2 tracking-wide">Projects Delivered</div>
+                </div>
+                <div>
+                    <div class="stat-number text-4xl md:text-5xl font-bold text-gradient">99%</div>
+                    <div class="text-sm text-neutral-500 mt-2 tracking-wide">Client Satisfaction</div>
+                </div>
+                <div>
+                    <div class="stat-number text-4xl md:text-5xl font-bold text-gradient">15+</div>
+                    <div class="text-sm text-neutral-500 mt-2 tracking-wide">Years Experience</div>
+                </div>
+                <div>
+                    <div class="stat-number text-4xl md:text-5xl font-bold text-gradient">35+</div>
+                    <div class="text-sm text-neutral-500 mt-2 tracking-wide">Industry Awards</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+            <span class="text-xs uppercase tracking-[0.3em] text-neutral-600">Scroll</span>
+            <div class="w-px h-16 bg-gradient-to-b from-amber-400/50 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- ========== 合作伙伴 Marquee ========== -->
+    <section class="py-16 border-y border-white/5 overflow-hidden">
+        <div class="mb-8 text-center">
+            <span class="text-xs uppercase tracking-[0.3em] text-neutral-600">Trusted by Industry Leaders</span>
+        </div>
+        <div class="relative">
+            <div class="marquee-track">
+                <div class="flex items-center gap-20 px-10">
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Google</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Spotify</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Airbnb</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Stripe</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Notion</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Figma</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Vercel</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Linear</span>
+                </div>
+                <div class="flex items-center gap-20 px-10">
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Google</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Spotify</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Airbnb</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Stripe</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Notion</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Figma</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Vercel</span>
+                    <span class="text-2xl font-bold text-neutral-700 whitespace-nowrap">Linear</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 作品展示 ========== -->
+    <section id="work" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- 标题区 -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+                <div>
+                    <span class="inline-block text-xs font-mono text-amber-400 tracking-[0.3em] uppercase mb-4">Portfolio</span>
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-white">
+                        Selected<br><span class="text-gradient">Work</span>
+                    </h2>
+                </div>
+                <p class="max-w-md text-neutral-400 leading-relaxed">
+                    A curated selection of our finest projects, showcasing our expertise across various industries and disciplines.
+                </p>
+            </div>
+
+            <!-- 项目网格 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 项目 1 - 大图 -->
+                <div class="perspective-card group lg:col-span-2">
+                    <div class="perspective-card-inner glow-border card-shine glass-strong rounded-3xl overflow-hidden cursor-pointer">
+                        <div class="grid grid-cols-1 md:grid-cols-2">
+                            <div class="img-container aspect-[4/3] md:aspect-auto">
+                                <img src="https://picsum.photos/seed/lumina-project1/900/700.jpg" alt="Nebula Finance" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-8 md:p-12 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        <span class="tag px-3 py-1 rounded-full text-xs font-medium">Web Design</span>
+                                        <span class="tag px-3 py-1 rounded-full text-xs font-medium">Branding</span>
+                                        <span class="tag px-3 py-1 rounded-full text-xs font-medium">Development</span>
+                                    </div>
+                                    <h3 class="text-3xl md:text-4xl font-bold mb-4 group-hover:text-amber-400 transition-colors">Nebula Finance</h3>
+                                    <p class="text-neutral-400 leading-relaxed">
+                                        Complete digital transformation for a next-generation fintech platform serving millions of users worldwide with seamless banking experience.
+                                    </p>
+                                </div>
+                                <div class="mt-8 flex items-center justify-between">
+                                    <div class="flex items-center gap-6 text-sm text-neutral-500">
+                                        <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i>2024</span>
+                                        <span class="flex items-center gap-2"><i data-lucide="eye" class="w-4 h-4"></i>3.2M Views</span>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-amber-400 group-hover:text-black transition-all duration-300">
+                                        <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目 2 -->
+                <div class="perspective-card group">
+                    <div class="perspective-card-inner glow-border card-shine glass-strong rounded-3xl overflow-hidden cursor-pointer">
+                        <div class="img-container aspect-[4/3]">
+                            <img src="https://picsum.photos/seed/lumina-project2/800/600.jpg" alt="Verde Wellness" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">Mobile App</span>
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">UI/UX</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">Verde Wellness</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed mb-6">Health & wellness app with AI-powered personalization and gamification features.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-neutral-500">2024 • iOS & Android</span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-500 group-hover:text-amber-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目 3 -->
+                <div class="perspective-card group">
+                    <div class="perspective-card-inner glow-border card-shine glass-strong rounded-3xl overflow-hidden cursor-pointer">
+                        <div class="img-container aspect-[4/3]">
+                            <img src="https://picsum.photos/seed/lumina-project3/800/600.jpg" alt="Atelier Maison" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">E-commerce</span>
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">3D</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-pink-400 transition-colors">Atelier Maison</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed mb-6">Luxury fashion e-commerce with immersive 3D product visualization and AR try-on.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-neutral-500">2023 • +340% Conversion</span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-500 group-hover:text-amber-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目 4 -->
+                <div class="perspective-card group">
+                    <div class="perspective-card-inner glow-border card-shine glass-strong rounded-3xl overflow-hidden cursor-pointer">
+                        <div class="img-container aspect-[4/3]">
+                            <img src="https://picsum.photos/seed/lumina-project4/800/600.jpg" alt="DataFlow Analytics" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">Dashboard</span>
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">SaaS</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">DataFlow Analytics</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed mb-6">Enterprise analytics dashboard with real-time data visualization.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-neutral-500">2023 • 50K+ Users</span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-500 group-hover:text-amber-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目 5 -->
+                <div class="perspective-card group">
+                    <div class="perspective-card-inner glow-border card-shine glass-strong rounded-3xl overflow-hidden cursor-pointer">
+                        <div class="img-container aspect-[4/3]">
+                            <img src="https://picsum.photos/seed/lumina-project5/800/600.jpg" alt="Synthwave Music" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-8">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">Branding</span>
+                                <span class="tag px-3 py-1 rounded-full text-xs font-medium">Motion</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">Synthwave Music</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed mb-6">Complete rebrand for an electronic music label with retro-futuristic aesthetic.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-neutral-500">2023 • Brand Identity</span>
+                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-500 group-hover:text-amber-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查看更多 -->
+            <div class="mt-12 text-center">
+                <button class="group inline-flex items-center gap-3 text-neutral-400 hover:text-amber-400 transition-colors">
+                    <span>View All Projects</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 服务区域 ========== -->
+    <section id="services" class="py-32 px-6 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/[0.02] to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative">
+            <!-- 标题 -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="inline-block text-xs font-mono text-amber-400 tracking-[0.3em] uppercase mb-4">What We Do</span>
+                <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6">
+                    Services that<span class="text-gradient"> drive results</span>
+                </h2>
+                <p class="text-neutral-400 text-lg">
+                    End-to-end digital solutions crafted with precision and creativity to elevate your brand.
+                </p>
+            </div>
+
+            <!-- 服务网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 服务 1 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="palette" class="w-8 h-8 text-amber-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Brand Identity</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">Crafting distinctive visual identities that resonate deeply with your target audience.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-amber-400"></i>Logo Design & Systems</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-amber-400"></i>Visual Guidelines</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-amber-400"></i>Brand Strategy</li>
+                    </ul>
+                </div>
+
+                <!-- 服务 2 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="monitor" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Web Development</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">High-performance websites and applications built with cutting-edge technologies.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-400"></i>Custom Websites</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-400"></i>E-commerce Solutions</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-400"></i>Web Applications</li>
+                    </ul>
+                </div>
+
+                <!-- 服务 3 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-rose-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-pink-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Mobile Apps</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">Native and cross-platform mobile experiences users love to engage with daily.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-400"></i>iOS Development</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-400"></i>Android Development</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-400"></i>Cross-platform</li>
+                    </ul>
+                </div>
+
+                <!-- 服务 4 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="figma" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">UI/UX Design</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">User-centered interfaces that are both aesthetically stunning and highly functional.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-purple-400"></i>User Research</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-purple-400"></i>Wireframing & Prototyping</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-purple-400"></i>Design Systems</li>
+                    </ul>
+                </div>
+
+                <!-- 服务 5 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="box" class="w-8 h-8 text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">3D & Motion</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">Immersive 3D visuals and captivating motion graphics that bring ideas to life.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>3D Modeling & Rendering</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>Motion Graphics</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>Interactive Experiences</li>
+                    </ul>
+                </div>
+
+                <!-- 服务 6 -->
+                <div class="group p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl cursor-pointer hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <i data-lucide="megaphone" class="w-8 h-8 text-red-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Digital Marketing</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">Strategic marketing solutions that amplify your brand's reach and impact.</p>
+                    <ul class="space-y-3 text-sm text-neutral-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-red-400"></i>SEO & Content Strategy</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-red-400"></i>Social Media Management</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-red-400"></i>Paid Advertising</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 关于我们 ========== -->
+    <section id="about" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- 左侧内容 -->
+                <div>
+                    <span class="inline-block text-xs font-mono text-amber-400 tracking-[0.3em] uppercase mb-4">About Lumina</span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
+                        Where creativity<br>meets <span class="text-gradient">technology</span>
+                    </h2>
+                    <p class="text-neutral-400 text-lg leading-relaxed mb-8">
+                        Founded in 2010, Lumina has grown from a small design studio into a globally recognized creative agency. Our team of 40+ talented designers, developers, and strategists work together to create digital experiences that leave lasting impressions.
+                    </p>
+                    
+                    <!-- 特性列表 -->
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center shrink-0 group-hover:bg-amber-500/20 group-hover:scale-110 transition-all duration-300">
+                                <i data-lucide="trophy" class="w-7 h-7 text-amber-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Award-Winning Excellence</h4>
+                                <p class="text-neutral-500 text-sm">Recognized by Awwwards, FWA, CSS Design Awards, and more</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                                <i data-lucide="globe-2" class="w-7 h-7 text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Global Presence</h4>
+                                <p class="text-neutral-500 text-sm">Serving clients across 40+ countries from our studios in SF, London & Tokyo</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 group-hover:scale-110 transition-all duration-300">
+                                <i data-lucide="users" class="w-7 h-7 text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Client Partnership</h4>
+                                <p class="text-neutral-500 text-sm">Long-term relationships built on trust, transparency, and exceptional results</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="group btn-primary px-8 py-4 rounded-full text-black font-semibold flex items-center gap-3">
+                        Meet Our Team
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- 右侧图片 -->
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden img-container">
+                        <img src="https://picsum.photos/seed/lumina-team/800/900.jpg" alt="Lumina Team" class="w-full aspect-[4/5] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <!-- 浮动统计卡 1 -->
+                    <div class="absolute -bottom-8 -left-8 glass-strong rounded-2xl p-6 shadow-2xl shadow-amber-500/10">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                                <i data-lucide="heart" class="w-7 h-7 text-black"></i>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-gradient">99%</div>
+                                <div class="text-sm text-neutral-500">Client Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 浮动统计卡 2 -->
+                    <div class="absolute -top-8 -right-8 glass-strong rounded-2xl p-6 shadow-2xl shadow-blue-500/10">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                                <i data-lucide="clock" class="w-7 h-7 text-black"></i>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-gradient-cool">15+</div>
+                                <div class="text-sm text-neutral-500">Years of Excellence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 装饰圆环 -->
+                    <div class="absolute -top-4 -left-4 w-24 h-24 circle-decoration animate-spin" style="animation-duration: 20s;"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 circle-decoration animate-spin" style="animation-duration: 30s; animation-direction: reverse;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 客户评价 ========== -->
+    <section class="py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-blue-500/5 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative">
+            <div class="text-center mb-16">
+                <span class="inline-block text-xs font-mono text-amber-400 tracking-[0.3em] uppercase mb-4">Testimonials</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-white">
+                    Client <span class="text-gradient">Love</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 评价 1 -->
+                <div class="p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl">
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                    </div>
+                    <p class="text-neutral-300 leading-relaxed mb-8 text-lg">
+                        "Lumina didn't just build us a website—they transformed our entire digital presence. The attention to detail is unmatched."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://picsum.photos/seed/lumina-client1/100/100.jpg" alt="Sarah Chen" class="w-14 h-14 rounded-full object-cover ring-2 ring-amber-400/30">
+                        <div>
+                            <div class="font-semibold">Sarah Chen</div>
+                            <div class="text-sm text-neutral-500">CEO, Nebula Finance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评价 2 -->
+                <div class="p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl">
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                    </div>
+                    <p class="text-neutral-300 leading-relaxed mb-8 text-lg">
+                        "Working with the Lumina team was an incredible experience. They understood our vision immediately and delivered beyond expectations."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://picsum.photos/seed/lumina-client2/100/100.jpg" alt="Marcus Johnson" class="w-14 h-14 rounded-full object-cover ring-2 ring-blue-400/30">
+                        <div>
+                            <div class="font-semibold">Marcus Johnson</div>
+                            <div class="text-sm text-neutral-500">Founder, Verde Wellness</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评价 3 -->
+                <div class="p-8 lg:p-10 glow-border card-shine glass-strong rounded-3xl">
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+                    </div>
+                    <p class="text-neutral-300 leading-relaxed mb-8 text-lg">
+                        "The ROI we've seen since launching our new site has been phenomenal. Lumina creates business results, not just pretty designs."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://picsum.photos/seed/lumina-client3/100/100.jpg" alt="Emma Laurent" class="w-14 h-14 rounded-full object-cover ring-2 ring-pink-400/30">
+                        <div>
+                            <div class="font-semibold">Emma Laurent</div>
+                            <div class="text-sm text-neutral-500">CMO, Atelier Maison</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA 区域 ========== -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="relative glow-border rounded-[2rem] overflow-hidden">
+                <!-- 背景 -->
+                <div class="absolute inset-0 glass-strong"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-pink-500/20 rounded-full blur-[120px]"></div>
+                
+                <div class="relative p-12 md:p-20 text-center">
+                    <span class="inline-flex items-center gap-2 tag px-5 py-2 rounded-full text-sm font-semibold mb-8">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                        Let's Create Together
+                    </span>
+                    
+                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6">
+                        Ready to start<br><span class="text-gradient">your project?</span>
+                    </h2>
+                    
+                    <p class="text-neutral-400 text-lg max-w-2xl mx-auto mb-12">
+                        Have an idea? Let's turn it into reality. Reach out and let's discuss how we can help bring your vision to life.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-5 mb-12">
+                        <button class="group btn-primary px-10 py-5 rounded-full text-black font-bold text-lg flex items-center gap-3">
+                            Get in Touch
+                            <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <button class="group btn-secondary px-10 py-5 glass rounded-full font-semibold text-lg flex items-center gap-3">
+                            <i data-lucide="calendar" class="w-6 h-6 text-amber-400"></i>
+                            Book a Call
+                        </button>
+                    </div>
+
+                    <!-- 联系方式 -->
+                    <div class="pt-10 border-t border-white/10 flex flex-wrap justify-center gap-8 text-neutral-500">
+                        <a href="mailto:hello@lumina.studio" class="flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            hello@lumina.studio
+                        </a>
+                        <a href="tel:+14155551234" class="flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            +1 (415) 555-1234
+                        </a>
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            San Francisco, CA
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 页脚 ========== -->
+    <footer class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
+                <!-- Logo & 简介 -->
+                <div class="lg:col-span-2">
+                    <a href="#" class="flex items-center gap-3 mb-6">
+                        <div class="relative w-11 h-11">
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl rotate-6"></div>
+                            <div class="absolute inset-0 bg-black rounded-xl flex items-center justify-center">
+                                <span class="text-xl font-bold text-gradient">L</span>
+                            </div>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight">LUMINA</span>
+                    </a>
+                    <p class="text-neutral-500 leading-relaxed max-w-md mb-8">
+                        Award-winning digital agency crafting exceptional experiences for forward-thinking brands worldwide.
+                    </p>
+                    <!-- 社交媒体 -->
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                            <i data-lucide="dribbble" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 链接列 -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Services</h4>
+                    <ul class="space-y-4 text-neutral-500">
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Brand Identity</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Mobile Apps</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">UI/UX Design</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">3D & Motion</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Company</h4>
+                    <ul class="space-y-4 text-neutral-500">
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 底部版权 -->
+            <div class="divider mb-10"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-neutral-600 text-sm">
+                    © 2025 Lumina Studio. All rights reserved.
+                </p>
+                
+                <!-- 设计者署名 -->
+                <p class="text-neutral-600 text-sm flex items-center gap-2">
+                    <span>Designed by</span>
+                    <a href="https://devgurux.com" target="_blank" class="text-amber-400 hover:text-amber-300 font-semibold transition-colors flex items-center gap-1">
+                        Devgurux
+                        <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 初始化图标
+        lucide.createIcons();
+
+        // 3D 卡片倾斜效果
+        document.querySelectorAll('.perspective-card').forEach(card => {
+            const inner = card.querySelector('.perspective-card-inner');
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
+                
+                inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.style.background = 'rgba(3,3,3,0.95)';
+                nav.style.borderBottom = '1px solid rgba(255,255,255,0.03)';
+            } else {
+                nav.style.background = 'rgba(255,255,255,0.02)';
+                nav.style.borderBottom = 'none';
+            }
+        });
+
+        // 数字计数动画
+        const animateCounter = (element, target, suffix = '') => {
+            let current = 0;
+            const increment = target / 80;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 20);
+        };
+
+        // Intersection Observer 用于触发动画
+        const observerOptions = { threshold: 0.3 };
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-number').forEach(stat => {
+                        const text = stat.textContent;
+                        const num = parseInt(text);
+                        const suffix = text.replace(/[0-9+]/g, '');
+                        if (!isNaN(num)) animateCounter(stat, num, suffix);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-number').forEach(el => {
+            const parent = el.closest('.grid');
+            if (parent) statsObserver.observe(parent);
+        });
+
+        // 入场动画观察器
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
