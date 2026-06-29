@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCraft Pro | Premium Home Services</title>
+    <meta name="description" content="HomeCraft Pro - Your trusted partner for plumbing, electrical, HVAC, cleaning, and all home improvement services. Licensed, insured, guaranteed.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f8fafb;
+            --bg-secondary: #ffffff;
+            --bg-warm: #fffbf5;
+            --text-dark: #0f172a;
+            --text-body: #475569;
+            --text-muted: #94a3b8;
+            --accent: #0d9488;
+            --accent-light: #14b8a6;
+            --accent-dark: #0f766e;
+            --warm: #f59e0b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-display { font-family: 'Fraunces', Georgia, serif; }
+
+        ::selection { background: var(--accent); color: white; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* Animations */
+        @keyframes float {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideRight {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes pulse-soft {
+            0%,100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 7s ease-in-out infinite; animation-delay: -3s; }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: 0 4px 15px rgba(13,148,136,0.25);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .btn-primary:hover::before { transform: translateX(100%); }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(13,148,136,0.35);
+        }
+        .btn-primary:active { transform: translateY(-1px); scale: 0.98; }
+
+        .btn-secondary {
+            background: white;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(13,148,136,0.05);
+        }
+
+        /* Cards */
+        .card-elevated {
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card-elevated:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-bordered {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .card-bordered:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Blob Shape */
+        .blob-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: border-radius 0.8s ease;
+        }
+        .blob-shape:hover {
+            border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+        }
+
+        /* Wave Divider */
+        .wave-divider {
+            position: relative;
+        }
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Diagonal Section */
+        .diagonal-section {
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+
+        /* Rounded Corner Section */
+        .rounded-section-top {
+            border-radius: 48px 48px 0 0;
+        }
+
+        /* Image Container */
+        .img-container {
+            overflow: hidden;
+            border-radius: inherit;
+        }
+        .img-container img {
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .img-container:hover img { transform: scale(1.06); }
+
+        /* Nav Link */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Stat Number */
+        .stat-num {
+            font-feature-settings: 'tnum';
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Service Icon Container */
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        /* Marquee */
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .mobile-menu.active { transform: translateX(0); }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pattern Background */
+        .pattern-dots {
+            background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ============ DECORATIVE BACKGROUND ELEMENTS ============ -->
+    <div class="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-teal-50 to-transparent rounded-full blur-3xl pointer-events-none opacity-60" aria-hidden="true"></div>
+    <div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-amber-50 to-transparent rounded-full blur-3xl pointer-events-none opacity-50" aria-hidden="true"></div>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 lg:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group" aria-label="HomeCraft Pro Home">
+                    <div class="relative w-11 h-11 bg-gradient-to-br from-[var(--accent)] to-[var(--accent-dark)] rounded-2xl flex items-center justify-center shadow-lg shadow-teal-200 group-hover:shadow-xl group-hover:-translate-y-0.5 transition-all duration-300">
+                        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display text-xl font-bold text-[var(--text-dark)]">HomeCraft</span>
+                        <span class="text-[var(--accent)] font-bold">Pro</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden lg:flex items-center gap-10">
+                    <a href="#services" class="nav-link text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors">Services</a>
+                    <a href="#about" class="nav-link text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors">About Us</a>
+                    <a href="#process" class="nav-link text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors">How It Works</a>
+                    <a href="#testimonials" class="nav-link text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors">Reviews</a>
+                    <a href="#contact" class="nav-link text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors">Contact</a>
+                </div>
+
+                <!-- CTA + Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <a href="#contact" class="hidden sm:inline-flex btn-primary px-6 py-2.5 rounded-full text-sm">Get Free Quote</a>
+                    <button id="menuToggle" class="lg:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Open menu">
+                        <i data-lucide="menu" class="w-6 h-6 text-[var(--text-dark)]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menuOverlay" class="fixed inset-0 bg-black/30 z-40 hidden backdrop-blur-sm" aria-hidden="true"></div>
+    
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-80 max-w-full z-50 bg-white shadow-2xl p-8 pt-28" aria-hidden="true">
+        <button id="menuClose" class="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Close menu">
+            <i data-lucide="x" class="w-6 h-6 text-[var(--text-dark)]"></i>
+        </button>
+        <div class="flex flex-col gap-6">
+            <a href="#services" class="text-lg font-semibold text-[var(--text-dark)] hover:text-[var(--accent)] transition-colors py-2">Services</a>
+            <a href="#about" class="text-lg font-semibold text-[var(--text-dark)] hover:text-[var(--accent)] transition-colors py-2">About Us</a>
+            <a href="#process" class="text-lg font-semibold text-[var(--text-dark)] hover:text-[var(--accent)] transition-colors py-2">How It Works</a>
+            <a href="#testimonials" class="text-lg font-semibold text-[var(--text-dark)] hover:text-[var(--accent)] transition-colors py-2">Reviews</a>
+            <a href="#contact" class="text-lg font-semibold text-[var(--text-dark)] hover:text-[var(--accent)] transition-colors py-2">Contact</a>
+            <hr class="border-gray-200 my-2">
+            <a href="#contact" class="btn-primary px-6 py-3.5 rounded-full text-center mt-4">Get Free Quote</a>
+        </div>
+    </div>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left Content -->
+                <div class="order-2 lg:order-1">
+                    <!-- Badge -->
+                    <div class="animate-fade-up inline-flex items-center gap-2 badge bg-teal-50 text-[var(--accent)] mb-8">
+                        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                        Trusted by 10,000+ Homeowners
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="animate-fade-up delay-1 font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] text-[var(--text-dark)] mb-8">
+                        Expert Home<br>
+                        <span class="gradient-text">Services,</span><br>
+                        Delivered Right.
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="animate-fade-up delay-2 text-lg lg:text-xl text-[var(--text-body)] max-w-lg mb-10 leading-relaxed">
+                        From plumbing emergencies to complete renovations — licensed professionals, transparent pricing, and satisfaction guaranteed.
+                    </p>
+
+                    <!-- CTA Group -->
+                    <div class="animate-fade-up delay-3 flex flex-wrap gap-4 mb-12">
+                        <a href="#contact" class="group btn-primary px-8 py-4 rounded-full text-base flex items-center gap-3">
+                            Book a Service
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="tel:+18005551234" class="group btn-outline px-8 py-4 rounded-full text-base flex items-center gap-3 text-[var(--text-dark)]">
+                            <i data-lucide="phone" class="w-5 h-5 text-[var(--accent)]"></i>
+                            Call Now
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="animate-fade-up delay-4 flex flex-wrap items-center gap-8">
+                        <div class="flex items-center gap-2">
+                            <div class="flex -space-x-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&q=80" alt="" class="w-10 h-10 rounded-full ring-2 ring-white object-cover" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face&q=80" alt="" class="w-10 h-10 rounded-full ring-2 ring-white object-cover" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face&q=80" alt="" class="w-10 h-10 rounded-full ring-2 ring-white object-cover" loading="lazy">
+                            </div>
+                            <span class="text-sm text-[var(--text-muted)]"><strong class="text-[var(--text-dark)]">4.9/5</strong> from 2k+ reviews</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-[var(--text-muted)]">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-[var(--accent)]"></i>
+                            Licensed & Insured
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual - Hero Image Grid -->
+                <div class="order-1 lg:order-2 relative">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="animate-fade-up delay-2 relative rounded-[32px] overflow-hidden img-container shadow-2xl aspect-[4/5] lg:aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=1000&fit=crop&q=85" alt="Professional handyman working in a modern home" class="w-full h-full object-cover" loading="eager">
+                            
+                            <!-- Floating Card 1 -->
+                            <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-5 shadow-xl animate-float">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                                        <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-[var(--text-dark)]">Job Completed!</div>
+                                        <div class="text-sm text-[var(--text-muted)]">Just now • Kitchen Repair</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-[var(--warm)] rounded-2xl -z-10 animate-float-delayed opacity-60"></div>
+                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-[var(--accent)] rounded-3xl -z-10 opacity-10 blob-shape"></div>
+
+                        <!-- Stats Card -->
+                        <div class="absolute -right-4 lg:-right-8 top-1/4 bg-white rounded-2xl p-5 shadow-xl animate-float">
+                            <div class="stat-num text-3xl font-bold gradient-text">15+</div>
+                            <div class="text-xs text-[var(--text-muted)] mt-1">Years of<br>Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TRUSTED BY MARQUEE ============ -->
+    <section class="py-12 bg-white border-y border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+            <p class="text-center text-xs uppercase tracking-[0.25em] text-[var(--text-muted)] font-medium">As Featured In</p>
+        </div>
+        <div class="relative">
+            <div class="marquee-track">
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Forbes</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">HGTV</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">This Old House</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Angi</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Thumbtack</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Yelp Elite</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Better Business Bureau</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">HomeAdvisor</span>
+                </div>
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Forbes</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">HGTV</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">This Old House</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Angi</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Thumbtack</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Yelp Elite</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">Better Business Bureau</span>
+                    <span class="text-2xl font-bold text-gray-300 whitespace-nowrap">HomeAdvisor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section id="services" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[var(--bg-secondary)]">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+                <span class="inline-block badge bg-teal-50 text-[var(--accent)] mb-4">Our Services</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-dark)] mb-6">
+                    Everything Your Home Needs,<br><span class="gradient-text">In One Place</span>
+                </h2>
+                <p class="text-lg text-[var(--text-body)]">
+                    Comprehensive home services handled by vetted professionals who care about quality as much as you do.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Service 1 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-teal-50 text-[var(--accent)] mb-6 group-hover:bg-[var(--accent)] group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="droplets" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-[var(--accent)] transition-colors">Plumbing</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">Leak repairs, pipe installation, water heater service, drain cleaning, and emergency plumbing available 24/7.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+
+                <!-- Service 2 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-amber-50 text-amber-500 mb-6 group-hover:bg-amber-500 group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-amber-500 transition-colors">Electrical</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">Wiring upgrades, outlet installation, lighting design, panel upgrades, and smart home integration services.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-amber-500 group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+
+                <!-- Service 3 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-blue-50 text-blue-500 mb-6 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="wind" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-blue-500 transition-colors">HVAC</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">AC repair & installation, heating systems, air quality solutions, ductwork, and maintenance plans.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-500 group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+
+                <!-- Service 4 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-purple-50 text-purple-500 mb-6 group-hover:bg-purple-500 group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="sparkles" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-purple-500 transition-colors">Deep Cleaning</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">Move-in/out cleaning, post-renovation cleanup, regular maintenance, and eco-friendly cleaning options.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-purple-500 group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+
+                <!-- Service 5 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-rose-50 text-rose-500 mb-6 group-hover:bg-rose-500 group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="paint-bucket" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-rose-500 transition-colors">Painting</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">Interior & exterior painting, cabinet refinishing, wallpaper removal, and color consultation included.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-rose-500 group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+
+                <!-- Service 6 -->
+                <article class="group card-elevated p-8 lg:p-10 cursor-pointer">
+                    <div class="icon-box bg-green-50 text-green-500 mb-6 group-hover:bg-green-500 group-hover:text-white group-hover:scale-110">
+                        <i data-lucide="hammer" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3 group-hover:text-green-500 transition-colors">Handyman</h3>
+                    <p class="text-[var(--text-body)] text-sm leading-relaxed mb-6">General repairs, furniture assembly, drywall patching, carpentry, and those odd jobs you keep putting off.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-green-500 group-hover:gap-3 transition-all">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </article>
+            </div>
+
+            <!-- View All CTA -->
+            <div class="mt-12 text-center">
+                <a href="#" class="group btn-outline px-8 py-4 rounded-full text-[var(--text-dark)] inline-flex items-center gap-3 font-semibold">
+                    View All 20+ Services
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STATS SECTION - UNIQUE SHAPE ============ -->
+    <section class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- Curved Top Border -->
+        <svg class="absolute top-0 left-0 w-full h-12 -translate-y-full" viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none">
+            <path d="M0 48L60 44C120 40 240 32 360 28C480 24 600 24 720 26C840 28 960 32 1080 36C1200 40 1320 44 1380 46L1440 48V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V48Z" fill="var(--bg-secondary)"/>
+        </svg>
+
+        <div class="max-w-7xl mx-auto relative">
+            <!-- Asymmetric Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left - Large Visual -->
+                <div class="lg:col-span-7 relative">
+                    <div class="relative rounded-[40px] overflow-hidden img-container shadow-2xl aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&h=675&fit=crop&q=85" alt="Happy homeowner with completed renovation project" class="w-full h-full object-cover" loading="lazy">
+                        
+                        <!-- Overlay Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+                            <div class="flex items-center gap-5">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-dark)] flex items-center justify-center shrink-0">
+                                    <i data-lucide="heart-handshake" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-lg text-[var(--text-dark)]">Satisfaction Guaranteed</div>
+                                    <div class="text-sm text-[var(--text-muted)]">Or we'll make it right — no questions asked</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Shape -->
+                    <div class="absolute -z-10 -bottom-6 -left-6 w-72 h-72 bg-[var(--warm)] rounded-[40px] opacity-30 blob-shape"></div>
+                </div>
+
+                <!-- Right - Stats + Content -->
+                <div class="lg:col-span-5 lg:pl-8">
+                    <span class="inline-block badge bg-teal-50 text-[var(--accent)] mb-6">Why Choose Us</span>
+                    
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-[var(--text-dark)] mb-8 leading-tight">
+                        We Don't Just Fix Homes.<br>We Build <span class="gradient-text">Trust.</span>
+                    </h2>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-6 mb-10">
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 text-center">
+                            <div class="stat-num text-3xl lg:text-4xl font-bold gradient-text mb-1">10K+</div>
+                            <div class="text-sm text-[var(--text-muted)]">Happy Customers</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 text-center">
+                            <div class="stat-num text-3xl lg:text-4xl font-bold gradient-text mb-1">98%</div>
+                            <div class="text-sm text-[var(--text-muted)]">Satisfaction Rate</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 text-center">
+                            <div class="stat-num text-3xl lg:text-4xl font-bold gradient-text mb-1">24/7</div>
+                            <div class="text-sm text-[var(--text-muted)]">Emergency Support</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 text-center">
+                            <div class="stat-num text-3xl lg:text-4xl font-bold gradient-text mb-1">A+ Rated</div>
+                            <div class="text-sm text-[var(--text-muted)]">BBB Accredited</div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="group btn-primary px-8 py-4 rounded-full inline-flex items-center gap-3 font-semibold">
+                        Get Started Today
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS - WAVE SHAPE ============ -->
+    <section id="process" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[var(--bg-warm)] relative overflow-hidden">
+        <!-- Wave Top -->
+        <svg class="absolute top-0 left-0 w-full h-16 -translate-y-[99%]" viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
+            <path d="M0 32L48 29.3C96 27 192 21 288 21.3C384 22 480 27 576 32C672 37 768 43 864 42.7C960 42 1056 37 1152 32C1248 27 1344 22 1392 19.3L1440 17V64H1392C1344 64 1248 64 1152 64C1056 64 960 64 864 64C768 64 672 64 576 64C480 64 384 64 288 64C192 64 96 64 48 64H0V32Z" fill="var(--bg-warm)"/>
+        </svg>
+
+        <div class="max-w-7xl mx-auto relative">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+                <span class="inline-block badge bg-white text-[var(--accent)] shadow-sm mb-4">How It Works</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-dark)] mb-6">
+                    Three Simple Steps to a<br><span class="gradient-text">Perfect Home</span>
+                </h2>
+            </div>
+
+            <!-- Process Steps - Connected Design -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
+                <!-- Connection Line (Desktop) -->
+                <div class="hidden md:block absolute top-24 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/30 to-[var(--accent)]" style="clip-path: polygon(2% 0, 98% 0, 98% 100%, 0 100%);"></div>
+
+                <!-- Step 1 -->
+                <div class="relative text-center group">
+                    <div class="relative inline-flex mb-8">
+                        <div class="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-2xl font-bold gradient-text">1</span>
+                        </div>
+                        <div class="absolute inset-0 w-20 h-20 rounded-full bg-[var(--accent)]/10 animate-pulse-soft"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3">Tell Us What You Need</h3>
+                    <p class="text-[var(--text-body)] max-w-xs mx-auto">Fill out our simple form or give us a call. Describe your issue or project — we'll handle the rest.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative text-center group">
+                    <div class="relative inline-flex mb-8">
+                        <div class="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-2xl font-bold gradient-text">2</span>
+                        </div>
+                        <div class="absolute inset-0 w-20 h-20 rounded-full bg-[var(--accent)]/10 animate-pulse-soft" style="animation-delay: 0.5s;"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3">Get a Clear Quote</h3>
+                    <p class="text-[var(--text-body)] max-w-xs mx-auto">Receive a detailed, no-obligation quote within 24 hours. No hidden fees, no surprises.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative text-center group">
+                    <div class="relative inline-flex mb-8">
+                        <div class="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-2xl font-bold gradient-text">3</span>
+                        </div>
+                        <div class="absolute inset-0 w-20 h-20 rounded-full bg-[var(--accent)]/10 animate-pulse-soft" style="animation-delay: 1s;"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-dark)] mb-3">Sit Back & Relax</h3>
+                    <p class="text-[var(--text-body)] max-w-xs mx-auto">Our pros arrive on time, do the job right, and leave your space spotless. Guaranteed.</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-16 text-center">
+                <a href="#contact" class="group btn-primary px-10 py-5 rounded-full text-lg inline-flex items-center gap-3 font-semibold">
+                    Start Your Project Now
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS - ROUNDED SECTION ============ -->
+    <section id="testimonials" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[var(--bg-secondary)] rounded-section-top relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+                <span class="inline-block badge bg-teal-50 text-[var(--accent)] mb-4">Testimonials</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-dark)] mb-6">
+                    What Our Clients<br><span class="gradient-text">Say About Us</span>
+                </h2>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-bordered p-8 lg:p-10 relative">
+                    <!-- Stars -->
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                    </div>
+                    <!-- Quote -->
+                    <blockquote class="text-[var(--text-body)] leading-relaxed mb-8 text-base">
+                        "Had an emergency plumbing issue at midnight. HomeCraft Pro had someone at my door within an hour. Professional, fair pricing, and they cleaned up perfectly. Absolutely incredible service."
+                    </blockquote>
+                    <!-- Author -->
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&q=80" alt="Michael Torres" class="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100" loading="lazy">
+                        <div>
+                            <div class="font-semibold text-[var(--text-dark)]">Michael Torres</div>
+                            <div class="text-sm text-[var(--text-muted)]">Homeowner, Austin TX</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-bordered p-8 lg:p-10 relative">
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                    </div>
+                    <blockquote class="text-[var(--text-body)] leading-relaxed mb-8 text-base">
+                        "We used them for a full kitchen remodel and the results exceeded every expectation. The team was punctual, communicative, and the craftsmanship is flawless. Worth every penny!"
+                    </blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&q=80" alt="Jennifer Walsh" class="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100" loading="lazy">
+                        <div>
+                            <div class="font-semibold text-[var(--text-dark)]">Jennifer Walsh</div>
+                            <div class="text-sm text-[var(--text-muted)]">Homeowner, Denver CO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-bordered p-8 lg:p-10 relative md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-1 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-[var(--warm)] text-[var(--warm)]"></i>
+                    </div>
+                    <blockquote class="text-[var(--text-body)] leading-relaxed mb-8 text-base">
+                        "As a property manager, I need reliable vendors I can trust. HomeCraft Pro has been my go-to for 3 years across 12 properties. Consistent quality, always professional."
+                    </blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face&q=80" alt="David Chen" class="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100" loading="lazy">
+                        <div>
+                            <div class="font-semibold text-[var(--text-dark)]">David Chen</div>
+                            <div class="text-sm text-[var(--text-muted)]">Property Manager, Seattle WA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT / TEAM PREVIEW ============ -->
+    <section id="about" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left - Team Images -->
+                <div class="relative order-2 lg:order-1">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="rounded-3xl overflow-hidden img-container shadow-lg aspect-[3/4]">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=533&fit=crop&q=85" alt="Team member at work" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden img-container shadow-lg aspect-square">
+                                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&h=400&fit=crop&q=85" alt="Team collaboration" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="rounded-3xl overflow-hidden img-container shadow-lg aspect-square">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=400&fit=crop&q=85" alt="Quality tools" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="rounded-3xl overflow-hidden img-container shadow-lg aspect-[3/4]">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=533&fit=crop&q=85" alt="Happy customer" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Badge -->
+                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-2xl p-6 shadow-xl text-center">
+                        <div class="stat-num text-3xl font-bold gradient-text">15+</div>
+                        <div class="text-sm text-[var(--text-muted)]">Years of Excellence</div>
+                    </div>
+                </div>
+
+                <!-- Right - Content -->
+                <div class="order-1 lg:order-2">
+                    <span class="inline-block badge bg-teal-50 text-[var(--accent)] mb-6">About HomeCraft Pro</span>
+                    
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-dark)] mb-6 leading-tight">
+                        Built on Quality.<br>Fueled by <span class="gradient-text">Care.</span>
+                    </h2>
+
+                    <p class="text-lg text-[var(--text-body)] leading-relaxed mb-8">
+                        Founded in 2010, HomeCraft Pro started with a simple mission: make home services trustworthy, transparent, and stress-free. Today, we're proud to serve over 10,000 happy homeowners with the same dedication we had on day one.
+                    </p>
+
+                    <!-- Features List -->
+                    <div class="space-y-5 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-[var(--accent)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-[var(--text-dark)] mb-1">Fully Vetted Professionals</h4>
+                                <p class="text-sm text-[var(--text-muted)]">Background-checked, licensed, and continuously trained experts only.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-[var(--accent)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-[var(--text-dark)] mb-1">Upfront Transparent Pricing</h4>
+                                <p class="text-sm text-[var(--text-muted)]">Know exactly what you'll pay before any work begins. No surprises.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-[var(--accent)]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-[var(--text-dark)] mb-1">Satisfaction Guarantee</h4>
+                                <p class="text-sm text-[var(--text-muted)]">Not happy? We'll return and fix it free of charge. That's our promise.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="group btn-primary px-8 py-4 rounded-full inline-flex items-center gap-3 font-semibold">
+                        Meet Our Team
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT SECTION ============ -->
+    <section id="contact" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- Background Shapes -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[var(--accent)] via-[var(--accent-dark)] to-teal-800"></div>
+        
+        <!-- Decorative Blobs -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
+
+        <div class="max-w-4xl mx-auto relative">
+            <div class="text-center">
+                <span class="inline-flex items-center gap-2 badge bg-white/20 text-white mb-8">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    Let's Get Started
+                </span>
+                
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+                    Ready to Transform<br>Your Home?
+                </h2>
+                
+                <p class="text-lg text-white/80 max-w-2xl mx-auto mb-12">
+                    Get a free, no-obligation quote today. Our team is standing by to help you with any home service need — big or small.
+                </p>
+
+                <!-- Contact Form Style CTA -->
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 lg:p-12 max-w-2xl mx-auto">
+                    <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thank you! We will contact you shortly.');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <input type="text" placeholder="Your Name" required class="w-full px-5 py-4 rounded-xl bg-white/90 text-[var(--text-dark)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-shadow">
+                            <input type="tel" placeholder="Phone Number" required class="w-full px-5 py-4 rounded-xl bg-white/90 text-[var(--text-dark)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-shadow">
+                        </div>
+                        <select required class="w-full px-5 py-4 rounded-xl bg-white/90 text-[var(--text-dark)] focus:outline-none focus:ring-2 focus:ring-white/50 transition-shadow appearance-none">
+                            <option value="">Select a Service...</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="hvac">HVAC</option>
+                            <option value="cleaning">Deep Cleaning</option>
+                            <option value="painting">Painting</option>
+                            <option value="handyman">Handyman Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea placeholder="Tell us about your project..." rows="3" class="w-full px-5 py-4 rounded-xl bg-white/90 text-[var(--text-dark)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-shadow resize-none"></textarea>
+                        <button type="submit" class="w-full btn-primary !bg-white !text-[var(--accent)] px-8 py-4 rounded-xl text-lg font-bold hover:!bg-gray-100">
+                            Get My Free Quote
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Alternative Contact -->
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-6 text-white/80 text-sm">
+                    <a href="tel:+18005551234" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        (800) 555-1234
+                    </a>
+                    <span class="hidden sm:inline">•</span>
+                    <a href="mailto:hello@homecraftpro.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        hello@homecraftpro.com
+                    </a>
+                    <span class="hidden sm:inline">•</span>
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                        Available 24/7 for Emergencies
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="pt-16 pb-8 px-4 sm:px-6 lg:px-8 bg-[var(--text-dark)]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-14">
+                <!-- Brand -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <a href="#" class="flex items-center gap-3 mb-6">
+                        <div class="w-11 h-11 bg-gradient-to-br from-[var(--accent)] to-[var(--accent-dark)] rounded-2xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-display text-xl font-bold text-white">HomeCraft</span>
+                            <span class="text-[var(--accent)] font-bold">Pro</span>
+                        </div>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
+                        Your trusted partner for all home services. Quality workmanship, transparent pricing, and satisfaction guaranteed since 2010.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[var(--accent)] hover:-translate-y-1 transition-all" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[var(--accent)] hover:-translate-y-1 transition-all" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[var(--accent)] hover:-translate-y-1 transition-all" aria-label="Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[var(--accent)] hover:-translate-y-1 transition-all" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Services</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Plumbing</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Electrical</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">HVAC</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Deep Cleaning</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Painting</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Handyman</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Company</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-[var(--accent)] shrink-0"></i>
+                            <span>123 Service Lane, Suite 100<br>San Francisco, CA 94102</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-[var(--accent)] shrink-0"></i>
+                            <a href="tel:+18005551234" class="hover:text-white transition-colors">(800) 555-1234</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-[var(--accent)] shrink-0"></i>
+                            <a href="mailto:hello@homecraftpro.com" class="hover:text-white transition-colors">hello@homecraftpro.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500">
+                    &copy; 2025 HomeCraft Pro LLC. All rights reserved. Licensed & Insured.
+                </p>
+                
+                <!-- Designer Credit -->
+                <p class="text-xs text-gray-500 flex items-center gap-1">
+                    Designed by 
+                    <a href="https://devgurux.com" target="_blank" rel="noopener noreferrer" class="text-[var(--accent)] hover:text-[var(--accent-light)] font-semibold transition-colors inline-flex items-center gap-1">
+                        Devgurux
+                        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            menuOverlay.classList.remove('hidden');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            menuOverlay.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        if (menuToggle) menuToggle.addEventListener('click', openMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenu(); });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight - 20;
+                    
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(element, target, suffix = '') {
+            const duration = 2000;
+            const start = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                element.textContent = Math.floor(easeOut * target) + suffix;
+                
+                if (progress < 1) requestAnimationFrame(update);
+                else element.textContent = target + suffix;
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-num').forEach(stat => {
+                        const match = stat.textContent.match(/(\d+)/);
+                        if (match) {
+                            animateCounter(stat, parseInt(match[1]), stat.textContent.replace(match[1], ''));
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-num').forEach(el => {
+            const parent = el.closest('.grid') || el.closest('div');
+            if (parent) statsObserver.observe(parent);
+        });
+    </script>
+</body>
+</html>
