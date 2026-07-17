@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voyagé — Luxury Travel & Bespoke Journeys Around the World</title>
+<meta name="description" content="Discover the world's most beautiful destinations with Voyagé. Luxury vacations, unforgettable experiences, and curated travel packages." />
+<meta name="keywords" content="luxury travel, vacation packages, bespoke journeys, travel agency, destinations" />
+<meta property="og:title" content="Voyagé — Luxury Travel & Bespoke Journeys" />
+<meta property="og:description" content="Curated luxury travel experiences across 120+ destinations worldwide." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Plus Jakarta Sans', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Schema markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Voyagé",
+  "description": "Luxury travel agency offering bespoke journeys worldwide",
+  "url": "https://voyage.example.com",
+  "telephone": "+1-800-VOYAGE",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1 Marina Boulevard",
+    "addressLocality": "San Francisco",
+    "addressRegion": "CA",
+    "postalCode": "94123",
+    "addressCountry": "US"
+  }
+}
+</script>
+
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --bg-alt: #F3ECE0;
+    --fg: #0E2A3B;
+    --fg-soft: #1B3D52;
+    --muted: #5A6B7B;
+    --ocean: #0A6A7B;
+    --ocean-deep: #054A57;
+    --ocean-light: #0FA3B1;
+    --emerald: #0F7A5A;
+    --emerald-light: #10B981;
+    --gold: #C9A961;
+    --gold-light: #E6C786;
+    --gold-deep: #A8893E;
+    --card: #FFFFFF;
+    --border: rgba(14, 42, 59, 0.08);
+    --shadow: 0 20px 50px -20px rgba(14, 42, 59, 0.15);
+  }
+  .dark {
+    --bg: #050E15;
+    --bg-alt: #08161F;
+    --fg: #F5EFE6;
+    --fg-soft: #D5DCE0;
+    --muted: #8FA0AE;
+    --card: #0C1D28;
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  * { -webkit-font-smoothing: antialiased; }
+  html, body { background: var(--bg); color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif; }
+  body { overflow-x: hidden; }
+
+  .font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+  .text-fg { color: var(--fg); }
+  .text-muted { color: var(--muted); }
+  .text-fg-soft { color: var(--fg-soft); }
+  .bg-card { background: var(--card); }
+  .bg-bg-alt { background: var(--bg-alt); }
+  .border-soft { border-color: var(--border); }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .dark .glass {
+    background: rgba(12, 29, 40, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .glass-dark {
+    background: rgba(8, 22, 31, 0.45);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(120deg, var(--ocean) 0%, var(--emerald) 50%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Premium buttons */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: all .35s cubic-bezier(.22,1,.36,1);
+    box-shadow: 0 10px 30px -10px rgba(10, 106, 123, 0.5);
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    opacity: 0;
+    transition: opacity .35s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(168, 137, 62, 0.55); }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-primary > span { position: relative; z-index: 1; }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: #1a1208;
+    box-shadow: 0 10px 30px -10px rgba(168, 137, 62, 0.5);
+    transition: all .35s cubic-bezier(.22,1,.36,1);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(168, 137, 62, 0.65); }
+
+  .btn-ghost {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    transition: all .3s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+  /* Card hover */
+  .card-hover {
+    transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s;
+  }
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px -20px rgba(14, 42, 59, 0.25);
+  }
+  .img-zoom { transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+  .card-hover:hover .img-zoom { transform: scale(1.08); }
+
+  /* Hero slider */
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transition: opacity 1.8s ease-in-out;
+    background-size: cover; background-position: center;
+  }
+  .hero-slide.active { opacity: 1; }
+
+  /* Scroll progress */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--ocean-light), var(--emerald-light), var(--gold));
+    z-index: 9999; transition: width .1s;
+  }
+
+  /* Loader */
+  .loader {
+    position: fixed; inset: 0; z-index: 10000;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .8s, visibility .8s;
+  }
+  .loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-mark {
+    width: 70px; height: 70px;
+    border: 2px solid var(--border);
+    border-top-color: var(--ocean);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(2deg); }
+  }
+  .float { animation: float 6s ease-in-out infinite; }
+  .float-slow { animation: float 9s ease-in-out infinite; }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(.22,1,.36,1), transform 1s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .15s; }
+  .reveal-delay-2 { transition-delay: .3s; }
+  .reveal-delay-3 { transition-delay: .45s; }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee { animation: marquee 40s linear infinite; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-alt); }
+  ::-webkit-scrollbar-thumb { background: var(--ocean); border-radius: 10px; }
+
+  /* Section divider wave */
+  .wave-divider {
+    position: absolute; bottom: -1px; left: 0; width: 100%; height: 80px;
+  }
+
+  /* Tag */
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Heart wishlist */
+  .heart-btn { transition: all .3s; }
+  .heart-btn.active { color: #ef4444; transform: scale(1.15); }
+  .heart-btn.active i { animation: heartPop .5s; }
+  @keyframes heartPop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+
+  /* Navbar */
+  .nav-link {
+    position: relative; padding: 6px 0;
+    transition: color .3s;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--ocean), var(--gold));
+    transition: width .35s;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Mega menu */
+  .mega-menu {
+    position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0; visibility: hidden;
+    transition: all .35s cubic-bezier(.22,1,.36,1);
+    pointer-events: none;
+  }
+  .mega-menu-wrapper:hover .mega-menu {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(0,0,0,0.92);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all .4s;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; }
+
+  /* Scroll indicator */
+  @keyframes scrollDown {
+    0% { transform: translateY(0); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(20px); opacity: 0; }
+  }
+  .scroll-dot { animation: scrollDown 2s infinite; }
+
+  /* Testimonial transition */
+  .testimonial-track {
+    transition: transform .8s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* Filter tab */
+  .filter-tab {
+    transition: all .3s;
+    border: 1px solid var(--border);
+  }
+  .filter-tab.active {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 25px -10px rgba(10, 106, 123, 0.5);
+  }
+
+  /* Decorative line */
+  .deco-line::before {
+    content: ''; display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+    margin-right: 12px; vertical-align: middle;
+  }
+
+  /* Scroll-to-top */
+  .scroll-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+    color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 15px 35px -10px rgba(10, 106, 123, 0.5);
+    opacity: 0; visibility: hidden;
+    transform: translateY(20px);
+    transition: all .4s;
+    z-index: 100;
+    cursor: pointer;
+  }
+  .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+  /* WhatsApp button */
+  .whatsapp-btn {
+    position: fixed; bottom: 30px; left: 30px;
+    width: 56px; height: 56px;
+    background: #25D366; color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 15px 35px -10px rgba(37, 211, 102, 0.6);
+    z-index: 100; font-size: 26px;
+    transition: all .3s;
+  }
+  .whatsapp-btn:hover { transform: scale(1.1) rotate(-5deg); }
+
+  /* Form inputs */
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--fg);
+    transition: all .25s;
+    font-size: 15px;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--ocean-light);
+    box-shadow: 0 0 0 4px rgba(15, 163, 177, 0.12);
+  }
+  .form-input::placeholder { color: var(--muted); }
+
+  /* Adventure card */
+  .adventure-card {
+    position: relative; overflow: hidden;
+    border-radius: 24px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+  }
+  .adventure-card img {
+    transition: transform 1s cubic-bezier(.22,1,.36,1);
+  }
+  .adventure-card:hover img { transform: scale(1.1); }
+  .adventure-card .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,14,21,0.85) 0%, rgba(5,14,21,0.2) 50%, transparent 100%);
+  }
+
+  /* Stat number */
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hide scrollbar for testimonials */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Mobile menu */
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  /* Smooth theme transition */
+  * { transition-property: background-color, border-color, color; transition-duration: .4s; }
+
+  /* Pricing tag */
+  .price-tag {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: #1a1208;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* Rating stars */
+  .stars { color: var(--gold); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="text-center">
+    <div class="loader-mark mx-auto"></div>
+    <p class="font-display text-2xl mt-6 text-fg">Voyagé</p>
+    <p class="text-xs text-muted mt-1 tracking-[0.3em] uppercase">Curating journeys</p>
+  </div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+  <nav class="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-2 group">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--ocean) 0%, var(--emerald) 100%);">
+        <i class="fa-solid fa-compass text-white text-lg group-hover:rotate-90 transition-transform duration-500"></i>
+      </div>
+      <div class="leading-none">
+        <div class="font-display text-2xl font-medium text-fg" id="logoText">Voyagé</div>
+        <div class="text-[10px] tracking-[0.25em] uppercase text-muted">Bespoke Travel</div>
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex items-center gap-9">
+      <a href="#home" class="nav-link text-sm font-medium text-fg-soft">Home</a>
+      <a href="#destinations" class="nav-link text-sm font-medium text-fg-soft">Destinations</a>
+      <a href="#packages" class="nav-link text-sm font-medium text-fg-soft">Packages</a>
+
+      <!-- Mega menu -->
+      <div class="mega-menu-wrapper relative">
+        <a href="#adventures" class="nav-link text-sm font-medium text-fg-soft flex items-center gap-1">
+          Adventures <i class="fa-solid fa-chevron-down text-[10px] mt-0.5"></i>
+        </a>
+        <div class="mega-menu w-[600px] glass rounded-3xl p-6 shadow-2xl">
+          <div class="grid grid-cols-3 gap-3">
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center"><i class="fa-solid fa-umbrella-beach text-amber-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Beach</div><div class="text-xs text-muted">45 destinations</div></div>
+            </a>
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center"><i class="fa-solid fa-mountain text-emerald-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Mountains</div><div class="text-xs text-muted">32 destinations</div></div>
+            </a>
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center"><i class="fa-solid fa-heart text-pink-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Honeymoon</div><div class="text-xs text-muted">28 destinations</div></div>
+            </a>
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center"><i class="fa-solid fa-paw text-orange-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Wildlife</div><div class="text-xs text-muted">19 destinations</div></div>
+            </a>
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><i class="fa-solid fa-ship text-blue-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Cruise</div><div class="text-xs text-muted">24 destinations</div></div>
+            </a>
+            <a href="#adventures" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-bg-alt transition">
+              <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center"><i class="fa-solid fa-sun text-yellow-600"></i></div>
+              <div><div class="font-semibold text-sm text-fg">Desert Safari</div><div class="text-xs text-muted">12 destinations</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#gallery" class="nav-link text-sm font-medium text-fg-soft">Gallery</a>
+      <a href="#blog" class="nav-link text-sm font-medium text-fg-soft">Journal</a>
+      <a href="#contact" class="nav-link text-sm font-medium text-fg-soft">Contact</a>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Theme toggle -->
+      <button id="themeToggle" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon text-fg-soft text-sm" id="themeIcon"></i>
+      </button>
+      <button class="hidden lg:flex btn-primary px-6 py-3 rounded-full text-sm font-semibold items-center gap-2" onclick="document.getElementById('#packages').scrollIntoView({behavior:'smooth'})">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-plane-departure text-xs"></i> Book Now</span>
+      </button>
+      <!-- Hamburger -->
+      <button id="hamburger" class="lg:hidden w-10 h-10 rounded-full border border-soft flex items-center justify-center" aria-label="Open menu">
+        <i class="fa-solid fa-bars text-fg-soft"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu fixed inset-0 bg-bg-alt z-50 lg:hidden p-6 overflow-y-auto" id="mobileMenu">
+  <div class="flex justify-between items-center mb-10">
+    <span class="font-display text-2xl">Voyagé</span>
+    <button id="closeMobile" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex flex-col gap-6 text-2xl font-display">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#destinations" class="mobile-link">Destinations</a>
+    <a href="#packages" class="mobile-link">Packages</a>
+    <a href="#adventures" class="mobile-link">Adventures</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#blog" class="mobile-link">Journal</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </nav>
+  <button class="btn-primary w-full mt-10 py-4 rounded-full text-sm font-semibold"><span>Book a Journey</span></button>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative h-screen min-h-[700px] overflow-hidden">
+  <!-- Background slides -->
+  <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/santorinihero/1920/1080.jpg');"></div>
+  <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/maldiveshero/1920/1080.jpg');"></div>
+  <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/balihero/1920/1080.jpg');"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 40%, rgba(15,163,177,0.25), transparent 60%);"></div>
+
+  <!-- Floating decorative cards -->
+  <div class="hidden md:block absolute top-32 right-12 z-20 float">
+    <div class="glass-dark rounded-2xl p-4 w-56 text-white shadow-2xl">
+      <div class="flex items-center gap-3">
+        <img src="https://picsum.photos/seed/float1/80/80.jpg" class="w-12 h-12 rounded-xl object-cover" alt="">
+        <div>
+          <div class="text-xs opacity-70">Now Trending</div>
+          <div class="font-semibold text-sm">Santorini, Greece</div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/15">
+        <div class="flex items-center gap-1 text-xs"><i class="fa-solid fa-star text-amber-400"></i> 4.9</div>
+        <div class="text-xs"><span class="opacity-60">from</span> <span class="font-bold text-amber-300">$899</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden md:block absolute bottom-48 left-12 z-20 float-slow">
+    <div class="glass-dark rounded-2xl p-4 text-white shadow-2xl flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-emerald-500/30 flex items-center justify-center">
+        <i class="fa-solid fa-shield-heart text-emerald-300"></i>
+      </div>
+      <div>
+        <div class="font-semibold text-sm">Safe & Secure</div>
+        <div class="text-xs opacity-70">Trusted by 50,000+ travelers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col justify-center">
+    <div class="max-w-4xl">
+      <div class="inline-flex items-center gap-2 glass-dark rounded-full px-4 py-2 mb-8 text-white text-xs tracking-wider uppercase reveal visible">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        New: 2025 Curated Journeys Now Live
+      </div>
+      <h1 class="font-display text-white text-5xl sm:text-6xl lg:text-8xl font-light leading-[1.02] mb-6">
+        Discover the World's<br>
+        <span class="italic font-normal" style="background: linear-gradient(120deg, #E6C786 0%, #C9A961 50%, #0FA3B1 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Most Beautiful</span><br>
+        Destinations
+      </h1>
+      <p class="text-white/85 text-lg lg:text-xl max-w-2xl mb-10 font-light leading-relaxed">
+        Luxury vacations, unforgettable experiences, and affordable packages — crafted by travelers, for travelers.
+      </p>
+      <div class="flex flex-wrap gap-4 mb-12">
+        <button class="btn-gold px-8 py-4 rounded-full text-sm font-bold flex items-center gap-3">
+          <i class="fa-solid fa-compass"></i> Explore Tours
+        </button>
+        <button class="btn-ghost px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-3">
+          <i class="fa-solid fa-play text-xs"></i> Watch Showreel
+        </button>
+      </div>
+    </div>
+
+    <!-- Search booking form -->
+    <div class="glass rounded-3xl p-3 shadow-2xl max-w-5xl reveal visible reveal-delay-2">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-2">
+        <div class="md:col-span-3 p-3 rounded-2xl hover:bg-white/40 transition cursor-pointer">
+          <div class="text-[10px] uppercase tracking-widest text-muted font-semibold mb-1">Destination</div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-ocean" style="color: var(--ocean);"></i>
+            <input type="text" placeholder="Where to?" class="bg-transparent outline-none text-sm font-medium text-fg w-full">
+          </div>
+        </div>
+        <div class="md:col-span-2 p-3 rounded-2xl hover:bg-white/40 transition cursor-pointer border-l border-r border-soft">
+          <div class="text-[10px] uppercase tracking-widest text-muted font-semibold mb-1">Check-in</div>
+          <div class="flex items-center gap-2">
+            <i class="fa-regular fa-calendar" style="color: var(--ocean);"></i>
+            <input type="date" class="bg-transparent outline-none text-sm font-medium text-fg w-full">
+          </div>
+        </div>
+        <div class="md:col-span-2 p-3 rounded-2xl hover:bg-white/40 transition cursor-pointer">
+          <div class="text-[10px] uppercase tracking-widest text-muted font-semibold mb-1">Check-out</div>
+          <div class="flex items-center gap-2">
+            <i class="fa-regular fa-calendar" style="color: var(--ocean);"></i>
+            <input type="date" class="bg-transparent outline-none text-sm font-medium text-fg w-full">
+          </div>
+        </div>
+        <div class="md:col-span-2 p-3 rounded-2xl hover:bg-white/40 transition cursor-pointer border-l border-r border-soft">
+          <div class="text-[10px] uppercase tracking-widest text-muted font-semibold mb-1">Travelers</div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-users" style="color: var(--ocean);"></i>
+            <select class="bg-transparent outline-none text-sm font-medium text-fg w-full">
+              <option>2 Adults</option>
+              <option>1 Adult</option>
+              <option>2 Adults, 1 Child</option>
+              <option>2 Adults, 2 Children</option>
+              <option>Group (5+)</option>
+            </select>
+          </div>
+        </div>
+        <button class="md:col-span-3 btn-primary rounded-2xl py-4 px-6 font-semibold text-sm flex items-center justify-center gap-2">
+          <span class="flex items-center gap-2"><i class="fa-solid fa-magnifying-glass"></i> Search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide indicators -->
+  <div class="absolute bottom-8 right-12 z-20 flex gap-2" id="heroIndicators">
+    <button class="w-8 h-1 rounded-full bg-white" data-slide="0"></button>
+    <button class="w-8 h-1 rounded-full bg-white/30" data-slide="1"></button>
+    <button class="w-8 h-1 rounded-full bg-white/30" data-slide="2"></button>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden lg:block">
+    <div class="flex flex-col items-center gap-2 text-white/60">
+      <span class="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+      <div class="w-px h-12 bg-white/30 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-4 bg-white scroll-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="py-6 border-b border-soft bg-card">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-wrap items-center justify-between gap-6">
+    <div class="flex items-center gap-2 text-sm text-muted">
+      <i class="fa-solid fa-award" style="color: var(--gold);"></i>
+      <span>Trusted by</span>
+      <span class="font-bold text-fg">50,000+</span>
+      <span>travelers worldwide</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-10 gap-y-3 opacity-60">
+      <span class="font-display text-xl italic text-fg-soft">Forbes</span>
+      <span class="font-display text-xl italic text-fg-soft">Condé Nast</span>
+      <span class="font-display text-xl italic text-fg-soft">Travel + Leisure</span>
+      <span class="font-display text-xl italic text-fg-soft">Lonely Planet</span>
+      <span class="font-display text-xl italic text-fg-soft">National Geographic</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED DESTINATIONS ============ -->
+<section id="destinations" class="py-24 lg:py-32 relative">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+      <div class="reveal">
+        <div class="deco-line text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Featured Destinations</div>
+        <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+          Where will your story<br>
+          <span class="italic text-gradient">begin next?</span>
+        </h2>
+      </div>
+      <div class="flex items-center gap-3 reveal reveal-delay-1">
+        <button class="w-12 h-12 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" id="destPrev">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
+        </button>
+        <button class="w-12 h-12 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" id="destNext">
+          <i class="fa-solid fa-arrow-right text-sm"></i>
+        </button>
+        <a href="#" class="ml-4 text-sm font-semibold text-fg flex items-center gap-2 hover:gap-3 transition-all">
+          View all <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinationsGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ POPULAR PACKAGES ============ -->
+<section id="packages" class="py-24 lg:py-32 bg-bg-alt relative">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14 reveal">
+      <div class="text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Curated Journeys</div>
+      <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+        Popular <span class="italic text-gradient">Tour Packages</span>
+      </h2>
+      <p class="text-muted mt-5 max-w-2xl mx-auto">Handcrafted itineraries, premium stays, and seamless logistics. Pick a journey, pack your bags, leave the rest to us.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-delay-1" id="packageFilters">
+      <button class="filter-tab active px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="all">All Packages</button>
+      <button class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="beach">Beach</button>
+      <button class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="mountain">Mountain</button>
+      <button class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="cultural">Cultural</button>
+      <button class="filter-tab px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="luxury">Luxury</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="packagesGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="py-24 lg:py-32 relative overflow-hidden">
+  <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-20" style="background: radial-gradient(circle, var(--ocean-light), transparent 70%);"></div>
+  <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full opacity-20" style="background: radial-gradient(circle, var(--emerald-light), transparent 70%);"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative">
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+      <div class="reveal">
+        <div class="deco-line text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Why Voyagé</div>
+        <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight mb-6">
+          Travel made<br><span class="italic text-gradient">effortless</span>, memories made eternal.
+        </h2>
+        <p class="text-muted text-lg leading-relaxed mb-8">
+          For over 15 years, we've crafted journeys that go beyond itineraries — every detail considered, every moment designed to delight.
+        </p>
+        <div class="flex flex-wrap gap-6">
+          <div>
+            <div class="font-display text-4xl text-gradient-gold font-light">98%</div>
+            <div class="text-sm text-muted mt-1">Repeat travelers</div>
+          </div>
+          <div class="w-px bg-soft h-16" style="background: var(--border);"></div>
+          <div>
+            <div class="font-display text-4xl text-gradient-gold font-light">24/7</div>
+            <div class="text-sm text-muted mt-1">Concierge support</div>
+          </div>
+          <div class="w-px bg-soft h-16" style="background: var(--border);"></div>
+          <div>
+            <div class="font-display text-4xl text-gradient-gold font-light">120+</div>
+            <div class="text-sm text-muted mt-1">Destinations</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-5 reveal reveal-delay-1">
+        <div class="space-y-5">
+          <div class="bg-card rounded-3xl p-6 shadow-lg card-hover">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">
+              <i class="fa-solid fa-tag text-amber-600"></i>
+            </div>
+            <h3 class="font-semibold text-fg mb-1">Best Price Guarantee</h3>
+            <p class="text-sm text-muted">Found it cheaper? We'll match it and add an extra perk.</p>
+          </div>
+          <div class="bg-card rounded-3xl p-6 shadow-lg card-hover">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0);">
+              <i class="fa-solid fa-headset text-emerald-600"></i>
+            </div>
+            <h3 class="font-semibold text-fg mb-1">24/7 Customer Support</h3>
+            <p class="text-sm text-muted">Real humans, anytime, anywhere across the globe.</p>
+          </div>
+        </div>
+        <div class="space-y-5 mt-10">
+          <div class="bg-card rounded-3xl p-6 shadow-lg card-hover">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #cffafe, #a5f3fc);">
+              <i class="fa-solid fa-shield-halved text-cyan-600"></i>
+            </div>
+            <h3 class="font-semibold text-fg mb-1">Secure Payments</h3>
+            <p class="text-sm text-muted">Bank-grade encryption with flexible installment plans.</p>
+          </div>
+          <div class="bg-card rounded-3xl p-6 shadow-lg card-hover">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style="background: linear-gradient(135deg, #e9d5ff, #ddd6fe);">
+              <i class="fa-solid fa-user-tie text-violet-600"></i>
+            </div>
+            <h3 class="font-semibold text-fg mb-1">Expert Tour Guides</h3>
+            <p class="text-sm text-muted">Local storytellers who turn sights into memories.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional features row -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 reveal">
+      <div class="text-center p-4">
+        <i class="fa-solid fa-medal text-3xl mb-3" style="color: var(--gold);"></i>
+        <div class="text-sm font-semibold text-fg">Award Winning</div>
+      </div>
+      <div class="text-center p-4">
+        <i class="fa-solid fa-globe text-3xl mb-3" style="color: var(--ocean);"></i>
+        <div class="text-sm font-semibold text-fg">Global Reach</div>
+      </div>
+      <div class="text-center p-4">
+        <i class="fa-solid fa-leaf text-3xl mb-3" style="color: var(--emerald);"></i>
+        <div class="text-sm font-semibold text-fg">Eco-Conscious</div>
+      </div>
+      <div class="text-center p-4">
+        <i class="fa-solid fa-handshake text-3xl mb-3" style="color: var(--gold);"></i>
+        <div class="text-sm font-semibold text-fg">Trusted Partner</div>
+      </div>
+      <div class="text-center p-4">
+        <i class="fa-solid fa-bolt text-3xl mb-3" style="color: var(--ocean);"></i>
+        <div class="text-sm font-semibold text-fg">Instant Booking</div>
+      </div>
+      <div class="text-center p-4">
+        <i class="fa-solid fa-heart text-3xl mb-3" style="color: var(--emerald);"></i>
+        <div class="text-sm font-semibold text-fg">Tailor-Made</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVENTURE CATEGORIES ============ -->
+<section id="adventures" class="py-24 lg:py-32 bg-bg-alt">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Find Your Vibe</div>
+      <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+        Choose Your <span class="italic text-gradient">Adventure</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="adventureGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATISTICS ============ -->
+<section class="py-24 lg:py-32 relative" style="background: linear-gradient(135deg, #052B36 0%, #0A6A7B 50%, #0F7A5A 100%);">
+  <div class="absolute inset-0 opacity-30" style="background-image: url('https://picsum.photos/seed/statsbg/1920/800.jpg'); background-size: cover; background-position: center; mix-blend-mode: overlay;"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(circle at 80% 20%, rgba(201,169,97,0.2), transparent 50%);"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs uppercase tracking-[0.3em] text-white/60 font-semibold mb-4">Our Journey in Numbers</div>
+      <h2 class="font-display text-4xl lg:text-6xl font-light text-white leading-tight">
+        Trusted by travelers,<br><span class="italic" style="color: #E6C786;">loved by adventurers</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center reveal">
+        <div class="stat-number text-6xl lg:text-7xl mb-2" data-target="50000" data-suffix="+">0</div>
+        <div class="text-white/80 text-sm uppercase tracking-widest">Happy Travelers</div>
+      </div>
+      <div class="text-center reveal reveal-delay-1">
+        <div class="stat-number text-6xl lg:text-7xl mb-2" data-target="120" data-suffix="+">0</div>
+        <div class="text-white/80 text-sm uppercase tracking-widest">Destinations</div>
+      </div>
+      <div class="text-center reveal reveal-delay-2">
+        <div class="stat-number text-6xl lg:text-7xl mb-2" data-target="15" data-suffix="">0</div>
+        <div class="text-white/80 text-sm uppercase tracking-widest">Years Experience</div>
+      </div>
+      <div class="text-center reveal reveal-delay-3">
+        <div class="stat-number text-6xl lg:text-7xl mb-2" data-target="4.9" data-suffix="★" data-decimal="true">0</div>
+        <div class="text-white/80 text-sm uppercase tracking-widest">Average Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-14 gap-6">
+      <div class="reveal">
+        <div class="deco-line text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Testimonials</div>
+        <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+          Stories from our<br><span class="italic text-gradient">travelers</span>
+        </h2>
+      </div>
+      <div class="flex items-center gap-3 reveal reveal-delay-1">
+        <button class="w-12 h-12 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" id="testPrev">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
+        </button>
+        <button class="w-12 h-12 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" id="testNext">
+          <i class="fa-solid fa-arrow-right text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-hidden reveal reveal-delay-1">
+      <div class="testimonial-track flex gap-6" id="testimonialTrack">
+        <!-- Testimonials injected by JS -->
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-10" id="testimonialDots"></div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery" class="py-24 lg:py-32 bg-bg-alt">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Moments Captured</div>
+      <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+        From our travelers' <span class="italic text-gradient">lens</span>
+      </h2>
+    </div>
+
+    <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5" id="galleryGrid">
+      <!-- Gallery items injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="absolute top-6 right-6 w-12 h-12 rounded-full glass-dark text-white flex items-center justify-center" id="lightboxClose">
+    <i class="fa-solid fa-xmark text-xl"></i>
+  </button>
+  <button class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass-dark text-white flex items-center justify-center" id="lightboxPrev">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <img src="" id="lightboxImg" class="max-w-[85vw] max-h-[85vh] rounded-2xl shadow-2xl" alt="">
+  <button class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass-dark text-white flex items-center justify-center" id="lightboxNext">
+    <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
+
+<!-- ============ SPECIAL OFFERS ============ -->
+<section class="py-24 lg:py-32 relative overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="rounded-[2.5rem] overflow-hidden relative reveal" style="background: linear-gradient(135deg, #052B36 0%, #0A6A7B 100%);">
+      <div class="absolute inset-0 opacity-20" style="background-image: url('https://picsum.photos/seed/offersbg/1600/900.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(201,169,97,0.3), transparent 70%);"></div>
+
+      <div class="relative grid lg:grid-cols-2 gap-8 p-8 lg:p-16">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 rounded-full px-4 py-2 mb-6 text-xs font-semibold tracking-wider uppercase">
+            <i class="fa-solid fa-bolt"></i> Limited Time Offer
+          </div>
+          <h2 class="font-display text-4xl lg:text-6xl font-light text-white leading-tight mb-4">
+            Save up to <span class="italic" style="color: #E6C786;">35%</span><br>
+            on luxury escapes
+          </h2>
+          <p class="text-white/80 text-lg mb-8 max-w-md">Book your dream vacation by month's end and unlock exclusive rates on premium packages. Limited slots remaining.</p>
+
+          <!-- Countdown -->
+          <div class="grid grid-cols-4 gap-3 mb-8 max-w-md" id="countdown">
+            <div class="glass-dark rounded-2xl p-4 text-center text-white">
+              <div class="font-display text-3xl font-light" id="cdDays">00</div>
+              <div class="text-[10px] uppercase tracking-widest opacity-70">Days</div>
+            </div>
+            <div class="glass-dark rounded-2xl p-4 text-center text-white">
+              <div class="font-display text-3xl font-light" id="cdHours">00</div>
+              <div class="text-[10px] uppercase tracking-widest opacity-70">Hours</div>
+            </div>
+            <div class="glass-dark rounded-2xl p-4 text-center text-white">
+              <div class="font-display text-3xl font-light" id="cdMins">00</div>
+              <div class="text-[10px] uppercase tracking-widest opacity-70">Mins</div>
+            </div>
+            <div class="glass-dark rounded-2xl p-4 text-center text-white">
+              <div class="font-display text-3xl font-light" id="cdSecs">00</div>
+              <div class="text-[10px] uppercase tracking-widest opacity-70">Secs</div>
+            </div>
+          </div>
+
+          <button class="btn-gold px-8 py-4 rounded-full text-sm font-bold flex items-center gap-3">
+            <i class="fa-solid fa-tag"></i> Claim This Offer
+          </button>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div class="absolute -top-8 -right-8 w-64 h-64 rounded-3xl overflow-hidden shadow-2xl float">
+            <img src="https://picsum.photos/seed/offer1/400/400.jpg" class="w-full h-full object-cover" alt="">
+          </div>
+          <div class="absolute top-32 -left-8 w-56 h-72 rounded-3xl overflow-hidden shadow-2xl float-slow">
+            <img src="https://picsum.photos/seed/offer2/400/600.jpg" class="w-full h-full object-cover" alt="">
+          </div>
+          <div class="absolute bottom-0 right-16 w-72 h-48 rounded-3xl overflow-hidden shadow-2xl float">
+            <img src="https://picsum.photos/seed/offer3/600/400.jpg" class="w-full h-full object-cover" alt="">
+          </div>
+          <div class="absolute top-16 right-40 w-32 h-32 rounded-2xl glass-dark flex items-center justify-center text-white p-4 text-center float-slow">
+            <div>
+              <div class="font-display text-3xl text-amber-300">35%</div>
+              <div class="text-[10px] uppercase tracking-widest mt-1">Off</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog" class="py-24 lg:py-32">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+      <div class="reveal">
+        <div class="deco-line text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Travel Journal</div>
+        <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight">
+          Stories, tips &<br><span class="italic text-gradient">inspiration</span>
+        </h2>
+      </div>
+      <a href="#" class="text-sm font-semibold text-fg flex items-center gap-2 hover:gap-3 transition-all reveal reveal-delay-1">
+        Read all articles <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7" id="blogGrid">
+      <!-- Blog cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="py-20 relative overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="rounded-[2.5rem] p-8 lg:p-16 relative overflow-hidden reveal" style="background: linear-gradient(135deg, #C9A961 0%, #A8893E 100%);">
+      <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-20" style="background: radial-gradient(circle, white, transparent);"></div>
+      <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-20" style="background: radial-gradient(circle, white, transparent);"></div>
+
+      <div class="relative grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <div class="text-xs uppercase tracking-[0.3em] text-white/70 font-semibold mb-4">Stay in the loop</div>
+          <h2 class="font-display text-3xl lg:text-5xl font-light text-white leading-tight mb-3">
+            Get travel inspiration<br><span class="italic">delivered monthly.</span>
+          </h2>
+          <p class="text-white/80">Join 50,000+ travelers. No spam, just beautiful places and smart tips.</p>
+        </div>
+        <form class="flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); showToast('Welcome aboard! Check your inbox.');">
+          <input type="email" required placeholder="Your email address" class="flex-1 px-5 py-4 rounded-full text-fg bg-white/95 backdrop-blur outline-none text-sm">
+          <button type="submit" class="bg-[#052B36] text-white px-8 py-4 rounded-full text-sm font-bold hover:bg-black transition flex items-center justify-center gap-2">
+            Subscribe <i class="fa-solid fa-arrow-right text-xs"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 lg:py-32 bg-bg-alt">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div class="reveal">
+        <div class="deco-line text-xs uppercase tracking-[0.3em] text-muted font-semibold mb-4">Get in touch</div>
+        <h2 class="font-display text-4xl lg:text-6xl font-light text-fg leading-tight mb-6">
+          Let's plan your<br><span class="italic text-gradient">next escape</span>
+        </h2>
+        <p class="text-muted text-lg mb-10">Reach out and our travel concierges will craft a personalized itinerary within 24 hours.</p>
+
+        <div class="space-y-5 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">
+              <i class="fa-solid fa-location-dot text-amber-700"></i>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-widest text-muted">Office</div>
+              <div class="font-medium text-fg">1 Marina Boulevard, San Francisco, CA 94123</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0);">
+              <i class="fa-solid fa-phone text-emerald-700"></i>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-widest text-muted">Phone</div>
+              <div class="font-medium text-fg">+1 (800) 869-2438</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, #cffafe, #a5f3fc);">
+              <i class="fa-solid fa-envelope text-cyan-700"></i>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-widest text-muted">Email</div>
+              <div class="font-medium text-fg">hello@voyage-travel.com</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="rounded-3xl overflow-hidden h-64 border border-soft">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4790%2C37.7950%2C-122.4090%2C37.8250&layer=mapnik&marker=37.8100%2C-122.4440"
+            class="w-full h-full" style="border:0; filter: grayscale(0.3) contrast(1.05);" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="bg-card rounded-3xl p-8 lg:p-10 shadow-xl reveal reveal-delay-1">
+        <h3 class="font-display text-2xl text-fg mb-6">Send us a message</h3>
+        <form class="space-y-5" onsubmit="event.preventDefault(); showToast('Message sent! We\\'ll be in touch within 24h.'); this.reset();">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs uppercase tracking-widest text-muted font-semibold mb-2 block">First name</label>
+              <input type="text" required class="form-input" placeholder="Jane">
+            </div>
+            <div>
+              <label class="text-xs uppercase tracking-widest text-muted font-semibold mb-2 block">Last name</label>
+              <input type="text" required class="form-input" placeholder="Doe">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted font-semibold mb-2 block">Email</label>
+            <input type="email" required class="form-input" placeholder="jane@example.com">
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted font-semibold mb-2 block">Destination of interest</label>
+            <select class="form-input">
+              <option>Santorini, Greece</option>
+              <option>Maldives</option>
+              <option>Bali, Indonesia</option>
+              <option>Kyoto, Japan</option>
+              <option>Amalfi Coast, Italy</option>
+              <option>Swiss Alps</option>
+              <option>Not sure yet — surprise me</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted font-semibold mb-2 block">Message</label>
+            <textarea rows="4" class="form-input resize-none" placeholder="Tell us about your dream trip..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full py-4 rounded-full text-sm font-semibold">
+            <span class="flex items-center justify-center gap-2"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pt-20 pb-10 bg-card border-t border-soft">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-16">
+      <div class="col-span-2">
+        <div class="flex items-center gap-2 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--ocean) 0%, var(--emerald) 100%);">
+            <i class="fa-solid fa-compass text-white"></i>
+          </div>
+          <div>
+            <div class="font-display text-2xl text-fg">Voyagé</div>
+            <div class="text-[10px] tracking-[0.25em] uppercase text-muted">Bespoke Travel</div>
+          </div>
+        </div>
+        <p class="text-muted text-sm leading-relaxed max-w-sm mb-6">Crafting extraordinary journeys since 2010. Every trip, a story worth telling.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-fg-soft"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-fg-soft"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="Twitter"><i class="fa-brands fa-x-twitter text-fg-soft"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="YouTube"><i class="fa-brands fa-youtube text-fg-soft"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-soft flex items-center justify-center hover:bg-bg-alt transition" aria-label="Pinterest"><i class="fa-brands fa-pinterest text-fg-soft"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-fg mb-4 text-sm">Quick Links</h4>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#" class="hover:text-fg transition">About Us</a></li>
+          <li><a href="#destinations" class="hover:text-fg transition">Destinations</a></li>
+          <li><a href="#packages" class="hover:text-fg transition">Packages</a></li>
+          <li><a href="#blog" class="hover:text-fg transition">Travel Journal</a></li>
+          <li><a href="#" class="hover:text-fg transition">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-fg mb-4 text-sm">Services</h4>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#" class="hover:text-fg transition">Flight Booking</a></li>
+          <li><a href="#" class="hover:text-fg transition">Hotel Reservations</a></li>
+          <li><a href="#" class="hover:text-fg transition">Tour Packages</a></li>
+          <li><a href="#" class="hover:text-fg transition">Cruise Bookings</a></li>
+          <li><a href="#" class="hover:text-fg transition">Travel Insurance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-fg mb-4 text-sm">Support</h4>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#" class="hover:text-fg transition">Help Center</a></li>
+          <li><a href="#" class="hover:text-fg transition">FAQs</a></li>
+          <li><a href="#contact" class="hover:text-fg transition">Contact Us</a></li>
+          <li><a href="#" class="hover:text-fg transition">Booking Guide</a></li>
+          <li><a href="#" class="hover:text-fg transition">Cancellation Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-fg mb-4 text-sm">Legal</h4>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#" class="hover:text-fg transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-fg transition">Terms & Conditions</a></li>
+          <li><a href="#" class="hover:text-fg transition">Cookie Policy</a></li>
+          <li><a href="#" class="hover:text-fg transition">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-soft flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-muted">© 2025 Voyagé Travel Co. All rights reserved. Crafted with care.</p>
+      <div class="flex items-center gap-6 text-xs text-muted">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-500"></i> SSL Secured</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-cc-visa text-2xl"></i></span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-cc-mastercard text-2xl"></i></span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-cc-amex text-2xl"></i></span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-paypal text-2xl"></i></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<div class="scroll-top" id="scrollTop" role="button" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/18008699243" class="whatsapp-btn" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-24 right-6 glass-dark text-white px-6 py-4 rounded-2xl shadow-2xl opacity-0 translate-y-4 transition-all duration-500 z-[200] pointer-events-none">
+  <div class="flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toastMsg" class="text-sm font-medium"></span>
+  </div>
+</div>
+
+<script>
+/* =========================================
+   DATA
+========================================= */
+const destinations = [
+  { country: 'Greece', city: 'Santorini', price: 899, rating: 4.9, desc: 'Whitewashed cliffs, caldera sunsets, and Aegean blue.', img: 'santoriniview' },
+  { country: 'Maldives', city: 'Malé Atoll', price: 1299, rating: 4.9, desc: 'Overwater villas floating above turquoise lagoons.', img: 'maldivesbeach' },
+  { country: 'Indonesia', city: 'Bali', price: 749, rating: 4.8, desc: 'Rice terraces, temple rituals, surf at dawn.', img: 'balirice' },
+  { country: 'Japan', city: 'Kyoto', price: 1099, rating: 4.9, desc: 'Bamboo groves, geisha lanes, thousand temples.', img: 'kyototemple' },
+  { country: 'Italy', city: 'Amalfi Coast', price: 999, rating: 4.8, desc: 'Lemon groves, cliffside villages, Mediterranean glow.', img: 'amalficoast' },
+  { country: 'Switzerland', city: 'Swiss Alps', price: 1199, rating: 4.9, desc: 'Glacier peaks, alpine lakes, scenic rail journeys.', img: 'swissalps' }
+];
+
+const packages = [
+  { name: 'Maldives Paradise', cat: 'beach', days: 7, price: 1299, hotel: '5★ Overwater Villa', flight: true, meals: true, rating: 4.9, img: 'maldivpkg' },
+  { name: 'Santorini Sunset', cat: 'beach', days: 5, price: 899, hotel: '4★ Cliffside Suite', flight: true, meals: true, rating: 4.8, img: 'santorinipkg' },
+  { name: 'Bali Cultural Escape', cat: 'cultural', days: 8, price: 749, hotel: '4★ Boutique Resort', flight: true, meals: false, rating: 4.8, img: 'balipkg' },
+  { name: 'Kyoto Discovery', cat: 'cultural', days: 10, price: 1099, hotel: '4★ Ryokan Stay', flight: true, meals: true, rating: 4.9, img: 'kyotopkg' },
+  { name: 'Swiss Alpine Adventure', cat: 'mountain', days: 7, price: 1199, hotel: '4★ Mountain Lodge', flight: true, meals: true, rating: 4.9, img: 'swisspkg' },
+  { name: 'Amalfi Coast Luxury', cat: 'luxury', days: 6, price: 1499, hotel: '5★ Grand Hotel', flight: true, meals: true, rating: 5.0, img: 'amalfipkg' },
+  { name: 'Dubai Desert Royale', cat: 'luxury', days: 5, price: 1399, hotel: '5★ Burj District', flight: true, meals: true, rating: 4.9, img: 'dubaipkg' },
+  { name: 'Patagonia Trek', cat: 'mountain', days: 12, price: 1799, hotel: '3★ Eco Lodges', flight: false, meals: true, rating: 4.8, img: 'patagoniapkg' },
+  { name: 'Tuscany Vineyard Tour', cat: 'cultural', days: 8, price: 1149, hotel: '4★ Country Estate', flight: true, meals: true, rating: 4.9, img: 'tuscanypkg' }
+];
+
+const adventures = [
+  { name: 'Beach', icon: 'fa-umbrella-beach', count: 45, img: 'beachadv' },
+  { name: 'Mountains', icon: 'fa-mountain', count: 32, img: 'mountainadv' },
+  { name: 'Honeymoon', icon: 'fa-heart', count: 28, img: 'honeymoonadv' },
+  { name: 'Wildlife', icon: 'fa-paw', count: 19, img: 'wildlifeadv' },
+  { name: 'Cruise', icon: 'fa-ship', count: 24, img: 'cruiseadv' },
+  { name: 'Desert Safari', icon: 'fa-sun', count: 12, img: 'desertadv' },
+  { name: 'Cultural Tours', icon: 'fa-torii-gate', count: 38, img: 'culturaladv' },
+  { name: 'Family Trips', icon: 'fa-people-roof', count: 22, img: 'familyadv' }
+];
+
+const testimonials = [
+  { name: 'Eleanor Vance', country: 'United Kingdom', rating: 5, img: 'person1', review: 'Voyagé turned our honeymoon into pure poetry. Every detail was anticipated, every moment felt sacred. The overwater villa in the Maldives still visits my dreams.' },
+  { name: 'Marcus Chen', country: 'Singapore', rating: 5, img: 'person2', review: 'I have traveled with many agencies. None come close to the precision and warmth of Voyagé. They didn\'t plan a trip — they authored an experience.' },
+  { name: 'Sofia Romano', country: 'Italy', rating: 5, img: 'person3', review: 'Kyoto in cherry blossom season, with private tea ceremonies and a ryokan that felt like a dream. Voyagé understands what travel is really about.' },
+  { name: 'James Whitfield', country: 'Australia', rating: 5, img: 'person4', review: 'From the first call to the final airport transfer, flawless. The Patagonia trek was the most transformative experience of my life. Already planning the next.' },
+  { name: 'Amara Okonkwo', country: 'Nigeria', rating: 5, img: 'person5', review: 'They listened, they cared, they delivered beyond imagination. Santorini was just the beginning — Voyagé is now my travel partner for life.' }
+];
+
+const blogPosts = [
+  { title: '10 Hidden Villages in Italy You Must Visit This Year', cat: 'Destination Guide', date: 'May 12, 2025', img: 'blogitaly', read: '8 min read' },
+  { title: 'The Art of Slow Travel: How to See More by Doing Less', cat: 'Travel Tips', date: 'May 5, 2025', img: 'blogslow', read: '6 min read' },
+  { title: 'A First-Timer\'s Guide to Japan\'s Cherry Blossom Season', cat: 'Destination Guide', date: 'Apr 28, 2025', img: 'blogjapan', read: '10 min read' }
+];
+
+/* =========================================
+   RENDER FUNCTIONS
+========================================= */
+
+// Destinations
+function renderDestinations() {
+  const grid = document.getElementById('destinationsGrid');
+  grid.innerHTML = destinations.map((d, i) => `
+    <article class="bg-card rounded-3xl overflow-hidden shadow-lg card-hover reveal" style="transition-delay: ${i * 0.08}s">
+      <div class="relative h-72 overflow-hidden">
+        <img src="https://picsum.photos/seed/${d.img}/600/500.jpg" alt="${d.city}, ${d.country}" class="img-zoom w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <button class="heart-btn absolute top-4 right-4 w-10 h-10 rounded-full glass-dark text-white flex items-center justify-center" onclick="toggleHeart(this, event)" aria-label="Add to wishlist">
+          <i class="fa-regular fa-heart text-sm"></i>
+        </button>
+        <div class="absolute top-4 left-4 glass-dark rounded-full px-3 py-1.5 text-white text-xs flex items-center gap-1">
+          <i class="fa-solid fa-star text-amber-400 text-[10px]"></i> ${d.rating}
+        </div>
+        <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
+          <div>
+            <div class="text-xs opacity-80 uppercase tracking-widest">${d.country}</div>
+            <div class="font-display text-2xl font-medium">${d.city}</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-6">
+        <p class="text-sm text-muted mb-5 leading-relaxed">${d.desc}</p>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs text-muted">from</span>
+            <div class="font-display text-2xl text-fg">$${d.price}<span class="text-xs text-muted font-sans">/person</span></div>
+          </div>
+          <button class="btn-primary px-5 py-2.5 rounded-full text-xs font-semibold" onclick="showToast('Added ${d.city} to your booking list')">
+            <span class="flex items-center gap-1.5">Book Now <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  observeReveals();
+}
+
+// Packages
+function renderPackages(filter = 'all') {
+  const grid = document.getElementById('packagesGrid');
+  const filtered = filter === 'all' ? packages : packages.filter(p => p.cat === filter);
+  grid.innerHTML = filtered.map((p, i) => `
+    <article class="bg-card rounded-3xl overflow-hidden shadow-lg card-hover reveal" style="transition-delay: ${i * 0.06}s">
+      <div class="relative h-60 overflow-hidden">
+        <img src="https://picsum.photos/seed/${p.img}/600/400.jpg" alt="${p.name}" class="img-zoom w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <button class="heart-btn absolute top-4 right-4 w-10 h-10 rounded-full glass-dark text-white flex items-center justify-center" onclick="toggleHeart(this, event)" aria-label="Add to wishlist">
+          <i class="fa-regular fa-heart text-sm"></i>
+        </button>
+        <div class="absolute top-4 left-4 flex gap-2">
+          <span class="price-tag">${p.cat.toUpperCase()}</span>
+        </div>
+        <div class="absolute bottom-4 left-4 text-white">
+          <div class="flex items-center gap-2 text-xs opacity-90">
+            <i class="fa-regular fa-clock"></i> ${p.days} Days / ${p.days-1} Nights
+          </div>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="font-display text-xl text-fg leading-tight">${p.name}</h3>
+          <div class="flex items-center gap-1 text-xs"><i class="fa-solid fa-star text-amber-400"></i> ${p.rating}</div>
+        </div>
+        <div class="space-y-2 text-sm text-muted mb-5">
+          <div class="flex items-center gap-2"><i class="fa-solid fa-hotel w-4 text-ocean" style="color: var(--ocean)"></i> ${p.hotel}</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-plane w-4 ${p.flight ? 'text-emerald-600' : 'text-gray-400'}"></i> ${p.flight ? 'Flight Included' : 'Flight Not Included'}</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-utensils w-4 ${p.meals ? 'text-emerald-600' : 'text-gray-400'}"></i> ${p.meals ? 'Meals Included' : 'Meals Not Included'}</div>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-soft">
+          <div>
+            <span class="text-xs text-muted">from</span>
+            <div class="font-display text-2xl text-fg">$${p.price}</div>
+          </div>
+          <button class="btn-primary px-5 py-2.5 rounded-full text-xs font-semibold" onclick="showToast('Booking started for ${p.name}')">
+            <span class="flex items-center gap-1.5">Book Now <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  observeReveals();
+}
+
+// Adventures
+function renderAdventures() {
+  const grid = document.getElementById('adventureGrid');
+  grid.innerHTML = adventures.map((a, i) => `
+    <div class="adventure-card reveal" style="transition-delay: ${i * 0.05}s">
+      <img src="https://picsum.photos/seed/${a.img}/500/700.jpg" alt="${a.name}" class="w-full h-full object-cover" loading="lazy">
+      <div class="overlay"></div>
+      <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl glass-dark text-white flex items-center justify-center">
+        <i class="fa-solid ${a.icon}"></i>
+      </div>
+      <div class="absolute bottom-5 left-5 right-5 text-white">
+        <div class="text-xs opacity-70 uppercase tracking-widest mb-1">${a.count} destinations</div>
+        <div class="font-display text-2xl font-medium">${a.name}</div>
+        <div class="flex items-center gap-2 mt-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+          Explore <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+// Testimonials
+let currentTest = 0;
+function renderTestimonials() {
+  const track = document.getElementById('testimonialTrack');
+  track.innerHTML = testimonials.map(t => `
+    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-card rounded-3xl p-8 shadow-lg">
+      <div class="flex items-center gap-2 mb-5">
+        ${'<i class="fa-solid fa-star text-amber-400"></i>'.repeat(t.rating)}
+      </div>
+      <i class="fa-solid fa-quote-left text-3xl mb-4" style="color: var(--gold); opacity: 0.4"></i>
+      <p class="text-fg-soft leading-relaxed mb-6 text-[15px]">${t.review}</p>
+      <div class="flex items-center gap-4 pt-5 border-t border-soft">
+        <img src="https://picsum.photos/seed/${t.img}/100/100.jpg" class="w-12 h-12 rounded-full object-cover" alt="${t.name}">
+        <div>
+          <div class="font-semibold text-fg">${t.name}</div>
+          <div class="text-xs text-muted">${t.country}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  renderTestimonialDots();
+}
+
+function renderTestimonialDots() {
+  const dots = document.getElementById('testimonialDots');
+  const total = Math.ceil(testimonials.length - 2);
+  dots.innerHTML = '';
+  for (let i = 0; i <= total; i++) {
+    const dot = document.createElement('button');
+    dot.className = `h-2 rounded-full transition-all ${i === currentTest ? 'w-8' : 'w-2 bg-gray-300'}`;
+    dot.style.background = i === currentTest ? 'linear-gradient(90deg, var(--ocean), var(--gold))' : '';
+    dot.onclick = () => { currentTest = i; updateTestimonial(); };
+    dots.appendChild(dot);
+  }
+}
+
+function updateTestimonial() {
+  const track = document.getElementById('testimonialTrack');
+  const offset = currentTest * (100 / 3);
+  track.style.transform = `translateX(-${offset}%)`;
+  renderTestimonialDots();
+}
+
+// Gallery
+let currentLightbox = 0;
+const galleryImages = ['gal1','gal2','gal3','gal4','gal5','gal6','gal7','gal8','gal9','gal10','gal11','gal12'];
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const heights = ['h-72','h-96','h-80','h-96','h-72','h-96','h-80','h-72','h-96','h-80','h-72','h-96'];
+  grid.innerHTML = galleryImages.map((g, i) => `
+    <div class="mb-5 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer relative group reveal" style="transition-delay: ${i*0.04}s" onclick="openLightbox(${i})">
+      <img src="https://picsum.photos/seed/${g}/400/${heights[i].replace('h-','')}.jpg" class="w-full ${heights[i]} object-cover transition-transform duration-700 group-hover:scale-110" alt="Gallery image ${i+1}" loading="lazy">
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full glass-dark text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-75 group-hover:scale-100">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+// Blog
+function renderBlog() {
+  const grid = document.getElementById('blogGrid');
+  grid.innerHTML = blogPosts.map((b, i) => `
+    <article class="bg-card rounded-3xl overflow-hidden shadow-lg card-hover reveal" style="transition-delay: ${i*0.08}s">
+      <div class="relative h-56 overflow-hidden">
+        <img src="https://picsum.photos/seed/${b.img}/600/400.jpg" alt="${b.title}" class="img-zoom w-full h-full object-cover" loading="lazy">
+        <div class="absolute top-4 left-4 glass-dark rounded-full px-3 py-1.5 text-white text-xs">${b.cat}</div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-3 text-xs text-muted mb-3">
+          <span><i class="fa-regular fa-calendar"></i> ${b.date}</span>
+          <span>•</span>
+          <span><i class="fa-regular fa-clock"></i> ${b.read}</span>
+        </div>
+        <h3 class="font-display text-xl text-fg leading-tight mb-4 hover:text-gradient transition">${b.title}</h3>
+        <a href="#" class="text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all" style="color: var(--ocean)">
+          Read article <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </article>
+  `).join('');
+  observeReveals();
+}
+
+/* =========================================
+   INTERACTIONS
+========================================= */
+
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800);
+});
+
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+themeToggle.addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+  const isDark = document.documentElement.classList.contains('dark');
+  themeIcon.className = isDark ? 'fa-solid fa-sun text-fg-soft text-sm' : 'fa-solid fa-moon text-fg-soft text-sm';
+});
+
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+const logoText = document.getElementById('logoText');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('bg-card', 'shadow-lg', 'backdrop-blur-xl');
+    navbar.style.padding = '8px 0';
+  } else {
+    navbar.classList.remove('bg-card', 'shadow-lg', 'backdrop-blur-xl');
+    navbar.style.padding = '';
+  }
+
+  // Scroll progress
+  const scrollProgress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollProgress').style.width = scrollProgress + '%';
+
+  // Scroll-to-top visibility
+  const scrollTop = document.getElementById('scrollTop');
+  if (window.scrollY > 600) scrollTop.classList.add('visible');
+  else scrollTop.classList.remove('visible');
+});
+
+// Scroll to top
+document.getElementById('scrollTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Mobile menu
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('closeMobile').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.remove('open');
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+});
+
+// Hero slider
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const indicators = document.querySelectorAll('#heroIndicators button');
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  indicators[currentSlide].classList.replace('bg-white', 'bg-white/30');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  indicators[currentSlide].classList.replace('bg-white/30', 'bg-white');
+}
+indicators.forEach(btn => {
+  btn.addEventListener('click', () => goToSlide(parseInt(btn.dataset.slide)));
+});
+setInterval(() => goToSlide(currentSlide + 1), 6000);
+
+// Heart toggle
+function toggleHeart(btn, e) {
+  e.stopPropagation();
+  btn.classList.toggle('active');
+  const icon = btn.querySelector('i');
+  if (btn.classList.contains('active')) {
+    icon.classList.replace('fa-regular', 'fa-solid');
+    showToast('Added to wishlist');
+  } else {
+    icon.classList.replace('fa-solid', 'fa-regular');
+  }
+}
+
+// Toast
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+  }, 3000);
+}
+
+// Package filters
+document.querySelectorAll('#packageFilters .filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('#packageFilters .filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderPackages(tab.dataset.filter);
+  });
+});
+
+// Testimonial navigation
+document.getElementById('testNext').addEventListener('click', () => {
+  const max = Math.ceil(testimonials.length - 2);
+  currentTest = (currentTest + 1) > max ? 0 : currentTest + 1;
+  updateTestimonial();
+});
+document.getElementById('testPrev').addEventListener('click', () => {
+  const max = Math.ceil(testimonials.length - 2);
+  currentTest = currentTest <= 0 ? max : currentTest - 1;
+  updateTestimonial();
+});
+
+// Auto-rotate testimonials
+setInterval(() => {
+  const max = Math.ceil(testimonials.length - 2);
+  currentTest = (currentTest + 1) > max ? 0 : currentTest + 1;
+  updateTestimonial();
+}, 7000);
+
+// Destination navigation (visual hint)
+document.getElementById('destNext').addEventListener('click', () => {
+  const grid = document.getElementById('destinationsGrid');
+  grid.scrollBy({ left: 350, behavior: 'smooth' });
+});
+document.getElementById('destPrev').addEventListener('click', () => {
+  const grid = document.getElementById('destinationsGrid');
+  grid.scrollBy({ left: -350, behavior: 'smooth' });
+});
+
+// Lightbox
+function openLightbox(i) {
+  currentLightbox = i;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+}
+function updateLightbox() {
+  document.getElementById('lightboxImg').src = `https://picsum.photos/seed/${galleryImages[currentLightbox]}/1200/900.jpg`;
+}
+document.getElementById('lightboxClose').addEventListener('click', () => {
+  document.getElementById('lightbox').classList.remove('open');
+});
+document.getElementById('lightboxNext').addEventListener('click', () => {
+  currentLightbox = (currentLightbox + 1) % galleryImages.length;
+  updateLightbox();
+});
+document.getElementById('lightboxPrev').addEventListener('click', () => {
+  currentLightbox = (currentLightbox - 1 + galleryImages.length) % galleryImages.length;
+  updateLightbox();
+});
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') document.getElementById('lightbox').classList.remove('open');
+});
+
+// Countdown
+function updateCountdown() {
+  const target = new Date();
+  target.setDate(target.getDate() + 12);
+  target.setHours(23, 59, 59);
+  const now = new Date();
+  const diff = target - now;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+  document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+  document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+  document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Animated counters
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const decimal = el.dataset.decimal === 'true';
+  const duration = 2000;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    let value = target * eased;
+    if (decimal) value = value.toFixed(1);
+    else value = Math.floor(value).toLocaleString();
+    el.textContent = value + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// Reveal observer
+let revealObserver;
+function observeReveals() {
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Stats counter
+          if (entry.target.classList.contains('stat-number')) {
+            animateCounter(entry.target);
+          }
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  }
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.stat-number').forEach(el => revealObserver.observe(el));
+}
+
+// Initialize
+renderDestinations();
+renderPackages();
+renderAdventures();
+renderTestimonials();
+renderGallery();
+renderBlog();
+observeReveals();
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    const href = anchor.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Book Now button
+document.querySelectorAll('button').forEach(btn => {
+  if (btn.textContent.includes('Book Now') && btn.id) {
+    btn.addEventListener('click', () => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' }));
+  }
+});
+
+console.log('%cVoyagé ✦ Curated journeys, beautifully crafted.', 'color: #C9A961; font-size: 16px; font-family: serif;');
+</script>
+
+</body>
+</html>
