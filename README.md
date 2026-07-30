@@ -4,20 +4,20 @@
 [![GitHub Forks](https://img.shields.io/github/forks/sharjeel2025/devgurux-portfolio?style=for-the-badge)](https://github.com/sharjeel2025/devgurux-portfolio/network/members)
 [![GitHub License](https://img.shields.io/github/license/sharjeel2025/devgurux-portfolio?style=for-the-badge)](https://github.com/sharjeel2025/devgurux-portfolio/blob/main/LICENSE)
 
-A curated showcase of high-performance, modern, and beautifully animated frontend web experiments. This repository serves as a live portfolio featuring interactive layouts, smooth animations, and responsive designs crafted using core frontend technologies.
+A curated showcase of high‑performance, modern, and beautifully animated frontend web experiments. This repository serves as a live portfolio featuring interactive layouts, smooth animations, and responsive designs crafted using core frontend technologies.
 
 ---
 
 ## 🌐 Live Demos
 
-Since this repository is a collection of multi-page projects, you can view each live deployment directly by navigating to their respective directories below:
+Since this repository is a collection of multi‑page projects, you can view each live deployment directly by navigating to their respective directories below:
 
 | Project Name | Tech Stack | Live Preview Link |
 | :--- | :--- | :--- |
 | **Aegis Elite Fitness** | HTML5, CSS3, JavaScript | [View Live Demo 🏋️‍♂️](https://sharjeel2025.github.io/devgurux-portfolio/Aegis%20Elite%20Fitness/) |
 | **Aether Luxury Restaurant** | HTML5, CSS3, JS, Animations | [View Live Demo 🍽️](https://sharjeel2025.github.io/devgurux-portfolio/Aether%20Luxury%20Restaurant/) |
 | **Apex Structures Website** | HTML5, Modern CSS, JS | [View Live Demo 🏗️](https://sharjeel2025.github.io/devgurux-portfolio/Apex%20Structures%20Website/) |
-| **Bwa-sports Project** | HTML5, Responsive CSS, JS | [View Live Demo ⚽](https://sharjeel2025.github.io/devgurux-portfolio/Bwa-sports%20Project/) |
+| **Bwa‑sports Project** | HTML5, Responsive CSS, JS | [View Live Demo ⚽](https://sharjeel2025.github.io/devgurux-portfolio/Bwa-sports%20Project/) |
 | **Luxury Car Rental** | HTML5, Tailwind/CSS, JS | [View Live Demo 🏎️](https://sharjeel2025.github.io/devgurux-portfolio/Luxury%20Car%20Rental/) |
 | **Law Firm Landing** | HTML5, Clean CSS, JS | [View Live Demo ⚖️](https://sharjeel2025.github.io/devgurux-portfolio/law%20firm/) |
 
@@ -25,10 +25,10 @@ Since this repository is a collection of multi-page projects, you can view each 
 
 ## ✨ Core Features Included
 
-* **Fluid & Dynamic Animations:** Interactive UI transitions, hover mechanics, and scroll-driven effects.
-* **Fully Responsive Architecture:** Optimized pixel-perfect viewing experiences across smartphones, tablets, and desktop displays.
-* **Modern Semantics:** Clean, standard-compliant markup built with performance and SEO basics in mind.
-* **Production Ready Layouts:** Tailored color theory applications across distinct industries (Fitness, Luxury Dining, Corporate Law, Automotive).
+- **Fluid & Dynamic Animations** – Interactive UI transitions, hover mechanics, and scroll‑driven effects.
+- **Fully Responsive Architecture** – Optimised pixel‑perfect viewing experiences across smartphones, tablets, and desktop displays.
+- **Modern Semantics** – Clean, standard‑compliant markup built with performance and SEO basics in mind.
+- **Production Ready Layouts** – Tailored color theory applications across distinct industries (Fitness, Luxury Dining, Corporate Law, Automotive).
 
 ---
 
@@ -36,9 +36,21 @@ Since this repository is a collection of multi-page projects, you can view each 
 
 The projects in this collection leverage vanilla foundational tools to ensure maximum speed and lightweight rendering:
 
-* **HTML5** - Semantic structure and layout.
-* **CSS3** - Custom properties (variables), Grid, Flexbox, Keyframe animations, and responsive media queries.
-* **JavaScript (ES6+)** - Component interactivity, state toggles, and animation controls.
+- **HTML5** – Semantic structure and layout.
+- **CSS3** – Custom properties (variables), Grid, Flexbox, Keyframe animations, and responsive media queries.
+- **JavaScript (ES6+)** – Component interactivity, state toggles, and animation controls.
+
+---
+
+## 🔗 Related Projects
+
+Check out another practical tool from the same team – the **Website Cost Calculator**:
+
+> **A transparent, no‑sign‑up tool that turns "how much?" into a clear, itemized estimate.**  
+> [📄 View the full README](https://github.com/sharjeel2025/calculator-to-calculate-a-cost-of-website-to-build-/blob/main/README.md)  
+> [🌐 Try the live calculator](https://devgurux.com/our-tools/website-cost-calculator/)
+
+This calculator helps business owners, freelancers, and developers estimate website costs instantly – with no backend, no database, and no data collection.
 
 ---
 
@@ -48,7 +60,7 @@ Want to run these projects locally on your machine? Follow these straightforward
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/sharjeel2025/devgurux-portfolio.git](https://github.com/sharjeel2025/devgurux-portfolio.git)
+    git clone https://github.com/sharjeel2025/devgurux-portfolio.git
     ```
 
 2.  **Navigate into the Directory:**
@@ -57,11 +69,16 @@ Want to run these projects locally on your machine? Follow these straightforward
     ```
 
 3.  **Launch a Project:**
-    * Open any project folder (e.g., `Aether Luxury Restaurant`).
-    * Double-click the `index.html` file to view it instantly in your web browser, or use a code editor extension like **Live Server** in VS Code for live-reloading.
+    - Open any project folder (e.g., `Aether Luxury Restaurant`).
+    - Double‑click the `index.html` file to view it instantly in your web browser, or use a code editor extension like **Live Server** in VS Code for live‑reloading.
 
 ---
 
 ## 📄 License
 
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This repository is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
+
+---
+
+Built with ❤️ by the [devgurux](https://devgurux.com) team.  
+*Free forever · No sign‑up · No hidden fees*
